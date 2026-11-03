@@ -4,440 +4,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Creature World ✨</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
+  --purple:#8866ca;
+  --ink:#51446f;
+  --pink:#f5a9d0;
+  --white:#fff;
 }
+
+* { box-sizing:border-box; margin:0; padding:0; }
 
 body {
-  font-family: 'Fredoka', sans-serif;
-  background: linear-gradient(145deg, #d9f3ff, #eadfff, #ffe8f1);
-  color: #51466e;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family:'Fredoka',sans-serif;
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(ellipse at 10% 10%,#d8f3ff 0,transparent 35%),
+    radial-gradient(ellipse at 90% 5%,#fbdcf0 0,transparent 35%),
+    linear-gradient(145deg,#e7e1ff,#f8eaff 55%,#dff5ff);
 }
 
-/* HEADER */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background-image:radial-gradient(#fff 2px,transparent 2px);
+  background-size:38px 38px;
+  z-index:-1;
+}
 
 header {
-  padding: 22px 7%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding:22px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: #795cba;
+  font-size:25px;
+  font-weight:700;
+  color:#7657b5;
+  letter-spacing:.5px;
 }
+
+.logo span { color:#ed9ac9; }
 
 .counter {
-  background: white;
-  padding: 11px 20px;
-  border-radius: 30px;
-  box-shadow: 0 5px 18px #8871b322;
-  font-weight: 600;
+  background:#ffffffc9;
+  padding:11px 20px;
+  border:1px solid white;
+  border-radius:30px;
+  box-shadow:0 5px 18px #8c75ba20;
+  font-size:15px;
 }
 
-/* HERO */
-
 .hero {
-  text-align: center;
-  padding: 55px 20px 35px;
+  text-align:center;
+  padding:45px 20px 35px;
 }
 
 .tag {
-  display: inline-block;
-  padding: 9px 18px;
-  border-radius: 30px;
-  background: #ffffffb5;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-bottom: 18px;
+  display:inline-block;
+  padding:9px 18px;
+  border-radius:30px;
+  background:#ffffffa8;
+  color:#8b73b9;
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:19px;
 }
 
 h1 {
-  font-size: clamp(43px, 8vw, 76px);
-  color: #795cba;
-  line-height: 1.1;
-  text-shadow: 3px 4px white;
+  font-size:clamp(43px,8vw,78px);
+  line-height:1.03;
+  color:#795ab9;
+  text-shadow:3px 4px 0 white;
 }
 
 .hero p {
-  margin-top: 15px;
-  color: #807397;
-  font-size: 17px;
+  margin:17px auto 0;
+  max-width:550px;
+  color:#83769e;
+  font-size:17px;
+  line-height:1.6;
 }
-
-/* COLLECTION AREA */
 
 .world {
-  max-width: 1100px;
-  margin: 20px auto 50px;
-  padding: 35px;
-  background: #ffffff85;
-  border: 2px solid white;
-  border-radius: 35px;
-  box-shadow: 0 15px 40px #8871b322;
+  max-width:1120px;
+  margin:15px auto 55px;
+  padding:34px;
+  background:#ffffff83;
+  border:2px solid #ffffffc9;
+  border-radius:35px;
+  box-shadow:0 20px 55px #8270b51c;
+  backdrop-filter:blur(12px);
 }
 
-.section-heading {
-  text-align: center;
-}
+.section-heading { text-align:center; }
 
 .section-heading h2 {
-  font-size: 28px;
+  font-size:29px;
+  color:#695294;
 }
 
 .section-heading p {
-  color: #8b809f;
-  margin-top: 8px;
+  margin-top:8px;
+  color:#9385a8;
 }
 
-/* FILTER BUTTONS */
-
 .filters {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin: 25px 0;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:26px 0;
 }
 
 .filter {
-  background: white;
-  color: #7968a0;
-  border: 2px solid transparent;
-  padding: 9px 17px;
-  border-radius: 25px;
-  font: inherit;
-  cursor: pointer;
-  transition: .25s;
+  border:2px solid transparent;
+  background:white;
+  color:#806da2;
+  padding:10px 18px;
+  border-radius:25px;
+  font:inherit;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.filter:hover {
-  transform: translateY(-3px);
-}
+.filter:hover { transform:translateY(-3px); }
 
 .filter.active {
-  background: #e8ddff;
-  border-color: #b9a1ec;
-  color: #7052b4;
+  background:#e9dfff;
+  border-color:#bca5e8;
+  color:#704eb0;
 }
 
-/* CREATURE CARDS */
-
 .creatures {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+  gap:22px;
 }
 
 .card {
-  background: white;
-  border-radius: 27px;
-  overflow: hidden;
-  text-align: center;
-  border: 2px solid white;
-  box-shadow: 0 7px 18px #8871b315;
-  transition:
-    transform .35s cubic-bezier(.2,.8,.2,1),
-    box-shadow .35s ease;
+  background:white;
+  border:2px solid #fff;
+  border-radius:28px;
+  overflow:hidden;
+  text-align:center;
+  box-shadow:0 9px 22px #7463a51c;
+  transition:transform .35s,box-shadow .35s;
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.025);
-  box-shadow: 0 15px 25px #8871b330;
+  transform:translateY(-9px);
+  box-shadow:0 18px 30px #7463a52b;
 }
 
-/* CREATURE ART AREAS */
+/* CREATURE ART */
 
 .art {
-  height: 190px;
-  display: grid;
-  place-items: center;
-  position: relative;
-  overflow: hidden;
+  height:205px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
 }
 
 .art::before {
-  content: "";
-  position: absolute;
-  width: 145px;
-  height: 145px;
-  border-radius: 50%;
-  background: #ffffff65;
-  box-shadow: 0 10px 30px #ffffff50;
-  animation: aura 4s ease-in-out infinite;
+  content:"";
+  position:absolute;
+  width:175px;
+  height:175px;
+  border-radius:50%;
+  background:#ffffff85;
+  filter:blur(1px);
+  animation:aura 4s ease-in-out infinite;
+  z-index:-1;
 }
 
-.art::after {
-  content: "✦     ✧     ✦";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: white;
-  font-size: 19px;
-  letter-spacing: 25px;
-  opacity: .55;
-  animation: sparkle 3s ease-in-out infinite;
-  pointer-events: none;
+.cloud { background:linear-gradient(145deg,#c8b5ff,#e9dfff); }
+.fire { background:linear-gradient(145deg,#ffc59e,#ffe6bd); }
+.nature { background:linear-gradient(145deg,#b9e9c9,#e0f5c9); }
+.water { background:linear-gradient(145deg,#aee3f8,#d7e5ff); }
+
+.creature {
+  width:170px;
+  height:170px;
+  overflow:visible;
+  animation:float 3.3s ease-in-out infinite;
+  filter:drop-shadow(0 12px 7px #51446f30);
+  transform-origin:50% 80%;
 }
 
-.art span {
-  position: relative;
-  z-index: 2;
-  font-size: 88px;
-  display: inline-block;
-  filter: drop-shadow(0 12px 8px #51466e25);
+.fire .creature { animation:fireBounce 1.9s ease-in-out infinite; }
+.nature .creature { animation:shroomWobble 3s ease-in-out infinite; }
+.water .creature { animation:jellySquish 2.5s ease-in-out infinite; }
+
+.card:hover .creature {
+  animation:happyHop .65s ease-in-out infinite;
 }
 
-/* INDIVIDUAL CREATURE ANIMATIONS */
-
-.cloud span {
-  animation: floofi 3s ease-in-out infinite;
+@keyframes float {
+  0%,100% { transform:translateY(0) rotate(-3deg); }
+  50% { transform:translateY(-13px) rotate(3deg); }
 }
 
-.fire span {
-  animation: blazbit 1.8s ease-in-out infinite;
+@keyframes fireBounce {
+  0%,100% { transform:translateY(0) rotate(-3deg); }
+  35% { transform:translateY(-13px) rotate(4deg); }
+  65% { transform:translateY(-4px) rotate(-3deg); }
 }
 
-.nature span {
-  animation: shroomi 2.5s ease-in-out infinite;
+@keyframes shroomWobble {
+  0%,100% { transform:rotate(-4deg) translateY(0); }
+  50% { transform:rotate(4deg) translateY(-8px); }
 }
 
-.water span {
-  animation: jelloo 2.2s ease-in-out infinite;
+@keyframes jellySquish {
+  0%,100% { transform:scale(1,1) translateY(0); }
+  30% { transform:scale(1.08,.91) translateY(3px); }
+  60% { transform:scale(.93,1.1) translateY(-9px); }
 }
 
-/* FLOOFI - FLOATING */
-
-@keyframes floofi {
-  0%, 100% {
-    transform: translateY(0) rotate(-5deg) scale(1);
-  }
-  50% {
-    transform: translateY(-18px) rotate(5deg) scale(1.08);
-  }
-}
-
-/* BLAZBIT - EXCITED BOUNCE */
-
-@keyframes blazbit {
-  0%, 100% {
-    transform: translateY(0) rotate(-4deg);
-  }
-  25% {
-    transform: translateY(-12px) rotate(5deg);
-  }
-  50% {
-    transform: translateY(0) rotate(-5deg);
-  }
-  75% {
-    transform: translateY(-7px) rotate(4deg);
-  }
-}
-
-/* SHROOMI - LITTLE WOBBLE */
-
-@keyframes shroomi {
-  0%, 100% {
-    transform: translateY(0) rotate(-5deg);
-  }
-  25% {
-    transform: translateY(-8px) rotate(6deg);
-  }
-  50% {
-    transform: translateY(0) rotate(-6deg);
-  }
-  75% {
-    transform: translateY(-5px) rotate(5deg);
-  }
-}
-
-/* JELLOO - SQUISH AND STRETCH */
-
-@keyframes jelloo {
-  0%, 100% {
-    transform: scale(1, 1) translateY(0);
-  }
-  25% {
-    transform: scale(1.1, .9) translateY(4px);
-  }
-  50% {
-    transform: scale(.92, 1.12) translateY(-8px);
-  }
-  75% {
-    transform: scale(1.05, .95) translateY(2px);
-  }
-}
-
-/* SPARKLES AND AURA */
-
-@keyframes sparkle {
-  0%, 100% {
-    opacity: .2;
-    transform: scale(.85) rotate(-8deg);
-  }
-  50% {
-    opacity: .9;
-    transform: scale(1.12) rotate(8deg);
-  }
+@keyframes happyHop {
+  0%,100% { transform:translateY(0) rotate(-4deg) scale(1); }
+  50% { transform:translateY(-17px) rotate(5deg) scale(1.1); }
 }
 
 @keyframes aura {
-  0%, 100% {
-    transform: scale(.9);
-    opacity: .5;
-  }
-  50% {
-    transform: scale(1.12);
-    opacity: .9;
-  }
+  0%,100% { transform:scale(.9); opacity:.5; }
+  50% { transform:scale(1.13); opacity:1; }
 }
 
-/* HOVER REACTION */
-
-.card:hover .art span {
-  animation: excitedBounce .65s ease-in-out infinite;
+.sparkle {
+  position:absolute;
+  color:white;
+  font-size:19px;
+  animation:twinkle 2.5s ease-in-out infinite;
+  pointer-events:none;
 }
 
-@keyframes excitedBounce {
-  0%, 100% {
-    transform: translateY(0) rotate(-5deg) scale(1);
-  }
-  50% {
-    transform: translateY(-18px) rotate(8deg) scale(1.15);
-  }
+.s1 { top:25px; left:24px; }
+.s2 { top:55px; right:28px; animation-delay:.7s; }
+.s3 { bottom:30px; left:45px; animation-delay:1.3s; }
+
+@keyframes twinkle {
+  0%,100% { opacity:.2; transform:scale(.7) rotate(0); }
+  50% { opacity:1; transform:scale(1.3) rotate(35deg); }
 }
 
-/* COLLECTED CELEBRATION */
-
-.card.happy .art span {
-  animation: happyDance .8s ease-in-out;
-}
-
-@keyframes happyDance {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.3) rotate(-15deg); }
-  60% { transform: scale(.9) rotate(15deg); }
-  100% { transform: scale(1) rotate(0); }
-}
-
-/* CREATURE DETAILS */
-
-.details {
-  padding: 20px 15px;
-}
+.details { padding:19px 16px 21px; }
 
 .details h3 {
-  color: #7557b7;
-  font-size: 23px;
+  color:#7658b4;
+  font-size:25px;
 }
 
 .type {
-  display: inline-block;
-  padding: 5px 13px;
-  border-radius: 20px;
-  background: #f1eaff;
-  color: #785eb3;
-  font-size: 12px;
-  margin: 9px 0;
+  display:inline-block;
+  margin:9px 0;
+  padding:6px 13px;
+  border-radius:20px;
+  background:#f1eaff;
+  color:#8064ae;
+  font-size:12px;
 }
 
 .details p {
-  color: #8a809c;
-  font-size: 13px;
-  line-height: 1.6;
-  min-height: 42px;
+  color:#8c819f;
+  font-size:13px;
+  line-height:1.6;
+  min-height:42px;
 }
 
 .rarity {
-  font-size: 12px;
-  color: #b18b55;
-  margin: 12px 0;
-  font-weight: 600;
+  margin:12px 0;
+  font-size:12px;
+  font-weight:600;
+  color:#bb9360;
 }
 
-/* COLLECT BUTTON */
-
 .unlock {
-  width: 100%;
-  padding: 11px;
-  background: linear-gradient(120deg, #987be3, #e99bc9);
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font: inherit;
-  cursor: pointer;
-  transition: .25s;
+  width:100%;
+  border:0;
+  border-radius:22px;
+  padding:12px;
+  background:linear-gradient(110deg,#9879dc,#e7a0ca);
+  color:white;
+  font:inherit;
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s;
 }
 
 .unlock:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px #987be455;
+  transform:scale(1.04);
+  box-shadow:0 6px 15px #9879dc40;
 }
 
 .unlock:disabled {
-  background: #b9b2c9;
-  cursor: default;
-  transform: none;
+  background:#b9b1c9;
+  cursor:default;
+  transform:none;
 }
-
-/* MESSAGE */
 
 .message {
-  text-align: center;
-  margin: 25px 0 5px;
-  min-height: 28px;
-  color: #785db5;
-  font-weight: 600;
+  text-align:center;
+  min-height:28px;
+  margin-top:27px;
+  color:#785bb4;
+  font-weight:600;
 }
-
-/* FOOTER */
 
 footer {
-  text-align: center;
-  padding: 25px;
-  color: #897e9e;
-  font-size: 13px;
+  text-align:center;
+  padding:25px;
+  color:#9587a9;
+  font-size:13px;
 }
 
-/* MOBILE */
+/* CELEBRATION */
 
-@media(max-width: 600px) {
-  header {
-    padding: 18px;
-  }
-
-  .world {
-    margin: 12px;
-    padding: 22px 14px;
-  }
-
-  .hero {
-    padding-top: 35px;
-  }
+.card.happy .creature {
+  animation:celebrate .8s ease-in-out;
 }
 
-/* ACCESSIBILITY */
+@keyframes celebrate {
+  0% { transform:scale(1); }
+  35% { transform:scale(1.23) rotate(-12deg); }
+  70% { transform:scale(.9) rotate(12deg); }
+  100% { transform:scale(1); }
+}
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
+@media(max-width:600px) {
+  header { padding:18px; }
+  .logo { font-size:20px; }
+  .world { margin:12px; padding:22px 14px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
   }
 }
 </style>
@@ -446,12 +366,12 @@ footer {
 <body>
 
 <header>
-  <div class="logo">✨ CREATURE WORLD</div>
+  <div class="logo">✨ CREATURE <span>WORLD</span></div>
   <div class="counter">⭐ <span id="score">0</span> / 4 collected</div>
 </header>
 
 <section class="hero">
-  <div class="tag">YOUR VERY OWN LITTLE UNIVERSE</div>
+  <div class="tag">✦ YOUR VERY OWN LITTLE UNIVERSE ✦</div>
   <h1>Meet your<br>new companions!</h1>
   <p>Four tiny creatures. Unlimited chaos. One very lucky player.</p>
 </section>
@@ -460,7 +380,7 @@ footer {
 
   <div class="section-heading">
     <h2>🌸 The Creature Collection</h2>
-    <p>Choose your companions and discover their personalities.</p>
+    <p>Pick your companions. They promise to behave. Probably.</p>
   </div>
 
   <div class="filters">
@@ -473,9 +393,32 @@ footer {
 
   <div class="creatures">
 
+    <!-- FLOOFI -->
     <article class="card" data-type="Dream">
       <div class="art cloud">
-        <span>☁️</span>
+        <i class="sparkle s1">✦</i>
+        <i class="sparkle s2">✧</i>
+        <i class="sparkle s3">✦</i>
+
+        <svg class="creature" viewBox="0 0 180 180">
+          <defs>
+            <radialGradient id="floof" cx="35%" cy="25%">
+              <stop offset="0%" stop-color="#fff"/>
+              <stop offset="55%" stop-color="#e6dcff"/>
+              <stop offset="100%" stop-color="#a88ce4"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="90" cy="151" rx="47" ry="9" fill="#8269bc" opacity=".18"/>
+          <path d="M39 103 C18 94 26 65 48 65 C48 37 79 26 96 45 C119 27 149 48 143 72 C165 78 158 110 138 115 C123 145 55 144 39 103Z" fill="url(#floof)" stroke="#a78cda" stroke-width="3"/>
+          <ellipse cx="72" cy="91" rx="6" ry="9" fill="#51446f"/>
+          <ellipse cx="111" cy="91" rx="6" ry="9" fill="#51446f"/>
+          <circle cx="74" cy="88" r="2.5" fill="white"/>
+          <circle cx="113" cy="88" r="2.5" fill="white"/>
+          <ellipse cx="55" cy="105" rx="9" ry="5" fill="#f6a8c9" opacity=".8"/>
+          <ellipse cx="128" cy="105" rx="9" ry="5" fill="#f6a8c9" opacity=".8"/>
+          <path d="M85 105 Q91 113 98 105" fill="none" stroke="#765b9e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M61 131 Q49 141 42 131 M119 131 Q132 141 139 131" fill="none" stroke="#b59bdf" stroke-width="6" stroke-linecap="round"/>
+        </svg>
       </div>
       <div class="details">
         <h3>Floofi</h3>
@@ -486,9 +429,34 @@ footer {
       </div>
     </article>
 
+    <!-- BLAZBIT -->
     <article class="card" data-type="Fire">
       <div class="art fire">
-        <span>🐉</span>
+        <i class="sparkle s1">✦</i>
+        <i class="sparkle s2">✧</i>
+        <i class="sparkle s3">✦</i>
+
+        <svg class="creature" viewBox="0 0 180 180">
+          <defs>
+            <radialGradient id="blaze" cx="35%" cy="25%">
+              <stop offset="0%" stop-color="#fff1bd"/>
+              <stop offset="65%" stop-color="#ffab6b"/>
+              <stop offset="100%" stop-color="#e76b48"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="90" cy="151" rx="45" ry="8" fill="#bb6b49" opacity=".2"/>
+          <path d="M52 65 L48 30 Q72 39 75 55 M108 55 Q119 34 139 34 L126 75" fill="#ef8155" stroke="#c65d43" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M42 108 Q28 78 55 63 Q90 37 125 63 Q155 86 137 121 Q126 150 90 145 Q48 149 42 108Z" fill="url(#blaze)" stroke="#e47b50" stroke-width="3"/>
+          <path d="M62 119 Q42 105 35 118 M119 121 Q138 108 148 119" fill="none" stroke="#ed865a" stroke-width="8" stroke-linecap="round"/>
+          <ellipse cx="72" cy="94" rx="6" ry="9" fill="#513e49"/>
+          <ellipse cx="109" cy="94" rx="6" ry="9" fill="#513e49"/>
+          <circle cx="74" cy="91" r="2.5" fill="white"/>
+          <circle cx="111" cy="91" r="2.5" fill="white"/>
+          <ellipse cx="56" cy="108" rx="9" ry="5" fill="#ffbd9e"/>
+          <ellipse cx="126" cy="108" rx="9" ry="5" fill="#ffbd9e"/>
+          <path d="M83 109 Q91 117 99 109" fill="none" stroke="#8c4b43" stroke-width="3" stroke-linecap="round"/>
+          <path d="M90 52 Q72 31 92 15 Q100 33 110 38 Q116 21 128 18 Q127 47 111 58" fill="#ff9c43" stroke="#e97842" stroke-width="2"/>
+        </svg>
       </div>
       <div class="details">
         <h3>Blazbit</h3>
@@ -499,9 +467,40 @@ footer {
       </div>
     </article>
 
+    <!-- SHROOMI -->
     <article class="card" data-type="Nature">
       <div class="art nature">
-        <span>🍄</span>
+        <i class="sparkle s1">✦</i>
+        <i class="sparkle s2">✧</i>
+        <i class="sparkle s3">✦</i>
+
+        <svg class="creature" viewBox="0 0 180 180">
+          <defs>
+            <radialGradient id="shroom" cx="35%" cy="25%">
+              <stop offset="0%" stop-color="#e9ffe1"/>
+              <stop offset="65%" stop-color="#9ad9a4"/>
+              <stop offset="100%" stop-color="#58a978"/>
+            </radialGradient>
+            <linearGradient id="cap" x1="0" x2="1" y1="0" y2="1">
+              <stop stop-color="#ffb6cf"/>
+              <stop offset="1" stop-color="#d879a9"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="90" cy="151" rx="45" ry="8" fill="#578c65" opacity=".2"/>
+          <path d="M55 95 Q90 80 125 95 L121 139 Q90 157 59 139Z" fill="url(#shroom)" stroke="#5aab79" stroke-width="3"/>
+          <path d="M27 88 Q30 39 90 35 Q150 39 153 88 Q128 105 90 100 Q49 105 27 88Z" fill="url(#cap)" stroke="#cf78a4" stroke-width="3"/>
+          <ellipse cx="62" cy="70" rx="10" ry="8" fill="#ffe4ed"/>
+          <ellipse cx="111" cy="59" rx="8" ry="6" fill="#ffe4ed"/>
+          <ellipse cx="87" cy="83" rx="6" ry="5" fill="#ffe4ed"/>
+          <ellipse cx="74" cy="116" rx="5" ry="8" fill="#426c58"/>
+          <ellipse cx="108" cy="116" rx="5" ry="8" fill="#426c58"/>
+          <circle cx="76" cy="113" r="2" fill="white"/>
+          <circle cx="110" cy="113" r="2" fill="white"/>
+          <ellipse cx="61" cy="128" rx="8" ry="5" fill="#f7a4bb"/>
+          <ellipse cx="120" cy="128" rx="8" ry="5" fill="#f7a4bb"/>
+          <path d="M85 130 Q90 136 97 130" fill="none" stroke="#47755a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M61 143 L52 150 M119 143 L128 150" stroke="#5ba879" stroke-width="7" stroke-linecap="round"/>
+        </svg>
       </div>
       <div class="details">
         <h3>Shroomi</h3>
@@ -512,9 +511,34 @@ footer {
       </div>
     </article>
 
+    <!-- JELLOO -->
     <article class="card" data-type="Water">
       <div class="art water">
-        <span>🪼</span>
+        <i class="sparkle s1">✦</i>
+        <i class="sparkle s2">✧</i>
+        <i class="sparkle s3">✦</i>
+
+        <svg class="creature" viewBox="0 0 180 180">
+          <defs>
+            <radialGradient id="jelly" cx="35%" cy="20%">
+              <stop offset="0%" stop-color="#edffff"/>
+              <stop offset="55%" stop-color="#83d9f1"/>
+              <stop offset="100%" stop-color="#4a9bd7"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="90" cy="153" rx="42" ry="8" fill="#538ec4" opacity=".2"/>
+          <path d="M40 94 Q38 48 90 40 Q143 48 140 94 Q140 111 125 119 L137 144 Q120 151 112 124 L99 149 Q88 154 86 126 L65 147 Q53 147 61 119 Q40 112 40 94Z" fill="url(#jelly)" stroke="#5ca9d8" stroke-width="3" stroke-linejoin="round"/>
+          <ellipse cx="70" cy="87" rx="7" ry="10" fill="#344f79"/>
+          <ellipse cx="109" cy="87" rx="7" ry="10" fill="#344f79"/>
+          <circle cx="72" cy="83" r="3" fill="white"/>
+          <circle cx="111" cy="83" r="3" fill="white"/>
+          <ellipse cx="53" cy="103" rx="9" ry="5" fill="#f8a9c8"/>
+          <ellipse cx="128" cy="103" rx="9" ry="5" fill="#f8a9c8"/>
+          <path d="M82 105 Q90 114 99 105" fill="none" stroke="#426c9d" stroke-width="3" stroke-linecap="round"/>
+          <path d="M68 49 Q55 26 72 17 M111 49 Q127 26 111 17" fill="none" stroke="#66bde6" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="72" cy="16" r="5" fill="#baf3ff"/>
+          <circle cx="111" cy="16" r="5" fill="#baf3ff"/>
+        </svg>
       </div>
       <div class="details">
         <h3>Jelloo</h3>
@@ -538,11 +562,9 @@ footer {
 </footer>
 
 <script>
-
 let collected = [];
 
 function collect(name, button) {
-
   if (collected.includes(name)) return;
 
   collected.push(name);
@@ -551,7 +573,6 @@ function collect(name, button) {
     collected.length;
 
   const card = button.closest(".card");
-
   card.classList.add("happy");
 
   setTimeout(() => {
@@ -571,7 +592,6 @@ function collect(name, button) {
 }
 
 function filterCreatures(type, button) {
-
   document.querySelectorAll(".filter").forEach(b => {
     b.classList.remove("active");
   });
@@ -579,15 +599,11 @@ function filterCreatures(type, button) {
   button.classList.add("active");
 
   document.querySelectorAll(".card").forEach(card => {
-
     card.style.display =
       type === "all" || card.dataset.type === type
-      ? "block"
-      : "none";
-
+      ? "block" : "none";
   });
 }
-
 </script>
 
 </body>
