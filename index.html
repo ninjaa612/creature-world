@@ -9,180 +9,212 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Fredoka', sans-serif;
+  background: linear-gradient(145deg,#d9f3ff,#eadfff,#ffe8f1);
+  color: #51466e;
   min-height: 100vh;
-  color: #493d69;
-  background: linear-gradient(145deg, #c7edff, #e7d5ff, #ffe0ec);
-  overflow-x: hidden;
 }
 
 header {
+  padding: 22px 7%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 7%;
 }
 
-.logo {
-  font-size: 25px;
-  font-weight: 700;
-  color: #7457bb;
-}
+.logo { font-size: 24px; font-weight: 700; color: #795cba; }
 
 .counter {
   background: white;
-  padding: 10px 20px;
+  padding: 11px 20px;
   border-radius: 30px;
-  box-shadow: 0 5px 15px #8c70b522;
-  font-weight: 600;
+  box-shadow: 0 5px 18px #8871b322;
 }
 
-.hero {
-  text-align: center;
-  padding: 55px 20px 30px;
-}
+.hero { text-align: center; padding: 55px 20px 35px; }
 
 .tag {
   display: inline-block;
-  background: #ffffffa8;
   padding: 9px 18px;
   border-radius: 30px;
-  font-size: 13px;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
+  background: #ffffffa8;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
 }
 
 h1 {
-  font-size: clamp(42px, 8vw, 76px);
-  color: #7558b9;
+  font-size: clamp(43px,8vw,76px);
+  color: #795cba;
   line-height: 1.1;
   text-shadow: 3px 4px white;
 }
 
-.hero p {
-  margin-top: 16px;
-  font-size: 18px;
-  color: #71618e;
-}
+.hero p { margin-top: 15px; color: #807397; font-size: 17px; }
 
 .world {
-  max-width: 1050px;
-  margin: 35px auto;
-  padding: 35px 25px;
-  background: #ffffff70;
-  border: 3px solid #ffffffb0;
+  max-width: 1100px;
+  margin: 20px auto 50px;
+  padding: 35px;
+  background: #ffffff85;
+  border: 2px solid #ffffff;
   border-radius: 35px;
-  text-align: center;
-  box-shadow: 0 15px 40px #8c70b522;
+  box-shadow: 0 15px 40px #8871b322;
 }
 
-.world h2 {
-  font-size: 27px;
-  margin-bottom: 8px;
+.section-heading { text-align: center; }
+.section-heading h2 { font-size: 28px; }
+.section-heading p { color: #8b809f; margin-top: 8px; }
+
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 25px 0;
 }
 
-.instruction {
-  color: #887b9f;
-  margin-bottom: 28px;
+.filter {
+  background: white;
+  color: #7968a0;
+  border: 2px solid transparent;
+  padding: 9px 17px;
+  border-radius: 25px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.filter.active {
+  background: #e8ddff;
+  border-color: #b9a1ec;
+  color: #7052b4;
 }
 
 .creatures {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 20px;
 }
 
-.creature {
+.card {
   background: white;
-  border-radius: 25px;
-  padding: 25px 12px;
-  border: 3px solid transparent;
-  cursor: pointer;
+  border-radius: 27px;
+  overflow: hidden;
+  text-align: center;
+  border: 2px solid white;
   transition: .25s;
+  box-shadow: 0 7px 18px #8871b315;
 }
 
-.creature:hover {
-  transform: translateY(-9px) rotate(-2deg);
-  border-color: #d7c3ff;
-  box-shadow: 0 12px 20px #967acb30;
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px #8871b330;
 }
 
-.creature .emoji {
-  font-size: 65px;
-  display: block;
-  margin-bottom: 12px;
+.art {
+  height: 175px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.art::before {
+  content: "";
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  background: #ffffff65;
+  box-shadow: 0 10px 30px #ffffff50;
+}
+
+.art span {
+  position: relative;
+  font-size: 88px;
+  filter: drop-shadow(0 12px 8px #51466e25);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+
+.cloud { background: linear-gradient(135deg,#d9caff,#f0e5ff); }
+.fire { background: linear-gradient(135deg,#ffcfac,#ffe6bc); }
+.nature { background: linear-gradient(135deg,#c6efd7,#e2f8c9); }
+.water { background: linear-gradient(135deg,#bceaff,#d9e6ff); }
+
+.details { padding: 20px 15px; }
+
+.details h3 { color: #7557b7; font-size: 23px; }
+
+.type {
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: 20px;
+  background: #f1eaff;
+  color: #785eb3;
+  font-size: 12px;
+  margin: 9px 0;
+}
+
+.details p {
+  color: #8a809c;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 42px;
+}
+
+.rarity {
+  font-size: 12px;
+  color: #b18b55;
+  margin: 12px 0;
+  font-weight: 600;
+}
+
+.unlock {
+  width: 100%;
+  padding: 11px;
+  background: linear-gradient(120deg,#987be3,#e99bc9);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font: inherit;
+  cursor: pointer;
   transition: .2s;
 }
 
-.creature:hover .emoji {
-  transform: scale(1.15);
-}
+.unlock:hover { transform: scale(1.04); }
 
-.creature h3 {
-  font-size: 21px;
-  color: #7558b9;
-}
-
-.creature p {
-  font-size: 13px;
-  color: #8d829f;
-  margin-top: 7px;
-  line-height: 1.5;
-}
-
-.creature small {
-  display: inline-block;
-  margin-top: 13px;
-  background: #eee6ff;
-  color: #795bb9;
-  padding: 6px 13px;
-  border-radius: 20px;
+.unlock:disabled {
+  background: #b9b2c9;
+  cursor: default;
+  transform: none;
 }
 
 .message {
-  min-height: 60px;
-  margin-top: 25px;
-  font-size: 18px;
+  text-align: center;
+  margin: 25px 0 5px;
+  min-height: 28px;
+  color: #785db5;
   font-weight: 600;
-  color: #7558b9;
-}
-
-button {
-  border: none;
-  background: linear-gradient(135deg, #9877e9, #ed8fbe);
-  color: white;
-  padding: 14px 28px;
-  border-radius: 30px;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 6px 15px #9877e944;
-  transition: .2s;
-}
-
-button:hover {
-  transform: scale(1.05);
 }
 
 footer {
   text-align: center;
   padding: 25px;
-  color: #85769f;
+  color: #897e9e;
   font-size: 13px;
 }
 
-@media(max-width: 600px) {
-  header { padding: 20px; }
-  .hero { padding-top: 35px; }
-  .world { margin: 20px 12px; padding: 25px 15px; }
+@media(max-width:600px) {
+  header { padding: 18px; }
+  .world { margin: 12px; padding: 22px 14px; }
 }
 </style>
 </head>
@@ -191,97 +223,121 @@ footer {
 
 <header>
   <div class="logo">✨ CREATURE WORLD</div>
-  <div class="counter">⭐ <span id="score">0</span> Creatures</div>
+  <div class="counter">⭐ <span id="score">0</span> / 4 collected</div>
 </header>
 
 <section class="hero">
-  <div class="tag">A VERY IMPORTANT ADVENTURE</div>
-  <h1>Welcome to<br>Creature World!</h1>
-  <p>A magical place full of questionable life choices.</p>
+  <div class="tag">YOUR VERY OWN LITTLE UNIVERSE</div>
+  <h1>Meet your<br>new companions!</h1>
+  <p>Four tiny creatures. Unlimited chaos. One very lucky player.</p>
 </section>
 
-<section class="world">
-  <h2>🌸 Meet your new companions</h2>
-  <p class="instruction">Click on a creature to add it to your collection!</p>
+<main class="world">
+
+  <div class="section-heading">
+    <h2>🌸 The Creature Collection</h2>
+    <p>Choose your companions and discover their personalities.</p>
+  </div>
+
+  <div class="filters">
+    <button class="filter active" onclick="filterCreatures('all',this)">All</button>
+    <button class="filter" onclick="filterCreatures('Dream',this)">☁️ Dream</button>
+    <button class="filter" onclick="filterCreatures('Fire',this)">🔥 Fire</button>
+    <button class="filter" onclick="filterCreatures('Nature',this)">🌿 Nature</button>
+    <button class="filter" onclick="filterCreatures('Water',this)">💧 Water</button>
+  </div>
 
   <div class="creatures">
 
-    <div class="creature" onclick="collect('Glitchpuff')">
-      <span class="emoji">👾</span>
-      <h3>Glitchpuff</h3>
-      <p>Crashes every 5 minutes.<br>Blames the Wi-Fi.</p>
-      <small>Rare-ish creature</small>
-    </div>
+    <article class="card" data-type="Dream">
+      <div class="art cloud"><span>☁️</span></div>
+      <div class="details">
+        <h3>Floofi</h3>
+        <span class="type">☁️ Dream element</span>
+        <p>Floats everywhere and gets offended when called a cotton ball.</p>
+        <div class="rarity">✦ Rarity: Rare</div>
+        <button class="unlock" onclick="collect('Floofi',this)">✨ Collect Floofi</button>
+      </div>
+    </article>
 
-    <div class="creature" onclick="collect('Potatuff')">
-      <span class="emoji">🥔</span>
-      <h3>Potatuff</h3>
-      <p>One brain cell.<br>Uses it exclusively for snacks.</p>
-      <small>Common chaos</small>
-    </div>
+    <article class="card" data-type="Fire">
+      <div class="art fire"><span>🐉</span></div>
+      <div class="details">
+        <h3>Blazbit</h3>
+        <span class="type">🔥 Fire element</span>
+        <p>Believes it is a terrifying dragon. Can barely light a candle.</p>
+        <div class="rarity">✦ Rarity: Uncommon</div>
+        <button class="unlock" onclick="collect('Blazbit',this)">🔥 Collect Blazbit</button>
+      </div>
+    </article>
 
-    <div class="creature" onclick="collect('Sleep.exe')">
-      <span class="emoji">😴</span>
-      <h3>Sleep.exe</h3>
-      <p>Runs on 2% battery.<br>Still refuses to shut down.</p>
-      <small>Sleepy legend</small>
-    </div>
+    <article class="card" data-type="Nature">
+      <div class="art nature"><span>🍄</span></div>
+      <div class="details">
+        <h3>Shroomi</h3>
+        <span class="type">🌿 Nature element</span>
+        <p>A tiny forest explorer with absolutely no sense of direction.</p>
+        <div class="rarity">✦ Rarity: Common</div>
+        <button class="unlock" onclick="collect('Shroomi',this)">🌱 Collect Shroomi</button>
+      </div>
+    </article>
 
-    <div class="creature" onclick="collect('Bugzilla')">
-      <span class="emoji">🐛</span>
-      <h3>Bugzilla</h3>
-      <p>Creates bugs for fun.<br>Calls them unexpected features.</p>
-      <small>Developer species</small>
-    </div>
+    <article class="card" data-type="Water">
+      <div class="art water"><span>🪼</span></div>
+      <div class="details">
+        <h3>Jelloo</h3>
+        <span class="type">💧 Water element</span>
+        <p>Communicates through weird noises. Knows everyone's secrets.</p>
+        <div class="rarity">✦ Rarity: Epic</div>
+        <button class="unlock" onclick="collect('Jelloo',this)">💧 Collect Jelloo</button>
+      </div>
+    </article>
 
   </div>
 
   <div class="message" id="message">
-    Your adventure awaits, Player 1! 🎮
+    Your adventure starts here, Player 1! 🎮
   </div>
 
-  <button onclick="randomCreature()">🎲 Surprise Me!</button>
-</section>
+</main>
 
 <footer>
   Made with 💗, questionable decisions and unlimited friendship.
 </footer>
 
 <script>
-let score = 0;
 let collected = [];
 
-function collect(name) {
-  if (collected.includes(name)) {
-    document.getElementById("message").innerText =
-      name + " is already in your collection. Greedy much? 😂";
-    return;
-  }
+function collect(name,button) {
+  if (collected.includes(name)) return;
 
   collected.push(name);
-  score++;
+  document.getElementById("score").innerText = collected.length;
 
-  document.getElementById("score").innerText = score;
+  button.innerText = "✓ Collected!";
+  button.disabled = true;
+
   document.getElementById("message").innerText =
-    "🎉 You unlocked " + name + "! Your collection is growing!";
+    "🎉 " + name + " has joined your little universe!";
+
+  if (collected.length === 4) {
+    document.getElementById("message").innerText =
+      "🏆 ALL FOUR CREATURES COLLECTED! You're a legend!";
+  }
 }
 
-function randomCreature() {
-  const creatures = [
-    "Glitchpuff",
-    "Potatuff",
-    "Sleep.exe",
-    "Bugzilla"
-  ];
+function filterCreatures(type,button) {
+  document.querySelectorAll(".filter").forEach(b =>
+    b.classList.remove("active")
+  );
 
-  const name = creatures[Math.floor(Math.random() * creatures.length)];
+  button.classList.add("active");
 
-  if (collected.includes(name)) {
-    document.getElementById("message").innerText =
-      "The universe gave you " + name + " again. RNG is broken. 💀";
-  } else {
-    collect(name);
-  }
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display =
+      type === "all" || card.dataset.type === type
+      ? "block" : "none";
+  });
 }
 </script>
 
