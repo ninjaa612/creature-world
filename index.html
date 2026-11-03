@@ -4,19 +4,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Creature World ✨</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Fredoka', sans-serif;
-  background: linear-gradient(145deg,#d9f3ff,#eadfff,#ffe8f1);
+  background: linear-gradient(145deg, #d9f3ff, #eadfff, #ffe8f1);
   color: #51466e;
   min-height: 100vh;
+  overflow-x: hidden;
 }
+
+/* HEADER */
 
 header {
   padding: 22px 7%;
@@ -25,49 +35,76 @@ header {
   align-items: center;
 }
 
-.logo { font-size: 24px; font-weight: 700; color: #795cba; }
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #795cba;
+}
 
 .counter {
   background: white;
   padding: 11px 20px;
   border-radius: 30px;
   box-shadow: 0 5px 18px #8871b322;
+  font-weight: 600;
 }
 
-.hero { text-align: center; padding: 55px 20px 35px; }
+/* HERO */
+
+.hero {
+  text-align: center;
+  padding: 55px 20px 35px;
+}
 
 .tag {
   display: inline-block;
   padding: 9px 18px;
   border-radius: 30px;
-  background: #ffffffa8;
+  background: #ffffffb5;
   font-size: 12px;
   letter-spacing: 2px;
   margin-bottom: 18px;
 }
 
 h1 {
-  font-size: clamp(43px,8vw,76px);
+  font-size: clamp(43px, 8vw, 76px);
   color: #795cba;
   line-height: 1.1;
   text-shadow: 3px 4px white;
 }
 
-.hero p { margin-top: 15px; color: #807397; font-size: 17px; }
+.hero p {
+  margin-top: 15px;
+  color: #807397;
+  font-size: 17px;
+}
+
+/* COLLECTION AREA */
 
 .world {
   max-width: 1100px;
   margin: 20px auto 50px;
   padding: 35px;
   background: #ffffff85;
-  border: 2px solid #ffffff;
+  border: 2px solid white;
   border-radius: 35px;
   box-shadow: 0 15px 40px #8871b322;
 }
 
-.section-heading { text-align: center; }
-.section-heading h2 { font-size: 28px; }
-.section-heading p { color: #8b809f; margin-top: 8px; }
+.section-heading {
+  text-align: center;
+}
+
+.section-heading h2 {
+  font-size: 28px;
+}
+
+.section-heading p {
+  color: #8b809f;
+  margin-top: 8px;
+}
+
+/* FILTER BUTTONS */
 
 .filters {
   display: flex;
@@ -85,6 +122,11 @@ h1 {
   border-radius: 25px;
   font: inherit;
   cursor: pointer;
+  transition: .25s;
+}
+
+.filter:hover {
+  transform: translateY(-3px);
 }
 
 .filter.active {
@@ -93,9 +135,11 @@ h1 {
   color: #7052b4;
 }
 
+/* CREATURE CARDS */
+
 .creatures {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 20px;
 }
 
@@ -105,17 +149,21 @@ h1 {
   overflow: hidden;
   text-align: center;
   border: 2px solid white;
-  transition: .25s;
   box-shadow: 0 7px 18px #8871b315;
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    box-shadow .35s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px) scale(1.025);
   box-shadow: 0 15px 25px #8871b330;
 }
 
+/* CREATURE ART AREAS */
+
 .art {
-  height: 175px;
+  height: 190px;
   display: grid;
   place-items: center;
   position: relative;
@@ -130,28 +178,173 @@ h1 {
   border-radius: 50%;
   background: #ffffff65;
   box-shadow: 0 10px 30px #ffffff50;
+  animation: aura 4s ease-in-out infinite;
+}
+
+.art::after {
+  content: "✦     ✧     ✦";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 19px;
+  letter-spacing: 25px;
+  opacity: .55;
+  animation: sparkle 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .art span {
   position: relative;
+  z-index: 2;
   font-size: 88px;
+  display: inline-block;
   filter: drop-shadow(0 12px 8px #51466e25);
-  animation: float 3s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0) rotate(-4deg); }
-  50% { transform: translateY(-10px) rotate(4deg); }
+/* INDIVIDUAL CREATURE ANIMATIONS */
+
+.cloud span {
+  animation: floofi 3s ease-in-out infinite;
 }
 
-.cloud { background: linear-gradient(135deg,#d9caff,#f0e5ff); }
-.fire { background: linear-gradient(135deg,#ffcfac,#ffe6bc); }
-.nature { background: linear-gradient(135deg,#c6efd7,#e2f8c9); }
-.water { background: linear-gradient(135deg,#bceaff,#d9e6ff); }
+.fire span {
+  animation: blazbit 1.8s ease-in-out infinite;
+}
 
-.details { padding: 20px 15px; }
+.nature span {
+  animation: shroomi 2.5s ease-in-out infinite;
+}
 
-.details h3 { color: #7557b7; font-size: 23px; }
+.water span {
+  animation: jelloo 2.2s ease-in-out infinite;
+}
+
+/* FLOOFI - FLOATING */
+
+@keyframes floofi {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) rotate(5deg) scale(1.08);
+  }
+}
+
+/* BLAZBIT - EXCITED BOUNCE */
+
+@keyframes blazbit {
+  0%, 100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  25% {
+    transform: translateY(-12px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-7px) rotate(4deg);
+  }
+}
+
+/* SHROOMI - LITTLE WOBBLE */
+
+@keyframes shroomi {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(6deg);
+  }
+  50% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+/* JELLOO - SQUISH AND STRETCH */
+
+@keyframes jelloo {
+  0%, 100% {
+    transform: scale(1, 1) translateY(0);
+  }
+  25% {
+    transform: scale(1.1, .9) translateY(4px);
+  }
+  50% {
+    transform: scale(.92, 1.12) translateY(-8px);
+  }
+  75% {
+    transform: scale(1.05, .95) translateY(2px);
+  }
+}
+
+/* SPARKLES AND AURA */
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: .2;
+    transform: scale(.85) rotate(-8deg);
+  }
+  50% {
+    opacity: .9;
+    transform: scale(1.12) rotate(8deg);
+  }
+}
+
+@keyframes aura {
+  0%, 100% {
+    transform: scale(.9);
+    opacity: .5;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: .9;
+  }
+}
+
+/* HOVER REACTION */
+
+.card:hover .art span {
+  animation: excitedBounce .65s ease-in-out infinite;
+}
+
+@keyframes excitedBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) rotate(8deg) scale(1.15);
+  }
+}
+
+/* COLLECTED CELEBRATION */
+
+.card.happy .art span {
+  animation: happyDance .8s ease-in-out;
+}
+
+@keyframes happyDance {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.3) rotate(-15deg); }
+  60% { transform: scale(.9) rotate(15deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+/* CREATURE DETAILS */
+
+.details {
+  padding: 20px 15px;
+}
+
+.details h3 {
+  color: #7557b7;
+  font-size: 23px;
+}
 
 .type {
   display: inline-block;
@@ -177,25 +370,32 @@ h1 {
   font-weight: 600;
 }
 
+/* COLLECT BUTTON */
+
 .unlock {
   width: 100%;
   padding: 11px;
-  background: linear-gradient(120deg,#987be3,#e99bc9);
+  background: linear-gradient(120deg, #987be3, #e99bc9);
   color: white;
   border: none;
   border-radius: 20px;
   font: inherit;
   cursor: pointer;
-  transition: .2s;
+  transition: .25s;
 }
 
-.unlock:hover { transform: scale(1.04); }
+.unlock:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px #987be455;
+}
 
 .unlock:disabled {
   background: #b9b2c9;
   cursor: default;
   transform: none;
 }
+
+/* MESSAGE */
 
 .message {
   text-align: center;
@@ -205,6 +405,8 @@ h1 {
   font-weight: 600;
 }
 
+/* FOOTER */
+
 footer {
   text-align: center;
   padding: 25px;
@@ -212,9 +414,31 @@ footer {
   font-size: 13px;
 }
 
-@media(max-width:600px) {
-  header { padding: 18px; }
-  .world { margin: 12px; padding: 22px 14px; }
+/* MOBILE */
+
+@media(max-width: 600px) {
+  header {
+    padding: 18px;
+  }
+
+  .world {
+    margin: 12px;
+    padding: 22px 14px;
+  }
+
+  .hero {
+    padding-top: 35px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
@@ -250,7 +474,9 @@ footer {
   <div class="creatures">
 
     <article class="card" data-type="Dream">
-      <div class="art cloud"><span>☁️</span></div>
+      <div class="art cloud">
+        <span>☁️</span>
+      </div>
       <div class="details">
         <h3>Floofi</h3>
         <span class="type">☁️ Dream element</span>
@@ -261,7 +487,9 @@ footer {
     </article>
 
     <article class="card" data-type="Fire">
-      <div class="art fire"><span>🐉</span></div>
+      <div class="art fire">
+        <span>🐉</span>
+      </div>
       <div class="details">
         <h3>Blazbit</h3>
         <span class="type">🔥 Fire element</span>
@@ -272,7 +500,9 @@ footer {
     </article>
 
     <article class="card" data-type="Nature">
-      <div class="art nature"><span>🍄</span></div>
+      <div class="art nature">
+        <span>🍄</span>
+      </div>
       <div class="details">
         <h3>Shroomi</h3>
         <span class="type">🌿 Nature element</span>
@@ -283,7 +513,9 @@ footer {
     </article>
 
     <article class="card" data-type="Water">
-      <div class="art water"><span>🪼</span></div>
+      <div class="art water">
+        <span>🪼</span>
+      </div>
       <div class="details">
         <h3>Jelloo</h3>
         <span class="type">💧 Water element</span>
@@ -306,13 +538,25 @@ footer {
 </footer>
 
 <script>
+
 let collected = [];
 
-function collect(name,button) {
+function collect(name, button) {
+
   if (collected.includes(name)) return;
 
   collected.push(name);
-  document.getElementById("score").innerText = collected.length;
+
+  document.getElementById("score").innerText =
+    collected.length;
+
+  const card = button.closest(".card");
+
+  card.classList.add("happy");
+
+  setTimeout(() => {
+    card.classList.remove("happy");
+  }, 900);
 
   button.innerText = "✓ Collected!";
   button.disabled = true;
@@ -326,19 +570,24 @@ function collect(name,button) {
   }
 }
 
-function filterCreatures(type,button) {
-  document.querySelectorAll(".filter").forEach(b =>
-    b.classList.remove("active")
-  );
+function filterCreatures(type, button) {
+
+  document.querySelectorAll(".filter").forEach(b => {
+    b.classList.remove("active");
+  });
 
   button.classList.add("active");
 
   document.querySelectorAll(".card").forEach(card => {
+
     card.style.display =
       type === "all" || card.dataset.type === type
-      ? "block" : "none";
+      ? "block"
+      : "none";
+
   });
 }
+
 </script>
 
 </body>
