@@ -4,977 +4,1318 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Creature World ✨</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<title>Blazbit's Grand Prix · Creature World</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root{--ink:#49395f;--purple:#9874e8;--pink:#ff9fc9;--mint:#9be5c1;--yellow:#ffe18a;--line:#eee5f5}
+:root{--ink:#49395f;--purple:#9472dd;--pink:#f49ac4;--mint:#83d9bb;--yellow:#ffdf83;--muted:#857794;--line:#eee5f5}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:var(--ink);font-family:Nunito,sans-serif;background:radial-gradient(circle at 10% 5%,#d8f5ff,transparent 32%),radial-gradient(circle at 90% 8%,#ffe0ef,transparent 35%),linear-gradient(145deg,#f0e9ff,#fff2e7 55%,#e1faef)}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-.top{max-width:1100px;margin:auto;padding:17px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:Nunito,sans-serif;background:radial-gradient(ellipse at 10% 5%,#d9f5ff,transparent 32%),radial-gradient(ellipse at 90% 8%,#ffe0ef,transparent 33%),linear-gradient(145deg,#f0e9ff,#fff3e9 55%,#e2faef)}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid #8b6ddd;outline-offset:3px}
+.wrap{max-width:1120px;margin:auto;padding:18px 18px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .brand{font:700 24px Fredoka;color:#7655bc}
-.chip{background:#ffffffd9;border:1px solid white;border-radius:30px;padding:9px 14px;font-weight:800;font-size:13px}
-main{max-width:1100px;margin:auto;padding:10px 18px 60px}
-.screen{display:none}
-.screen.active{display:block}
-.panel{background:#ffffffdf;border:1px solid white;border-radius:28px;padding:clamp(20px,4vw,38px);box-shadow:0 16px 42px #715a9b20}
-.center{text-align:center}
-.kicker{font-size:11px;letter-spacing:2px;font-weight:900;color:#a17ecb}
-h1,h2,h3{font-family:Fredoka;margin:8px 0;color:#7354b3}
-h1{font-size:clamp(38px,7vw,65px);line-height:1.05}
-h2{font-size:34px}
-p{line-height:1.6;color:#857794}
-.btn{border:0;border-radius:18px;padding:12px 20px;font-weight:900;color:#fff;background:linear-gradient(110deg,#9674e5,#ee91bd);box-shadow:0 7px 17px #9272bd30;margin:4px}
+.tag{border:1px solid #fff;background:#ffffffc9;border-radius:30px;padding:9px 14px;font-size:13px;font-weight:900}
+.panel{background:#ffffffdf;border:1px solid white;border-radius:28px;padding:clamp(17px,3vw,30px);box-shadow:0 16px 42px #715a9b20}
+.hero{display:flex;align-items:center;gap:15px}
+.blaz{width:88px;height:88px;flex:0 0 88px;filter:drop-shadow(0 7px 8px #604b7022)}
+.kicker{font-size:11px;letter-spacing:2px;font-weight:900;color:#a17ecb;text-transform:uppercase}
+h1,h2,h3{font-family:Fredoka;margin:6px 0;color:#7354b3}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.04}
+h2{font-size:30px}
+p{line-height:1.55;color:var(--muted)}
+.btn{border:0;border-radius:16px;padding:12px 19px;font-weight:900;color:white;background:linear-gradient(110deg,#9674e5,#ee91bd);box-shadow:0 7px 17px #9272bd30}
+.btn:hover{filter:saturate(1.12);transform:translateY(-1px)}
 .btn.alt{background:white;color:#795eae;border:2px solid #e9def7;box-shadow:none}
 .btn.gold{background:linear-gradient(110deg,#f4bb58,#f28f9e)}
-.btn:disabled{opacity:.45}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:20px}
-.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:0 8px 22px #705b9516}
-.muted{color:#8b7d9a}
-.tag{display:inline-block;background:#f1eaff;color:#795bb3;padding:5px 11px;border-radius:30px;font-size:11px;font-weight:900}
-.art{height:130px;display:grid;place-items:center}
-.art svg{width:145px;height:130px;filter:drop-shadow(0 9px 7px #65517b22);animation:float 3s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-7px) rotate(2deg)}}
-.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.between{justify-content:space-between}
-.progress{height:10px;border-radius:20px;background:#eee7f5;overflow:hidden}
-.progress span{display:block;height:100%;background:linear-gradient(90deg,#8c73e6,#ff9fc9);width:0}
-.gamebox{margin:18px auto 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;max-width:850px}
-.feedback{background:#fff4df;color:#80602d;padding:12px;border-radius:14px;font-weight:800;margin-top:12px;min-height:42px}
-input,textarea{border:2px solid #e9def6;border-radius:13px;padding:11px;color:var(--ink);max-width:100%}
-.answers{display:grid;gap:8px;margin:12px auto;max-width:600px}
-.answer{border:2px solid #eee5f5;border-radius:14px;background:white;padding:11px;text-align:left;color:var(--ink);font-weight:800}
-.answer:hover{border-color:#a88ce4}
+.btn.mint{background:linear-gradient(110deg,#5fcaa9,#78cde3)}
+.briefgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:18px}
+.card{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:16px}
+.card h3{font-size:21px}
+.instruction{display:flex;gap:10px;align-items:flex-start;margin:9px 0;color:#766884;font-size:14px}
+.key{display:inline-grid;place-items:center;min-width:28px;height:27px;padding:0 7px;border-radius:8px;background:#f0eaff;color:#7055ad;font-weight:900;border:1px solid #e3d7f6}
+.compounds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.compound{border:2px solid #eee5f5;background:#fff;border-radius:15px;padding:11px 8px;text-align:center;color:var(--ink);font-weight:900}
+.compound small{display:block;color:var(--muted);font-size:11px;font-weight:700;margin-top:4px}
+.compound.selected{border-color:#9977df;background:#f7f1ff;box-shadow:0 0 0 3px #9977df18}
+.stage{position:relative;margin-top:16px;background:#fff;border:1px solid #eee5f5;border-radius:23px;padding:12px;overflow:hidden}
+.trackcanvas{display:block;width:100%;height:auto;border-radius:16px;background:#9bd7a5}
+.hud{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:12px 0}
+.metric{background:#fff;border:1px solid #eee5f5;border-radius:14px;padding:9px 10px;min-width:0}
+.metric label{display:block;font-size:10px;letter-spacing:1px;font-weight:900;color:#9889a7}
+.metric strong{display:block;font:700 22px Fredoka;color:#7254b5;white-space:nowrap}
+.metric em{font-style:normal;font-size:11px;color:var(--muted)}
+.bar{height:7px;background:#eee8f5;border-radius:20px;overflow:hidden;margin-top:5px}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,#8f74df,#f49ac4);width:100%}
+.status{min-height:40px;border-radius:13px;background:#fff4df;color:#80602d;padding:10px 13px;font-size:13px;font-weight:900;margin:10px 0}
+.controls{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.controlhint{font-size:12px;color:var(--muted)}
+.touch{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.touch button{height:43px;min-width:45px;border:0;border-radius:12px;background:#f1eaff;color:#7155b3;font-weight:900;touch-action:none}
+.touch .accelerate{background:#dcf7eb;color:#397d64}
+.touch .boost{background:#fff0cb;color:#906520}
+.touch .pitbtn{background:#dff3ff;color:#347ca5;border:1px solid #a7d7ee;font-weight:1000}
+.touch .pitenter{background:#dbf4e9;color:#34765e}
+.standings{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.standing{background:#fff;border:1px solid #eee5f5;border-radius:13px;padding:9px 10px;min-width:0}
+.standing.me{background:#f4efff;border-color:#a88ce8;box-shadow:0 0 0 2px #a88ce822}
+.standing .rank{font:700 18px Fredoka;color:#7655bc}
+.standing b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.standing small{color:#8b7d9a;font-size:10px}
+.standing .miniBar{height:5px;border-radius:8px;background:#eee8f5;overflow:hidden;margin-top:6px}
+.standing .miniBar span{display:block;height:100%;background:linear-gradient(90deg,#8e73df,#f49ac4);width:0}
+.position-flash{animation:rankPulse .5s ease}
+@keyframes rankPulse{0%{transform:scale(1)}45%{transform:scale(1.18);color:#e579a9}100%{transform:scale(1)}}
+.pitkey{font-size:12px;color:#497f9c;background:#e6f6ff;border:1px solid #c5e8f7;border-radius:12px;padding:9px 11px;margin-top:8px}
+.pittyres{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.pittyres button{border:1px solid #c5e8f7;background:white;color:#377ba0;border-radius:10px;padding:7px 10px;font-weight:900;font-size:12px}
+.pittyres button.selected{background:#dff3ff;border-color:#328ab8;box-shadow:0 0 0 2px #328ab822}
+.overlay{position:absolute;inset:12px;background:#453452bd;backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:15px;border-radius:17px;z-index:5}
+.modal{width:min(640px,100%);background:#fffdfb;border:2px solid #fff;border-radius:23px;padding:clamp(17px,3vw,27px);box-shadow:0 18px 50px #21172d55;max-height:100%;overflow:auto}
+.modal p{font-size:14px}
+.modal h2{margin-top:5px}
+.modal .btn{margin-top:8px}
+.countnum{font:700 clamp(64px,13vw,110px) Fredoka;color:white;text-shadow:0 6px 0 #7355b3}
+.result{display:none;margin-top:14px}
+.result.show{display:block}
+.resultinner{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:18px;text-align:center}
+.resultinner .emoji{font-size:65px}
+.tiny{font-size:11px;color:#9889a7}
 .hidden{display:none!important}
-.cross{display:grid;grid-template-columns:repeat(7,40px);gap:3px;justify-content:center;margin:15px}
-.cross input{width:40px;height:40px;text-align:center;text-transform:uppercase;padding:0;font-weight:900}
-.black{background:#6e5a87;border:1px solid #6e5a87}
-#race{display:block;width:100%;max-width:600px;background:#9bd39b;border-radius:14px;margin:10px auto}
-.build{display:grid;grid-template-columns:repeat(8,minmax(25px,42px));gap:4px;justify-content:center;margin:15px}
-.cell{aspect-ratio:1;border:1px solid #d8e7dd;background:#e8f5df;border-radius:6px;font-size:20px;padding:0}
-.maze{display:grid;grid-template-columns:repeat(15,minmax(12px,25px));gap:2px;justify-content:center;margin:15px}
-.tile{aspect-ratio:1;border-radius:3px;background:#f4eddf}
-.wall{background:#6e5a87}
-.player{background:#ff9fc9}
-.goal{background:#9be5c1}
-.key{background:#ffe18a}
-.world{background:#9ddfba;border:5px solid white;border-radius:22px;overflow:hidden}
-.world canvas{display:block;width:100%;height:auto;touch-action:none}
-.dpad{display:grid;grid-template-columns:repeat(3,42px);gap:5px;justify-content:center;margin:12px}
-.dpad button{height:40px;border:0;border-radius:10px;background:white;color:#7354b3;font-weight:900}
-.inventory{display:flex;gap:8px;flex-wrap:wrap}
-.item{background:#fff6dc;border-radius:12px;padding:8px 11px;font-size:13px;font-weight:800}
-footer{text-align:center;color:#9a8da7;font-size:12px;padding:20px}
-@media(max-width:550px){
- main{padding:8px 10px 40px}
- .panel{padding:19px 13px}
- .cross{grid-template-columns:repeat(7,minmax(29px,1fr));gap:2px}
- .cross input{width:100%;height:auto;aspect-ratio:1}
- .maze{grid-template-columns:repeat(15,minmax(10px,1fr));gap:1px}
- .gamebox{padding:12px}
+@media(max-width:760px){
+ .standings{grid-template-columns:1fr}
+ .briefgrid{grid-template-columns:1fr}
+ .hud{grid-template-columns:repeat(3,1fr)}
+ .hero{align-items:flex-start}
+ .blaz{width:68px;height:68px;flex-basis:68px}
+ .controls{align-items:flex-start}
+ .controlhint{max-width:100%}
+}
+@media(max-width:430px){
+ .hud{grid-template-columns:repeat(2,1fr)}
+ .compounds{grid-template-columns:1fr}
+ .compound{text-align:left}
+ .compound small{display:inline;margin-left:6px}
+ .touch button{min-width:39px;height:40px}
+}
+
+/* Creature World opening screen */
+.welcome-wrap{max-width:1120px;margin:0 auto;padding:22px 18px 65px}
+.welcome-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.welcome-hero{position:relative;overflow:hidden;padding:clamp(24px,5vw,48px);background:linear-gradient(135deg,#fffdfd 0%,#fff8ff 47%,#f2fffa 100%)}
+.welcome-hero:before,.welcome-hero:after{content:'✦';position:absolute;color:#f4bfd9;font-size:52px;opacity:.72;animation:twinkle 3s ease-in-out infinite}
+.welcome-hero:before{right:9%;top:9%}
+.welcome-hero:after{left:6%;bottom:10%;font-size:32px;color:#9bd9ca;animation-delay:1s}
+@keyframes twinkle{50%{transform:rotate(25deg) scale(1.22);opacity:1}}
+.welcome-main{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;position:relative;z-index:1}
+.welcome-title{font-size:clamp(44px,7vw,76px);line-height:.98;margin:9px 0 14px}
+.welcome-copy{font-size:17px;max-width:600px}
+.welcome-mascot{display:grid;place-items:center;min-height:245px;position:relative}
+.welcome-mascot .blaz{width:min(260px,80%);height:auto;filter:drop-shadow(0 18px 17px #775d8a25);animation:mascotFloat 3.4s ease-in-out infinite}
+@keyframes mascotFloat{50%{transform:translateY(-12px) rotate(3deg)}}
+.orbit{position:absolute;border:2px dashed #e8d8fa;border-radius:50%;width:270px;height:210px;transform:rotate(-13deg)}
+.welcome-stats{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 22px}
+.welcome-stat{background:#fff;border:1px solid #f1e6f8;border-radius:15px;padding:9px 13px;font-size:12px;font-weight:900;color:#8067a6}
+.welcome-foot{margin-top:18px;text-align:center;font-size:12px;color:#998ba8}
+#raceApp.hidden{display:none}
+@media(max-width:760px){
+ .welcome-main{grid-template-columns:1fr}
+ .welcome-mascot{min-height:175px;grid-row:1}
+ .welcome-mascot .blaz{width:165px}
+ .orbit{width:185px;height:150px}
+ .welcome-copy{font-size:15px}
 }
 </style>
 </head>
+
 <body>
 
+<div class="welcome-wrap" id="welcomeScreen">
+ <header class="welcome-top">
+  <div class="brand">✦ CREATURE WORLD</div>
+  <span class="tag">A LITTLE UNIVERSE MADE WITH LOVE</span>
+ </header>
+
+ <section class="panel welcome-hero">
+  <div class="welcome-main">
+   <div>
+    <div class="kicker">YOUR ADVENTURE STARTS HERE</div>
+    <h1 class="welcome-title">Welcome to<br><span style="color:#e58ab9">Creature World</span>!</h1>
+    <p class="welcome-copy">A tiny world full of ridiculously cute creatures, chaotic challenges and a few surprises hidden along the way. Six creatures are waiting to be found — and your first challenge is already warming up its tyres.</p>
+
+    <div class="welcome-stats">
+     <span class="welcome-stat">✨ 6 CREATURE TRIALS</span>
+     <span class="welcome-stat">🏁 FIRST UP: F1 GRAND PRIX</span>
+     <span class="welcome-stat">🍫 SECRET WORLD AHEAD</span>
+    </div>
+
+    <button class="btn gold" style="font-size:16px;padding:15px 23px" onclick="enterGrandPrix()">LET'S START THE ADVENTURE ✨</button>
+    <p class="tiny" style="margin-top:11px">Player profile: DUMMY · Current mission: earn Blazbit</p>
+   </div>
+
+   <div class="welcome-mascot">
+    <div class="orbit"></div>
+    <svg class="blaz" viewBox="0 0 100 100" role="img" aria-label="Blazbit, your little fire gremlin">
+     <path d="M22 67Q8 45 31 30Q28 48 43 42Q39 20 67 9Q62 33 80 39Q97 56 77 78Q61 95 37 84Z" fill="#ffad72" stroke="#e66d71" stroke-width="4"/>
+     <path d="M31 40L21 18Q39 20 45 37M66 31L81 14Q89 33 77 43" fill="#ffdf83" stroke="#e66d71" stroke-width="3"/>
+     <ellipse cx="41" cy="61" rx="4" ry="6" fill="#49395f"/>
+     <ellipse cx="63" cy="61" rx="4" ry="6" fill="#49395f"/>
+     <circle cx="42" cy="59" r="1.5" fill="white"/>
+     <circle cx="64" cy="59" r="1.5" fill="white"/>
+     <ellipse cx="32" cy="70" rx="6" ry="4" fill="#f28fac"/>
+     <ellipse cx="72" cy="70" rx="6" ry="4" fill="#f28fac"/>
+     <path d="M47 73Q52 78 58 73" fill="none" stroke="#49395f" stroke-width="3" stroke-linecap="round"/>
+     <path d="M83 13l4-9 4 9 9 4-9 4-4 9-4-9-9-4z" fill="#ffdf83"/>
+    </svg>
+   </div>
+  </div>
+ </section>
+
+ <div class="welcome-foot">Made with a little magic, a lot of chaos and an unreasonable amount of affection. 💗</div>
+</div>
+
+<div id="raceApp" class="hidden">
+<div class="wrap">
+
 <header class="top">
- <div class="brand">✦ CREATURE WORLD</div>
+ <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> Blazbit's GRAND PRIX</div>
  <div class="row">
-  <span class="chip">🌟 <b id="count">0</b>/6</span>
-  <span class="chip">🏅 <b id="score">0</b></span>
-  <button class="btn alt" onclick="go('collection')">Collection</button>
+  <span class="tag">🏁 EXPERT TRIAL · 01</span>
+  <button class="btn alt" onclick="returnToWelcome()">← World intro</button>
  </div>
 </header>
 
-<main>
+<section class="panel">
 
-<section id="home" class="screen active panel center">
- <div class="kicker">A TINY UNIVERSE MADE WITH LOVE</div>
- <div class="art" id="heroArt"></div>
- <h1>Welcome, Dummy!</h1>
- <p>Six creatures. Six very different challenges. One secret island. Think you can handle it?</p>
- <button class="btn" onclick="go('collection')">ENTER CREATURE WORLD ✨</button>
- <p class="muted">Warning: confidence is not a substitute for skill.</p>
-</section>
-
-<section id="collection" class="screen panel">
- <div class="kicker">YOUR ADVENTURE HUB</div>
- <h1>The Creature Collection</h1>
- <p>Earn each creature by completing its mini-game.</p>
- <div class="progress"><span id="bar"></span></div>
- <p id="prog" class="muted"></p>
- <div id="cards" class="grid"></div>
- <div id="islandUnlock" class="card center hidden">
-  <h2>🏝️ A secret map appeared!</h2>
-  <p>All six creatures are yours. Chocobloom Island awaits.</p>
-  <button class="btn gold" onclick="go('island')">EXPLORE THE ISLAND</button>
- </div>
-</section>
-
-<section id="game" class="screen panel">
- <div class="row between">
+ <div class="hero">
+  <svg class="blaz" viewBox="0 0 100 100" aria-label="Blazbit the fire creature">
+   <path d="M22 67Q8 45 31 30Q28 48 43 42Q39 20 67 9Q62 33 80 39Q97 56 77 78Q61 95 37 84Z" fill="#ffad72" stroke="#e66d71" stroke-width="4"/>
+   <path d="M31 40L21 18Q39 20 45 37M66 31L81 14Q89 33 77 43" fill="#ffdf83" stroke="#e66d71" stroke-width="3"/>
+   <ellipse cx="41" cy="61" rx="4" ry="6" fill="#49395f"/>
+   <ellipse cx="63" cy="61" rx="4" ry="6" fill="#49395f"/>
+   <circle cx="42" cy="59" r="1.5" fill="white"/>
+   <circle cx="64" cy="59" r="1.5" fill="white"/>
+   <ellipse cx="32" cy="70" rx="6" ry="4" fill="#f28fac"/>
+   <ellipse cx="72" cy="70" rx="6" ry="4" fill="#f28fac"/>
+   <path d="M47 73Q52 78 58 73" fill="none" stroke="#49395f" stroke-width="3" stroke-linecap="round"/>
+  </svg>
   <div>
-   <div class="kicker" id="gameKicker">CHALLENGE</div>
-   <h1 id="gameTitle"></h1>
+   <div class="kicker">BLAZBIT'S RACE CONTROL</div>
+   <h1>THE GRAND PRIX</h1>
+   <p style="margin:5px 0 0">Three laps. Two rivals. One very overconfident fire gremlin. Show Blazbit you can actually drive.</p>
   </div>
-  <button class="btn alt" onclick="go('collection')">← Back</button>
  </div>
- <p id="gameIntro"></p>
- <div class="row">
-  <span class="chip" id="timer">⏱ —</span>
-  <span class="chip" id="lives">♥ ♥ ♥</span>
+
+ <div class="briefgrid">
+  <div class="card">
+   <h3>🏎️ Race briefing</h3>
+   <div class="instruction"><span class="key">↑ / W</span><span><b>Accelerate</b> — build speed on straights.</span></div>
+   <div class="instruction"><span class="key">↓ / S</span><span><b>Brake</b> — slow down before tight corners.</span></div>
+   <div class="instruction"><span class="key">← →</span><span><b>Steer</b> — change lanes to pass rivals. A/D also work.</span></div>
+   <div class="instruction"><span class="key">SPACE</span><span><b>Boost</b> — spend limited energy on straights and overtakes.</span></div>
+   <div class="instruction"><span class="key">Q</span><span><b>Enter pit lane</b> — approach the blue PIT ENTRY marker, stay near the centre line and press Q.</span></div>
+   <div class="instruction"><span class="key">P</span><span><b>Pit stop</b> — follow the blue lane to BOX 07, brake below 35 km/h, choose tyres and press P. Service takes 3.4 seconds.</span></div>
+   <div class="instruction"><span class="key">1 / 2 / 3</span><span><b>Tyres</b> — select Soft, Medium or Hard with 1/2/3 before starting your service.</span></div>
+   <div class="instruction"><span class="key">ESC</span><span><b>Pause</b> — pause the race and timer.</span></div>
+  </div>
+
+  <div class="card">
+   <h3>🏆 Your objectives</h3>
+   <p style="margin:6px 0">• Complete <b>3 laps</b> before the 55-second timer ends.<br>• Finish in <b>1st or 2nd place</b>.<br>• Complete a pit stop in <b>BOX 07</b>.<br>• Avoid track-limit penalties and preserve your tyres.</p>
+
+   <hr style="border:0;border-top:1px solid #eee5f5;margin:12px 0">
+
+   <h3>🛞 Choose your starting tyres</h3>
+   <div class="compounds" id="compoundPicker">
+    <button class="compound" data-compound="soft" onclick="chooseCompound('soft')">🔴 SOFT<small>Fast · wears quickly</small></button>
+    <button class="compound selected" data-compound="medium" onclick="chooseCompound('medium')">🟡 MEDIUM<small>Balanced · steady</small></button>
+    <button class="compound" data-compound="hard" onclick="chooseCompound('hard')">⚪ HARD<small>Durable · less grip</small></button>
+   </div>
+
+   <p class="tiny">Tip: Soft is quick but wears faster. Hard lasts longer but turns less sharply.</p>
+
+   <div class="pitkey">
+    <b>PIT PROCEDURE:</b>
+    ① Reach the blue PIT ENTRY marker → ② press Q → ③ follow the blue lane → ④ brake below 35 km/h at BOX 07 → ⑤ choose tyres (1/2/3) → ⑥ press P and wait 3.4 seconds → ⑦ drive through PIT EXIT. The lap counter must keep its place throughout.
+   </div>
+  </div>
  </div>
- <div class="gamebox" id="gamebox"></div>
- <div id="feedback" class="feedback">Good luck, Dummy.</div>
+
+ <div class="stage">
+  <canvas id="track" class="trackcanvas" width="900" height="600" aria-label="Top-down technical racing circuit with S-bends, hairpins and a chicane"></canvas>
+
+  <div class="overlay" id="preRace">
+   <div class="modal">
+    <div class="kicker">RACE CONTROL IS WAITING</div>
+    <h2>Ready to race, Dummy?</h2>
+    <p>The circuit has a fast back straight, a tight chicane and a technical final sector. Your rivals will not politely move out of your way. Your mandatory pit stop is part of the 55-second race: enter at the blue PIT ENTRY marker, follow the blue lane to BOX 07, brake below 35 km/h, select tyres and press P. The crew needs 3.4 seconds.</p>
+    <p><b>The clock stays OFF until you press Start.</b> A three-second light sequence follows. The 55-second race timer starts on the green light.</p>
+    <button class="btn gold" style="width:100%" onclick="startRace()">LIGHTS OUT — START ENGINE 🏁</button>
+    <p class="tiny">Use keyboard controls or the on-screen buttons below the track.</p>
+   </div>
+  </div>
+
+  <div class="overlay hidden" id="countOverlay">
+   <div class="countnum" id="countNumber">3</div>
+  </div>
+
+  <div class="overlay hidden" id="pauseOverlay">
+   <div class="modal" style="text-align:center">
+    <div class="kicker">RACE PAUSED</div>
+    <h2>Catch your breath.</h2>
+    <p>The timer is paused. Blazbit is using this opportunity to give unsolicited strategy advice.</p>
+    <button class="btn mint" onclick="resumeRace()">RESUME RACE</button>
+    <button class="btn alt" onclick="restartRace()">RESTART</button>
+   </div>
+  </div>
+ </div>
+
+ <div class="hud">
+  <div class="metric"><label>TIME LEFT</label><strong id="time">--:--</strong><em id="racePhase">Not started</em></div>
+  <div class="metric"><label>LAP</label><strong id="lap">0 / 3</strong><em>Race distance</em></div>
+  <div class="metric"><label>POSITION</label><strong id="position">P3</strong><em id="positionNote">Grid position</em></div>
+  <div class="metric"><label>SPEED</label><strong id="speed">0</strong><em>km/h · game scale</em></div>
+  <div class="metric"><label>TYRE WEAR</label><strong id="wear">0%</strong><div class="bar"><span id="wearBar"></span></div></div>
+  <div class="metric"><label>BOOST ENERGY</label><strong id="boost">100%</strong><div class="bar"><span id="boostBar"></span></div></div>
+ </div>
+
+ <div class="card" style="margin-top:10px;padding:12px 14px">
+  <div class="heading">
+   <h3 style="font-size:18px;margin:0">📡 Live race control</h3>
+   <span class="tiny">Order is recalculated from each car's live track distance</span>
+  </div>
+  <div class="standings" id="standings"></div>
+  <div class="pitkey" id="pitStatus">🅿️ Watch for the blue PIT ENTRY marker</div>
+  <div class="pittyres hidden" id="pitTyres">
+   <span class="tiny" style="align-self:center">PIT TYRES:</span>
+   <button data-pitcompound="soft" onclick="setPitCompound('soft')">1 · SOFT</button>
+   <button class="selected" data-pitcompound="medium" onclick="setPitCompound('medium')">2 · MEDIUM</button>
+   <button data-pitcompound="hard" onclick="setPitCompound('hard')">3 · HARD</button>
+  </div>
+ </div>
+
+ <div class="controls">
+  <div class="controlhint">↑/W accelerate · ↓/S brake · ←/→ or A/D steer · SPACE boost · Q pit entry · P pit stop · 1/2/3 tyres · ESC pause</div>
+  <div class="touch">
+   <button data-key="ArrowLeft">◀</button>
+   <button data-key="ArrowRight">▶</button>
+   <button class="accelerate" data-key="ArrowUp">ACCEL</button>
+   <button data-key="ArrowDown">BRAKE</button>
+   <button class="boost" data-key="Space">⚡</button>
+   <button class="pitenter" onclick="enterPit()">PIT Q</button>
+   <button class="pitbtn" onclick="pitStop()">BOX P</button>
+  </div>
+ </div>
+
+ <div class="status" id="raceMessage">Blazbit: “I've warmed up the tyres. Try not to embarrass us.”</div>
+
+ <div id="result" class="result">
+  <div class="resultinner">
+   <div class="emoji" id="resultEmoji">🏆</div>
+   <h2 id="resultTitle">Race complete!</h2>
+   <p id="resultText"></p>
+   <button class="btn" onclick="restartRace()">RACE AGAIN</button>
+   <button class="btn alt" onclick="backToBriefing()">CHANGE TYRES</button>
+   <button class="btn alt" onclick="returnToWelcome()">WORLD INTRO</button>
+  </div>
+ </div>
 </section>
 
-<section id="island" class="screen panel">
- <div class="kicker">THE SECRET WORLD</div>
- <h1>🍫 Chocobloom Island</h1>
- <p><b>The Land of Little Joys.</b> Explore freely, collect evidence and uncover the lost recipe.</p>
- <div class="row">
-  <span class="chip">WASD / arrows to walk</span>
-  <span class="chip">E to interact</span>
-  <span class="chip" id="islandCount">0/5 clues</span>
- </div>
- <div class="world">
-  <canvas id="world" width="900" height="550"></canvas>
- </div>
- <p class="muted">Walk close to a glowing place and press E. On mobile, use the directional pad.</p>
- <div class="dpad">
-  <span></span><button onclick="walk(0,-1)">▲</button><span></span>
-  <button onclick="walk(-1,0)">◀</button>
-  <button onclick="interact()">E</button>
-  <button onclick="walk(1,0)">▶</button>
-  <span></span><button onclick="walk(0,1)">▼</button>
- </div>
- <div class="card">
-  <h3>🎒 Backpack</h3>
-  <div class="inventory" id="inventory"></div>
- </div>
- <div id="dialogue" class="feedback">A warm island breeze welcomes you.</div>
- <div class="grid">
-  <div class="card">🍫 <b>Choco Falls</b><p>Look behind the waterfall.</p></div>
-  <div class="card">🍦 <b>Scoop District</b><p>Find the secret recipe.</p></div>
-  <div class="card">🐱 <b>Catto-Doggo Meadows</b><p>Interrogate the locals.</p></div>
-  <div class="card">🌳 <b>Mystery Forest</b><p>Search for a map piece.</p></div>
-  <div class="card">🌅 <b>Sunrise Point</b><p>A familiar kind of sunrise.</p></div>
-  <div class="card">🏰 <b>Winning Grounds</b><p>The final gate is locked.</p></div>
- </div>
- <div id="gate" class="card center hidden">
-  <h2>🏰 The Winning Grounds</h2>
-  <p>Put the legendary flavour into the lock.</p>
-  <input id="password" placeholder="Two words">
-  <button class="btn gold" onclick="openChest()">OPEN THE CHEST</button>
- </div>
-</section>
-
-<section id="finale" class="screen panel center">
- <div class="kicker">THE LOST RECIPE IS FOUND</div>
- <div class="art" id="secretArt"></div>
- <h1>The Seventh Creature!</h1>
- <h2>Chocobloom's Guardian</h2>
- <span class="tag">SECRET · ONE OF A KIND</span>
- <p>This creature cannot be found in the wild. It appears only when someone completes an adventure made especially for them.</p>
- <button class="btn" onclick="go('letter')">OPEN YOUR LETTER 💌</button>
-</section>
-
-<section id="letter" class="screen panel center">
- <div class="art">💌</div>
- <h1>Your letter</h1>
- <p>This page belongs entirely to you. Write your own message whenever you're ready.</p>
- <textarea id="letterText" rows="12" style="width:100%;max-width:700px;text-align:left" placeholder="Dear Dummy,&#10;&#10;Write your own letter here..."></textarea>
- <br>
- <button class="btn" onclick="saveLetter()">SAVE MY LETTER</button>
- <p class="muted">Saved only in this browser on this device. Nothing is sent.</p>
-</section>
-
-</main>
-<footer>Made with chocolate, chaos, cattos, doggos and affection. ✦</footer>
+<p class="tiny" style="text-align:center;margin-top:14px">Creature World · Original fantasy artwork · Not affiliated with any real racing team</p>
+</div>
+</div>
 
 <script>
+'use strict';
+
+function enterGrandPrix(){
+ document.getElementById('welcomeScreen').classList.add('hidden');
+ document.getElementById('raceApp').classList.remove('hidden');
+ window.scrollTo(0,0);
+ document.getElementById('preRace').classList.remove('hidden');
+}
+
+function returnToWelcome(){
+ if(game.mode==='racing'||game.mode==='countdown'){
+  if(!confirm('Leave the race? Your current attempt will be abandoned.'))return;
+ }
+ restartRace();
+ document.getElementById('raceApp').classList.add('hidden');
+ document.getElementById('welcomeScreen').classList.remove('hidden');
+ window.scrollTo(0,0);
+}
+
+const canvas=document.getElementById('track');
+const ctx=canvas.getContext('2d');
+const W=canvas.width,H=canvas.height;
 const $=id=>document.getElementById(id);
 
-const roster=[
- ["Floofi","Dream","☁️","A fluffy cloud who gets offended when called a cotton ball.","cross"],
- ["Blazbit","Fire","🔥","A fire gremlin who thinks every corner is a race track.","race"],
- ["Jelloo","Water","💧","A jelly alien with excellent music taste and everyone's secrets.","music"],
- ["Puffwing","Sky","🪽","A winged builder who believes every problem needs a ramp.","build"],
- ["Shroomi","Nature","🍄","A forest explorer with absolutely no sense of direction.","maze"],
- ["Lunari","Moon","🌙","A moonlit detective who notices every tiny detail.","detective"]
+const controlPoints=[
+ [155,185],[255,105],[335,125],[430,72],[520,105],
+ [620,92],[755,160],[795,245],[735,292],[815,370],
+ [755,482],[590,520],[410,490],[330,525],[250,485],
+ [185,445],[125,420],[88,290],[115,220]
 ];
 
-const artKinds=["cloud","fire","jelly","wing","mush","moon","secret"];
+const samples=[],SUB=24;
 
-function creatureSVG(k){
- const p={
-  cloud:['#fffaff','#d8c4f5','#f4a9c9'],
-  fire:['#ffad72','#ef6b68','#ffda75'],
-  jelly:['#9ce9e5','#62c7d1','#c1a5f4'],
-  wing:['#a5e9d1','#65c9bd','#f8d77f'],
-  mush:['#ef9bb5','#fff1d8','#9ed5a5'],
-  moon:['#bba5f2','#eee5ff','#f5c6df'],
-  secret:['#f6c4e6','#b89bea','#ffe08c']
- }[k];
-
- let silhouette='';
-
- if(k==='cloud') silhouette=`<circle cx="62" cy="81" r="28" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><circle cx="91" cy="62" r="34" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><circle cx="120" cy="83" r="27" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><ellipse cx="91" cy="100" rx="48" ry="34" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/>`;
- else if(k==='fire') silhouette=`<path d="M43 93Q17 79 36 52Q44 71 59 69Q49 42 79 22Q77 49 98 54Q122 38 129 19Q149 58 137 91L131 122Q106 151 70 133Z" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><path d="M54 53L45 20Q69 25 77 45M112 47L132 19Q143 42 128 59" fill="${p[2]}" stroke="${p[1]}" stroke-width="4"/>`;
- else if(k==='jelly') silhouette=`<path d="M45 111Q39 63 63 45Q91 22 119 48Q143 69 137 111Q129 139 111 126Q95 113 81 129Q59 143 45 111Z" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><path d="M58 119Q47 143 61 146M82 126Q74 150 89 151M111 125Q108 145 124 146" fill="none" stroke="${p[1]}" stroke-width="7" stroke-linecap="round"/><path d="M57 65Q92 43 126 68" fill="none" stroke="white" stroke-width="7" opacity=".55" stroke-linecap="round"/>`;
- else if(k==='wing') silhouette=`<path d="M47 80Q22 48 24 33Q52 32 69 59Q91 40 111 56Q139 33 153 43Q151 70 130 88Q145 119 119 137Q88 154 61 132Q41 114 47 80Z" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><path d="M54 75Q19 69 15 97Q39 108 62 99M126 75Q157 62 164 90Q143 109 122 99" fill="${p[2]}" stroke="${p[1]}" stroke-width="4"/><path d="M63 56Q49 15 69 16Q86 29 83 56M103 54Q106 10 126 20Q132 42 119 62" fill="${p[0]}" stroke="${p[1]}" stroke-width="4"/>`;
- else if(k==='mush') silhouette=`<path d="M46 94Q35 60 60 56Q91 42 124 57Q147 69 135 104Q131 139 91 139Q52 139 46 94Z" fill="${p[0]}" stroke="#d27d9e" stroke-width="5"/><path d="M26 77Q28 29 83 22Q137 18 153 68Q119 84 90 78Q54 86 26 77Z" fill="#ef8da9" stroke="#d27d9e" stroke-width="5"/><circle cx="56" cy="56" r="8" fill="#fff1d8"/><circle cx="107" cy="44" r="10" fill="#fff1d8"/><circle cx="131" cy="65" r="6" fill="#fff1d8"/>`;
- else if(k==='moon') silhouette=`<path d="M48 88Q38 57 68 49Q93 34 121 52Q145 70 131 112Q119 143 80 135Q49 127 48 88Z" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><path d="M54 62L43 18Q73 28 82 52M108 51Q125 18 143 16L133 73" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><path d="M124 112Q166 102 153 139Q144 157 122 139" fill="none" stroke="${p[2]}" stroke-width="12" stroke-linecap="round"/>`;
- else silhouette=`<path d="M43 102Q20 64 57 42Q86 17 119 43Q159 66 132 117Q111 146 73 133Z" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><path d="M67 52Q51 9 82 20L94 45M110 47Q127 2 145 31L130 63" fill="${p[2]}" stroke="${p[1]}" stroke-width="4"/><path d="M43 103Q12 99 24 132Q37 151 57 127" fill="none" stroke="${p[1]}" stroke-width="12" stroke-linecap="round"/>`;
-
- return `<svg viewBox="0 0 180 165" role="img" aria-label="${k} fantasy creature"><defs><linearGradient id="body-${k}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p[0]}"/><stop offset="1" stop-color="${p[1]}"/></linearGradient></defs><ellipse cx="90" cy="151" rx="42" ry="7" fill="#59465f" opacity=".12"/>${silhouette}<ellipse cx="76" cy="91" rx="5" ry="8" fill="#49395f"/><ellipse cx="111" cy="91" rx="5" ry="8" fill="#49395f"/><circle cx="77" cy="88" r="2" fill="white"/><circle cx="112" cy="88" r="2" fill="white"/><ellipse cx="61" cy="105" rx="10" ry="6" fill="#f58eae" opacity=".7"/><ellipse cx="126" cy="105" rx="10" ry="6" fill="#f58eae" opacity=".7"/><path d="M86 105Q91 112 98 105" fill="none" stroke="#59465f" stroke-width="3" stroke-linecap="round"/><path d="M145 31l4-9 4 9 9 4-9 4-4 9-4-9-9-4z" fill="${p[2]}"/></svg>`;
+function catmull(p0,p1,p2,p3,t){
+ const t2=t*t,t3=t2*t;
+ return .5*((2*p1)+(-p0+p2)*t+
+ (2*p0-5*p1+4*p2-p3)*t2+
+ (-p0+3*p1-3*p2+p3)*t3);
 }
 
-$("heroArt").innerHTML=creatureSVG("secret");
-$("secretArt").innerHTML=creatureSVG("secret");
+for(let i=0;i<controlPoints.length;i++){
+ const p0=controlPoints[(i-1+controlPoints.length)%controlPoints.length];
+ const p1=controlPoints[i];
+ const p2=controlPoints[(i+1)%controlPoints.length];
+ const p3=controlPoints[(i+2)%controlPoints.length];
 
-let data={
- got:JSON.parse(localStorage.cwGot||"[]"),
- score:+(localStorage.cwScore||0),
- found:JSON.parse(localStorage.cwFound||"[]"),
- items:JSON.parse(localStorage.cwItems||"[]"),
- secret:localStorage.cwSecret||"",
- letter:localStorage.cwLetter||""
-};
-
-function save(){
- localStorage.cwGot=JSON.stringify(data.got);
- localStorage.cwScore=data.score;
- localStorage.cwFound=JSON.stringify(data.found);
- localStorage.cwItems=JSON.stringify(data.items);
- localStorage.cwSecret=data.secret;
- render();
-}
-
-function go(id){
- clearInterval(interval);
- document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
- $(id).classList.add("active");
- scrollTo(0,0);
- if(id==="collection")render();
- if(id==="island")drawWorld();
- if(id==="letter")$("letterText").value=data.letter;
-}
-
-function render(){
- $("count").textContent=data.got.length;
- $("score").textContent=data.score;
- $("bar").style.width=data.got.length/6*100+"%";
- $("prog").textContent=data.got.length+" of 6 creatures collected";
-
- $("cards").innerHTML=roster.map((c,i)=>{
-  let ok=data.got.includes(c[0]);
-  return `<div class="card center">
-   <div class="art">${ok?creatureSVG(artKinds[i]):"🔒"}</div>
-   <h3>${ok?c[0]:"???"}</h3>
-   <span class="tag">${ok?c[1]:"Undiscovered"}</span>
-   <p>${ok?c[3]:"Complete the mini-game to discover this creature."}</p>
-   <button class="btn ${ok?"alt":""}" onclick="start(${i})">${ok?"Replay":"Play challenge"}</button>
-  </div>`;
- }).join("");
-
- $("islandUnlock").classList.toggle("hidden",data.got.length!==6);
-}
-
-let idx=0,lives=3,interval=null;
-
-const roasts={
- cross:[
-  "The clue was practically holding a neon sign. Try again.",
-  "Floofi has seen better spelling from a sleepy pigeon.",
-  "That answer has been rejected by the crossword council."
- ],
- race:[
-  "That's not a racing line. That's an escape route.",
-  "Pit wall says: please stop making decisions.",
-  "A safety car has been deployed because of your driving."
- ],
- music:[
-  "Jelloo just unplugged the aux. Respectfully.",
-  "That guess belongs in another playlist.",
-  "The song is crying in the corner."
- ],
- build:[
-  "Architectural authorities have been notified.",
-  "That is not a shelter. That's modern art.",
-  "The storm saw your build and decided to wait."
- ],
- maze:[
-  "Shroomi called. You're both lost now.",
-  "That wall is, in fact, still a wall.",
-  "The map is right there. RIGHT THERE."
- ],
- detective:[
-  "The detective board has more question marks now.",
-  "Confident theory. Incorrect evidence.",
-  "Lunari is taking your detective badge away."
- ]
-};
-
-function roast(){
- let a=roasts[roster[idx][4]];
- $("feedback").textContent=a[Math.floor(Math.random()*a.length)];
-}
-
-function wrong(){
- lives--;
- $("lives").textContent="♥ ".repeat(Math.max(0,lives));
- roast();
- if(lives<=0){
-  $("gamebox").insertAdjacentHTML("beforeend",'<button class="btn" onclick="start(idx)">RESTART CHALLENGE</button>');
-  return true;
+ for(let j=0;j<SUB;j++){
+  const t=j/SUB;
+  samples.push({
+   x:catmull(p0[0],p1[0],p2[0],p3[0],t),
+   y:catmull(p0[1],p1[1],p2[1],p3[1],t)
+  });
  }
- return false;
 }
 
-function start(i){
- idx=i;
- lives=3;
- go("game");
+const cumulative=[0];
 
- $("gameTitle").textContent=({
-  cross:"Floofi's F1 Crossword",
-  race:"Blazbit's Grand Prix",
-  music:"Jelloo's Music Lab",
-  build:"Puffwing's Build Battle",
-  maze:"Shroomi's Forbidden Labyrinth",
-  detective:"Lunari's Mystery Files"
- })[roster[i][4]];
-
- $("gameKicker").textContent="CHALLENGE "+(i+1)+" OF 6";
- $("gameIntro").textContent=roster[i][3];
- $("lives").textContent="♥ ♥ ♥";
- $("timer").textContent="⏱ —";
- $("feedback").textContent="Ready, Dummy?";
-
- ({
-  cross:crossGame,
-  race:raceGame,
-  music:musicGame,
-  build:buildGame,
-  maze:mazeGame,
-  detective:detectiveGame
- })[roster[i][4]]();
+for(let i=1;i<=samples.length;i++){
+ const a=samples[i-1],b=samples[i%samples.length];
+ cumulative.push(cumulative[i-1]+Math.hypot(b.x-a.x,b.y-a.y));
 }
 
-function win(points=120){
- clearInterval(interval);
- let n=roster[idx][0];
+const LENGTH=cumulative[samples.length];
 
- if(!data.got.includes(n)){
-  data.got.push(n);
-  data.score+=points;
-  save();
+function wrapDist(d){
+ return((d%LENGTH)+LENGTH)%LENGTH;
+}
+
+function pointAt(d){
+ d=wrapDist(d);
+ let lo=0,hi=samples.length;
+
+ while(lo<hi){
+  const mid=(lo+hi)>>1;
+  if(cumulative[mid]<d)lo=mid+1;
+  else hi=mid;
  }
 
- $("gamebox").innerHTML=`<div class="center">
-  <div class="art">${creatureSVG(artKinds[idx])}</div>
-  <h2>${n} joined your collection!</h2>
-  <button class="btn" onclick="go('collection')">BACK TO COLLECTION</button>
- </div>`;
+ const i=Math.max(0,lo-1);
+ const a=samples[i],b=samples[(i+1)%samples.length];
+ const seg=cumulative[i+1]-cumulative[i];
+ const t=seg?(d-cumulative[i])/seg:0;
+ const x=a.x+(b.x-a.x)*t;
+ const y=a.y+(b.y-a.y)*t;
+ const dx=b.x-a.x,dy=b.y-a.y;
+ const len=Math.hypot(dx,dy)||1;
 
- $("feedback").textContent="Challenge complete. Creature unlocked! ✨";
+ return{x,y,tx:dx/len,ty:dy/len,nx:-dy/len,ny:dx/len};
 }
 
-/* FLOOFI: INTERSECTING F1 CROSSWORD */
+function angleDiff(a,b){
+ let d=a-b;
+ while(d>Math.PI)d-=Math.PI*2;
+ while(d< -Math.PI)d+=Math.PI*2;
+ return d;
+}
 
-const words=[
- {w:"SENNA",cells:[[2,1],[2,2],[2,3],[2,4],[2,5]]},
- {w:"SPA",cells:[[2,1],[3,1],[4,1]]},
- {w:"ENZO",cells:[[2,2],[3,2],[4,2],[5,2]]},
- {w:"NIKI",cells:[[2,3],[3,3],[4,3],[5,3]]},
- {w:"NICO",cells:[[2,4],[3,4],[4,4],[5,4]]},
- {w:"ALEX",cells:[[2,5],[3,5],[4,5],[5,5]]}
-];
+function roundedRect(c,x,y,w,h,r){
+ c.beginPath();
+ c.roundRect(x,y,w,h,r);
+ c.fill();
+}
 
-function crossGame(){
- let cells={};
- words.forEach(o=>o.cells.forEach(([r,c],j)=>cells[r+","+c]=o.w[j]));
+function pathStroke(c,width,color,dash=[]){
+ c.beginPath();
+ samples.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));
+ c.closePath();
+ c.lineWidth=width;
+ c.strokeStyle=color;
+ c.lineJoin='round';
+ c.lineCap='round';
+ c.setLineDash(dash);
+ c.stroke();
+ c.setLineDash([]);
+}
 
- let s=`<p>Complete the linked F1 crossword. The five down answers all cross the champion's surname.</p><div class="cross">`;
+const back=document.createElement('canvas');
+back.width=W;
+back.height=H;
+const b=back.getContext('2d');
 
- for(let r=0;r<7;r++){
-  for(let c=0;c<7;c++){
-   s+=cells[r+","+c]!==undefined
-    ?`<input maxlength="1" data-k="${r},${c}" aria-label="row ${r+1} column ${c+1}">`
-    :'<span class="black"></span>';
+b.fillStyle='#8fce91';
+b.fillRect(0,0,W,H);
+
+for(let i=0;i<65;i++){
+ b.fillStyle=i%2?'#a5d99a':'#82c886';
+ b.beginPath();
+ b.arc((i*137)%W,(i*83)%H,10+(i%5)*3,0,Math.PI*2);
+ b.fill();
+}
+
+pathStroke(b,132,'#d85e72',[21,17]);
+pathStroke(b,112,'#f8e9d1',[20,18]);
+pathStroke(b,104,'#4d5059');
+pathStroke(b,3,'#e9e9df',[17,18]);
+
+for(let i=0;i<15;i++){
+ b.font='18px Arial';
+ b.fillText(['🌼','🌸','🌿'][i%3],30+(i*71)%830,28+(i*43)%535);
+}
+
+const start=pointAt(0);
+b.save();
+b.translate(start.x,start.y);
+b.rotate(Math.atan2(start.ty,start.tx)+Math.PI/2);
+
+for(let r=0;r<2;r++){
+ for(let col=0;col<8;col++){
+  b.fillStyle=(r+col)%2?'#fff':'#333';
+  b.fillRect(-35+col*9,-7+r*8,9,8);
+ }
+}
+b.restore();
+
+const PIT_ENTRY=.4110900394603879;
+const PIT_EXIT=.5889165486855026;
+const PIT_TRACK_SPAN=LENGTH*(PIT_EXIT-PIT_ENTRY);
+
+const PIT_BOX_T=.595;
+const PIT_BOX_START_T=.565;
+const PIT_BOX_END_T=.625;
+
+const pitStart=pointAt(LENGTH*PIT_ENTRY);
+const pitEnd=pointAt(LENGTH*PIT_EXIT);
+
+const pitP0={x:pitStart.x,y:pitStart.y};
+const pitP1={x:pitStart.x+pitStart.tx*62,y:pitStart.y+pitStart.ty*62};
+const pitP3={x:pitEnd.x,y:pitEnd.y};
+const pitP2={x:pitEnd.x-pitEnd.tx*62,y:pitEnd.y-pitEnd.ty*62};
+
+function pitAt(t){
+ t=Math.max(0,Math.min(1,t));
+ const u=1-t;
+
+ const x=u*u*u*pitP0.x+3*u*u*t*pitP1.x+3*u*t*t*pitP2.x+t*t*t*pitP3.x;
+ const y=u*u*u*pitP0.y+3*u*u*t*pitP1.y+3*u*t*t*pitP2.y+t*t*t*pitP3.y;
+
+ const dx=3*u*u*(pitP1.x-pitP0.x)+6*u*t*(pitP2.x-pitP1.x)+3*t*t*(pitP3.x-pitP2.x);
+ const dy=3*u*u*(pitP1.y-pitP0.y)+6*u*t*(pitP2.y-pitP1.y)+3*t*t*(pitP3.y-pitP2.y);
+
+ const len=Math.hypot(dx,dy)||1;
+ return{x,y,tx:dx/len,ty:dy/len,nx:-dy/len,ny:dx/len};
+}
+
+function drawPitPath(c){
+ c.beginPath();
+ for(let i=0;i<=160;i++){
+  const q=pitAt(i/160);
+  i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y);
+ }
+ c.lineCap='round';
+ c.lineJoin='round';
+
+ c.lineWidth=43;
+ c.strokeStyle='#f8e9d1';
+ c.stroke();
+
+ c.lineWidth=35;
+ c.strokeStyle='#555b68';
+ c.stroke();
+
+ c.lineWidth=2;
+ c.strokeStyle='#9edbf1';
+ c.setLineDash([12,10]);
+ c.stroke();
+ c.setLineDash([]);
+}
+
+function pitLabel(c,t,label){
+ const q=pitAt(t);
+ c.save();
+ c.translate(q.x+q.nx*31,q.y+q.ny*31);
+ c.fillStyle='#277ea9';
+ c.fillRect(-42,-11,84,22);
+ c.fillStyle='#fff';
+ c.font='bold 10px Nunito';
+ c.textAlign='center';
+ c.textBaseline='middle';
+ c.fillText(label,0,0);
+ c.restore();
+}
+
+drawPitPath(b);
+
+// BOX 07 stays fixed to the independent pit-lane curve.
+const pitBoxPoint=pitAt(PIT_BOX_T);
+
+b.save();
+b.translate(pitBoxPoint.x,pitBoxPoint.y);
+b.rotate(Math.atan2(pitBoxPoint.ty,pitBoxPoint.tx));
+b.fillStyle='#e7f7ff';
+b.strokeStyle='#328ab8';
+b.lineWidth=3;
+b.fillRect(-36,-23,72,46);
+b.strokeRect(-36,-23,72,46);
+b.fillStyle='#328ab8';
+b.font='bold 13px Nunito';
+b.textAlign='center';
+b.textBaseline='middle';
+b.fillText('BOX 07',0,0);
+b.fillStyle='#f2c85f';
+b.fillRect(-5,-20,10,40);
+b.restore();
+
+pitLabel(b,.045,'PIT ENTRY · Q');
+pitLabel(b,.94,'PIT EXIT');
+
+const compounds={
+ soft:{label:'SOFT',wear:.82,grip:1.08},
+ medium:{label:'MEDIUM',wear:.58,grip:1},
+ hard:{label:'HARD',wear:.36,grip:.95}
+};
+
+let selected='medium',keys={},rafId=0,lastRank=3;
+
+let game={
+ mode:'brief',last:0,count:3,time:55,frame:0,
+ player:{
+  distance:0,offset:0,speed:0,wear:0,boost:100,
+  compound:'medium',nextCompound:'medium',pitted:false,
+  pitTime:0,inPitLane:false,pitProgress:0,
+  penaltyLock:0,contactLock:0,penalties:0
+ },
+ rivals:[],
+ message:'Blazbit: “I have warmed up the tyres. Try not to embarrass us.”',
+ messageT:0
+};
+
+function makeRivals(){
+ return[
+  {id:'nova',name:'NOVA 18',distance:28,speed:0,base:163,phase:.4,offset:-24,color:'#8b76de',pitDone:false,pitTime:0},
+  {id:'orbit',name:'ORBIT 07',distance:58,speed:0,base:156,phase:2.1,offset:24,color:'#f08ab2',pitDone:false,pitTime:0}
+ ];
+}
+
+function chooseCompound(c){
+ selected=c;
+ document.querySelectorAll('.compound').forEach(x=>
+  x.classList.toggle('selected',x.dataset.compound===c)
+ );
+}
+
+function setPitCompound(c){
+ const p=game.player;
+
+ if(!['soft','medium','hard'].includes(c))return;
+
+ if(!p.inPitLane||p.pitTime>0||p.pitted){
+  setMessage('Tyre selection is only available in the pit lane.');
+  return;
+ }
+
+ p.nextCompound=c;
+
+ document.querySelectorAll('[data-pitcompound]').forEach(x=>
+  x.classList.toggle('selected',x.dataset.pitcompound===c)
+ );
+
+ setMessage(compounds[c].label+' tyres selected. Blazbit approves this strategy.');
+}
+
+function setMessage(s,t=3){
+ game.message=s;
+ game.messageT=t;
+}
+
+function resetState(){
+ cancelAnimationFrame(rafId);
+
+ game={
+  mode:'brief',last:0,count:3,time:55,frame:0,
+  player:{
+   distance:0,offset:0,speed:0,wear:0,boost:100,
+   compound:selected,nextCompound:selected,pitted:false,
+   pitTime:0,inPitLane:false,pitProgress:0,
+   penaltyLock:0,contactLock:0,penalties:0
+  },
+  rivals:makeRivals(),
+  message:'Blazbit: “I have warmed up the tyres. Try not to embarrass us.”',
+  messageT:0
+ };
+
+ keys={};
+ lastRank=3;
+ updateHUD();
+ draw();
+}
+
+function startRace(){
+ resetState();
+ $('preRace').classList.add('hidden');
+ $('result').classList.remove('show');
+ $('countOverlay').classList.remove('hidden');
+
+ game.mode='countdown';
+ game.count=3;
+ game.last=performance.now();
+
+ $('racePhase').textContent='FORMATION';
+ setMessage('Race control: five red lights are coming on…',4);
+
+ rafId=requestAnimationFrame(loop);
+}
+
+function restartRace(){
+ resetState();
+ $('result').classList.remove('show');
+ $('pauseOverlay').classList.add('hidden');
+ $('countOverlay').classList.add('hidden');
+ $('preRace').classList.remove('hidden');
+}
+
+function backToBriefing(){
+ restartRace();
+}
+
+function resumeRace(){
+ if(game.mode!=='paused')return;
+ game.mode='racing';
+ game.last=performance.now();
+ $('pauseOverlay').classList.add('hidden');
+ setMessage('Green flag. Back to work.',2);
+ rafId=requestAnimationFrame(loop);
+}
+
+function pauseRace(){
+ if(game.mode==='racing'){
+  game.mode='paused';
+  keys={};
+  cancelAnimationFrame(rafId);
+  $('pauseOverlay').classList.remove('hidden');
+ }
+}
+
+function keyDown(e){
+ const k=e.key===' '?'Space':e.key;
+
+ if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(k)||['w','a','s','d','W','A','S','D'].includes(k))e.preventDefault();
+
+ keys[k]=true;
+
+ if(k==='Escape')pauseRace();
+ if((k==='q'||k==='Q')&&game.mode==='racing')enterPit();
+ if((k==='p'||k==='P')&&game.mode==='racing')pitStop();
+
+ if(['1','2','3'].includes(k)&&game.mode==='racing'&&game.player.inPitLane){
+  setPitCompound({'1':'soft','2':'medium','3':'hard'}[k]);
+ }
+}
+
+function keyUp(e){
+ const k=e.key===' '?'Space':e.key;
+ keys[k]=false;
+}
+
+window.addEventListener('keydown',keyDown);
+window.addEventListener('keyup',keyUp);
+window.addEventListener('blur',()=>{
+ if(game.mode==='racing')pauseRace();
+});
+
+document.querySelectorAll('[data-key]').forEach(btn=>{
+ const k=btn.dataset.key;
+
+ btn.addEventListener('pointerdown',e=>{
+  e.preventDefault();
+  keys[k]=true;
+  btn.setPointerCapture(e.pointerId);
+ });
+
+ ['pointerup','pointercancel','lostpointercapture','pointerleave'].forEach(ev=>
+  btn.addEventListener(ev,()=>keys[k]=false)
+ );
+});
+
+function trackFrac(distance){
+ return((distance%LENGTH)+LENGTH)%LENGTH/LENGTH;
+}
+
+function nearPitEntry(){
+ const f=trackFrac(game.player.distance);
+ return f>=PIT_ENTRY-.006&&f<=PIT_ENTRY+.012;
+}
+
+function pitT(){
+ return Math.max(0,Math.min(1,game.player.pitProgress/PIT_TRACK_SPAN));
+}
+
+function inPitBox(){
+ const t=pitT();
+ return t>=PIT_BOX_START_T&&t<=PIT_BOX_END_T;
+}
+
+function enterPit(){
+ const p=game.player;
+
+ if(game.mode!=='racing')return;
+
+ if(p.pitted){
+  setMessage('Pit wall: “You already stopped. This is a race, not a spa weekend.”');
+  return;
+ }
+
+ if(p.inPitLane){
+  setMessage('You are already in the pit lane. Follow the blue route to BOX 07.');
+  return;
+ }
+
+ if(!nearPitEntry()){
+  setMessage('Not at PIT ENTRY yet. Watch for the blue marker just after this bend.',2.5);
+  return;
+ }
+
+ if(Math.abs(p.offset)>30){
+  setMessage('PIT ENTRY MISSED! Bring the car back towards the centre line before Q.',2.5);
+  return;
+ }
+
+ p.inPitLane=true;
+ p.pitProgress=0;
+ p.speed=Math.min(p.speed,72);
+
+ setMessage('PIT ENTRY! Smooth line into the dedicated blue pit road. Brake for BOX 07.',3);
+ updateHUD();
+}
+
+function pitStop(){
+ const p=game.player;
+
+ if(game.mode!=='racing')return;
+
+ if(p.pitted){
+  setMessage('Pit wall: “You already stopped. This is a race, not a spa weekend.”');
+  return;
+ }
+
+ if(!p.inPitLane){
+  setMessage('Wrong lane! Enter through the marked PIT ENTRY first.',2.5);
+  return;
+ }
+
+ if(!inPitBox()){
+  setMessage('BOX 07 is ahead. Follow the smooth blue lane to the garage marker.',2.5);
+  return;
+ }
+
+ if(p.speed>35){
+  p.speed*=.55;
+  p.penalties++;
+  game.time=Math.max(0,game.time-2);
+  setMessage('UNSAFE PIT STOP: 2-second penalty. Brake below 35 km/h inside BOX 07.',3);
+  return;
+ }
+
+ // Advance cumulative race distance to the service bay before the timer freezes.
+ const serviceProgress=PIT_TRACK_SPAN*PIT_BOX_T;
+ p.distance+=serviceProgress-p.pitProgress;
+ p.pitProgress=serviceProgress;
+
+ p.pitTime=3.4;
+ p.speed=0;
+ p.stagedCompound=p.nextCompound;
+
+ setMessage('BOX 07 — CAR SECURED. Crew fitting '+compounds[p.stagedCompound].label+' tyres…',3.6);
+ draw();
+}
+
+function update(dt){
+
+ if(game.mode==='countdown'){
+  game.count-=dt;
+
+  if(game.count<=0){
+   game.mode='racing';
+   game.time=55;
+   $('countOverlay').classList.add('hidden');
+   $('racePhase').textContent='GREEN FLAG';
+   setMessage('LIGHTS OUT! LIGHTS OUT! GO GO GO!',3);
+  }else{
+   $('countNumber').textContent=Math.ceil(game.count);
+  }
+
+  return;
+ }
+
+ if(game.mode!=='racing')return;
+
+ game.time=Math.max(0,game.time-dt);
+
+ if(game.time<=0){
+  finishRace(false,'Time is up. Blazbit is asking whether you were racing or sightseeing.');
+  return;
+ }
+
+ const p=game.player;
+ const accel=!!(keys.ArrowUp||keys.w||keys.W);
+ const brake=!!(keys.ArrowDown||keys.s||keys.S);
+ const left=!!(keys.ArrowLeft||keys.a||keys.A);
+ const right=!!(keys.ArrowRight||keys.d||keys.D);
+ const boosting=!!((keys.Space||keys[' '])&&p.boost>0&&p.speed>65&&!p.inPitLane);
+ const compound=compounds[p.compound];
+
+ if(p.pitTime>0){
+  p.pitTime=Math.max(0,p.pitTime-dt);
+  p.speed=0;
+
+  if(p.pitTime===0){
+   p.compound=p.stagedCompound;
+   p.nextCompound=p.compound;
+   p.wear=4;
+   p.boost=100;
+   p.pitted=true;
+   setMessage('PIT RELEASE! Fresh '+compounds[p.compound].label+' tyres. Go get them!',3);
   }
  }
 
- s+=`<div class="card" style="grid-column:1/-1;text-align:left">
- <b>Across</b>
- <p>1. Ayrton, three-time world champion (5)</p>
- <b>Down</b>
- <p>
-  2. Belgian Grand Prix circuit (3)<br>
-  3. Ferrari founder's first name (4)<br>
-  4. Three-time champion Lauda's first name (4)<br>
-  5. 2016 world champion Rosberg's first name (4)<br>
-  6. Albon's first name (4)
- </p>
- </div></div>
- <button class="btn" onclick="checkCross()">CHECK CROSSWORD</button>`;
+ else if(p.inPitLane){
+  if(accel)p.speed+=105*dt;
+  else p.speed-=42*dt;
 
- $("gamebox").innerHTML=s;
-}
+  if(brake)p.speed-=235*dt;
 
-function checkCross(){
- let ok=true;
- let cells={};
- words.forEach(o=>o.cells.forEach(([r,c],j)=>cells[r+","+c]=o.w[j]));
+  p.speed=Math.max(0,Math.min(72,p.speed));
 
- document.querySelectorAll(".cross input").forEach(e=>{
-  let yes=e.value.toUpperCase()===cells[e.dataset.k];
-  e.style.background=yes?"#ddf7e8":"#ffe1e8";
-  if(!yes)ok=false;
+  const previousPitProgress=p.pitProgress;
+  const nextPitProgress=Math.min(PIT_TRACK_SPAN,previousPitProgress+p.speed*dt);
+  const pitDistanceTravelled=nextPitProgress-previousPitProgress;
+
+  p.pitProgress=nextPitProgress;
+
+  // Keep cumulative race distance moving through the pit lane.
+  // Never reset the completed-lap count at pit exit.
+  p.distance+=pitDistanceTravelled;
+
+  if(p.pitProgress>=PIT_TRACK_SPAN){
+   p.inPitLane=false;
+   p.pitProgress=0;
+   p.offset=0;
+   p.rejoining=false;
+   setMessage('PIT EXIT — clean merge onto the racing line. Send it!',2.5);
+  }
+ }
+
+ else{
+  const qa=pointAt(p.distance-42);
+  const qb=pointAt(p.distance+42);
+
+  const turn=Math.abs(angleDiff(
+   Math.atan2(qb.ty,qb.tx),
+   Math.atan2(qa.ty,qa.tx)
+  ));
+
+  const grip=compound.grip*(1-Math.max(0,p.wear-45)/190);
+  const maxSpeed=(boosting?238:218)*Math.max(.67,grip);
+
+  if(accel)p.speed+=175*dt;
+  else p.speed-=18*dt;
+
+  if(brake)p.speed-=245*dt;
+
+  if(boosting){
+   p.speed+=105*dt;
+   p.boost=Math.max(0,p.boost-37*dt);
+  }else{
+   p.boost=Math.min(100,p.boost+5.5*dt);
+  }
+
+  p.speed=Math.max(0,Math.min(maxSpeed,p.speed));
+
+  if(p.rejoining){
+   p.offset+=(0-p.offset)*Math.min(1,dt*3);
+
+   if(Math.abs(p.offset)<5){
+    p.offset=0;
+    p.rejoining=false;
+   }
+  }else{
+   const steer=(right?1:0)-(left?1:0);
+   p.offset+=steer*(58+p.speed*.13)*dt;
+   p.offset*=Math.max(0,1-.12*dt);
+  }
+
+  const safe=205-turn*85;
+
+  if(p.speed>safe){
+   p.wear+=dt*(.4+(p.speed-safe)*.014);
+
+   if(game.frame%100===0){
+    setMessage('TIGHT CORNER! Brake before the apex. Your tyres are not made of magic.',1.8);
+   }
+  }
+
+  if(Math.abs(p.offset)>48&&!p.rejoining){
+   p.speed*=Math.pow(.86,dt*4);
+   p.wear+=dt*2;
+
+   if(p.penaltyLock<=0){
+    game.time=Math.max(0,game.time-1.5);
+    p.penaltyLock=2.3;
+    p.penalties++;
+    setMessage('TRACK LIMITS! 1.5-second penalty. Stay inside the white lines.',2.5);
+   }
+  }
+
+  p.penaltyLock=Math.max(0,p.penaltyLock-dt);
+  p.wear=Math.min(100,p.wear+dt*compound.wear*(.38+p.speed/240*.55));
+  p.distance+=p.speed*dt;
+
+  if(p.wear>=100){
+   p.speed=Math.min(p.speed,125);
+
+   if(game.frame%150===0){
+    setMessage('TYRES ARE COOKED. Grip is gone. Please pit before the tyres resign.',2.5);
+   }
+  }
+ }
+
+ game.rivals.forEach(r=>{
+  const qa=pointAt(r.distance-44);
+  const qb=pointAt(r.distance+44);
+
+  const turn=Math.abs(angleDiff(
+   Math.atan2(qb.ty,qb.tx),
+   Math.atan2(qa.ty,qa.tx)
+  ));
+
+  const cornerLoss=turn>.55?22:turn>.34?10:0;
+  const rhythm=Math.sin(r.distance/175+r.phase)*5;
+  const push=Math.sin(r.distance/420+r.phase*2)>.82?7:0;
+
+  r.speed=Math.max(133,Math.min(178,r.base+rhythm+push-cornerLoss));
+  r.distance+=r.speed*dt;
  });
 
- if(ok)win(160);
- else wrong();
-}
+ p.contactLock=Math.max(0,p.contactLock-dt);
 
-/* BLAZBIT: F1 MINI RACING GAME */
+ if(!p.inPitLane&&p.pitTime<=0){
+  game.rivals.forEach(r=>{
+   const gap=Math.abs(r.distance-p.distance);
 
-let race={lane:1,tick:0,lap:0,crash:0,tokens:0,obs:[],run:false};
-
-function raceGame(){
- $("gamebox").innerHTML=`
- <p>Use ← → or A / D. Dodge barriers 🚧, collect three tyre tokens 🛞 and finish three laps before 45 seconds.</p>
- <canvas id="race" width="600" height="320"></canvas>
- <div class="center">
-  <button class="btn alt" onclick="steer(-1)">◀</button>
-  <button class="btn alt" onclick="steer(1)">▶</button>
-  <button class="btn" onclick="beginRace()">START RACE</button>
- </div>
- <p id="raceInfo" class="center">Lap 0/3 · Tyres 0/3 · Crashes 0</p>`;
-
- race={lane:1,tick:0,lap:0,crash:0,tokens:0,obs:[],run:false};
- drawRace();
-}
-
-function steer(d){
- if(race.run)race.lane=Math.max(0,Math.min(2,race.lane+d));
-}
-
-function beginRace(){
- if(race.run)return;
- race.run=true;
- race.tick=0;
- race.lap=0;
- race.tokens=0;
- race.crash=0;
- race.obs=[];
- interval=setInterval(raceTick,100);
-}
-
-function raceTick(){
- race.tick++;
-
- if(race.tick%7===0){
-  race.obs.push({
-   lane:Math.floor(Math.random()*3),
-   y:-20,
-   token:Math.random()<.48
+   if(gap<18&&Math.abs(r.offset-p.offset)<13&&p.speed>80&&p.contactLock<=0){
+    p.speed*=.9;
+    p.contactLock=1.4;
+    setMessage('WHEEL-TO-WHEEL! Brief loss of momentum. Leave racing room.',2);
+   }
   });
  }
 
- race.obs.forEach(o=>o.y+=5);
+ game.frame++;
 
- let hit=race.obs.find(o=>o.y>235&&o.y<275&&o.lane===race.lane);
-
- if(hit){
-  if(hit.token)race.tokens++;
-  else{
-   race.crash++;
-   if(race.crash%2===0)wrong();
-  }
-  race.obs=race.obs.filter(o=>o!==hit);
- }
-
- if(race.tick%65===0)race.lap++;
-
- $("timer").textContent="⏱ "+Math.max(0,45-Math.floor(race.tick/10))+"s";
-
- $("raceInfo").textContent=
- `Lap ${Math.min(3,race.lap)}/3 · Tyres ${race.tokens}/3 · Crashes ${race.crash}`;
-
- drawRace();
-
- if(race.lap>=3&&race.tokens>=3){
-  clearInterval(interval);
-  race.run=false;
-  win(180);
- }
-
- if(race.tick>=450){
-  clearInterval(interval);
-  race.run=false;
-  $("feedback").textContent="Chequered flag! You didn't collect enough tyre tokens. Try again.";
- }
-}
-
-function drawRace(){
- let c=$("race");
- if(!c)return;
-
- let x=c.getContext("2d");
- x.clearRect(0,0,600,320);
-
- x.fillStyle="#9bd39b";
- x.fillRect(0,0,600,320);
-
- x.fillStyle="#686472";
- x.fillRect(115,0,370,320);
-
- x.strokeStyle="white";
- x.lineWidth=4;
- x.setLineDash([17,15]);
-
- [238,362].forEach(v=>{
-  x.beginPath();
-  x.moveTo(v,0);
-  x.lineTo(v,320);
-  x.stroke();
- });
-
- x.setLineDash([]);
-
- race.obs.forEach(o=>{
-  x.font="26px Arial";
-  x.fillText(o.token?"🛞":"🚧",150+o.lane*124,o.y);
- });
-
- x.font="34px Arial";
- x.fillText("🏎️",150+race.lane*124,275);
-}
-
-window.addEventListener("keydown",e=>{
- if($("game").classList.contains("active")&&race.run){
-  if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")steer(-1);
-  if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")steer(1);
- }
-});
-
-/* JELLOO: MUSIC GUESSING GAME
-   Edit songRounds to customise it with his favourite songs.
-   These are clue-based prompts, not reproduced song lyrics.
-*/
-
-const songRounds=[
- ["A late-90s dance hit whose title is a colour and a feeling.",["blue","blue (da ba dee)"],"Think Eiffel 65."],
- ["A Sam Smith hit whose title asks someone to stay.",["stay with me"],"Sam Smith."],
- ["A global Tones and I hit named after an animal that dances.",["dance monkey"],"Tones and I."],
- ["Aashiqui 2 romantic song whose title means 'only you'.",["tum hi ho"],"Arijit Singh."]
-];
-
-function musicGame(){
- $("gamebox").innerHTML=`
- <p>Identify four mystery songs from clues. Type the title. The included rounds are starter examples; you can swap in his favourite songs in the songRounds list.</p>
- <div id="songRound"></div>`;
- songRound(0);
-}
-
-function songRound(n){
- if(n===songRounds.length){
-  win(140);
+ if(Math.floor(p.distance/LENGTH)>=3){
+  finishRace(true,'');
   return;
  }
 
- let s=songRounds[n];
+ const rank=position();
 
- $("songRound").innerHTML=`
- <span class="tag">ROUND ${n+1}/4</span>
- <h3>🎧 Mystery track</h3>
- <p>${s[0]}</p>
- <input id="songInput" placeholder="Type song title">
- <button class="btn" onclick="checkSong(${n})">LOCK IT IN</button>
- <button class="btn alt" onclick="alert('${s[2]}')">HINT</button>`;
-}
+ if(rank!==lastRank){
+  setMessage(
+   rank<lastRank
+    ?(rank===1?'OVERTAKE! P1! Blazbit is trying not to cheer.':'Nice pass! You moved up to P'+rank+'.')
+    :'Position lost. Find a clean line and take it back.',
+   2
+  );
 
-function checkSong(n){
- let v=$("songInput").value.toLowerCase().trim();
-
- if(songRounds[n][1].includes(v)){
-  songRound(n+1);
-  $("feedback").textContent="Correct! The aux is safe. 🎵";
- }else wrong();
-}
-
-/* PUFFWING: FORTNITE-INSPIRED BUILD BATTLE */
-
-let selected="wall",build=[];
-
-function buildGame(){
- build=Array(64).fill("");
- selected="wall";
-
- $("gamebox").innerHTML=`
- <p>Build a storm shelter: at least 5 walls, 4 floors and 2 ramps. You have 18 pieces. Select a piece, then place it on the grid.</p>
- <div class="row">
-  <button class="btn" onclick="selected='wall'">🧱 Wall</button>
-  <button class="btn" onclick="selected='floor'">🟪 Floor</button>
-  <button class="btn gold" onclick="selected='ramp'">📐 Ramp</button>
- </div>
- <div class="build" id="buildGrid"></div>
- <p id="buildInfo" class="center">0/18 pieces placed</p>
- <button class="btn" onclick="checkBuild()">SUBMIT BUILD</button>
- <button class="btn alt" onclick="buildGame()">RESET</button>`;
-
- renderBuild();
-}
-
-function renderBuild(){
- $("buildGrid").innerHTML=build.map((v,i)=>`
- <button class="cell" style="background:${v==='wall'?'#c9b4a0':v==='floor'?'#d7c4f3':v==='ramp'?'#f5d98c':'#e8f5df'}" onclick="placeBuild(${i})">
- ${v==='wall'?'🧱':v==='floor'?'🟪':v==='ramp'?'📐':''}
- </button>`).join("");
-
- $("buildInfo").textContent=build.filter(Boolean).length+"/18 pieces placed";
-}
-
-function placeBuild(i){
- if(build[i]||build.filter(Boolean).length>=18)return;
- build[i]=selected;
- renderBuild();
-}
-
-function checkBuild(){
- let w=build.filter(x=>x==='wall').length;
- let f=build.filter(x=>x==='floor').length;
- let r=build.filter(x=>x==='ramp').length;
-
- if(w>=5&&f>=4&&r>=2)win(160);
- else{
-  $("feedback").textContent=`Shelter incomplete: ${w}/5 walls, ${f}/4 floors, ${r}/2 ramps.`;
-  wrong();
- }
-}
-
-/* SHROOMI: LARGE MAZE — FIND THE KEY AND THEN THE EXIT */
-
-const maze=[
- "###############",
- "#S....#.......#",
- "#.##..#.#####.#",
- "#....##.....#.#",
- "####....###.#.#",
- "#....#....#.#.#",
- "#.####.##.#.#.#",
- "#......##...#.#",
- "##.##.....###.#",
- "#...#.###.....#",
- "#.#...#...##..#",
- "#.#####.#.....#",
- "#.....#...##..#",
- "###.#....K...E#",
- "###############"
-];
-
-let mp={x:1,y:1},hasKey=false,moves=0;
-
-function mazeGame(){
- mp={x:1,y:1};
- hasKey=false;
- moves=0;
-
- $("gamebox").innerHTML=`
- <p>Find the golden key 🔑 and reach the exit 🚪. Use arrow keys / WASD or the buttons. Walls are solid; every move counts.</p>
- <div id="mazeGrid" class="maze"></div>
- <div class="dpad">
-  <span></span><button onclick="mazeMove(0,-1)">▲</button><span></span>
-  <button onclick="mazeMove(-1,0)">◀</button>
-  <button onclick="mazeMove(0,1)">▼</button>
-  <button onclick="mazeMove(1,0)">▶</button>
- </div>
- <p id="mazeInfo" class="center"></p>`;
-
- drawMaze();
-}
-
-function drawMaze(){
- let h="";
-
- for(let y=0;y<15;y++){
-  for(let x=0;x<15;x++){
-   let ch=maze[y][x];
-   let cl=ch==="#"?"wall":ch==="E"?"goal":ch==="K"&&!hasKey?"key":"tile";
-   let label="";
-
-   if(x===mp.x&&y===mp.y){
-    cl="player";
-    label="🧍";
-   }else if(ch==="E"){
-    label="🚪";
-   }else if(ch==="K"&&!hasKey){
-    label="🔑";
-   }
-
-   h+=`<div class="tile ${cl}">${label}</div>`;
-  }
+  lastRank=rank;
  }
 
- $("mazeGrid").innerHTML=h;
- $("mazeInfo").textContent=`Moves: ${moves} · Key: ${hasKey?'found':'missing'}`;
+ game.messageT=Math.max(0,game.messageT-dt);
+
+ if(game.messageT<=0)setDefaultMessage();
 }
 
-function mazeMove(dx,dy){
- let x=mp.x+dx,y=mp.y+dy;
+function setDefaultMessage(){
+ const p=game.player;
 
- if(maze[y][x]==="#"){
-  $("feedback").textContent="BONK. A wall. Shroomi recommends looking at the map.";
+ if(p.pitTime>0){
+  setMessage('BOX 07: pit crew changing tyres…',1.5);
   return;
  }
 
- mp={x,y};
- moves++;
+ if(p.inPitLane){
+  const t=pitT();
 
- if(maze[y][x]==="K")hasKey=true;
-
- if(maze[y][x]==="E"){
-  if(hasKey)win(Math.max(100,200-moves));
-  else $("feedback").textContent="The exit is locked. Find the key first.";
- }
-
- drawMaze();
-}
-
-window.addEventListener("keydown",e=>{
- if(!$("game").classList.contains("active")||roster[idx][4]!=="maze")return;
-
- let d={
-  ArrowUp:[0,-1],w:[0,-1],
-  ArrowDown:[0,1],s:[0,1],
-  ArrowLeft:[-1,0],a:[-1,0],
-  ArrowRight:[1,0],d:[1,0]
- }[e.key];
-
- if(d){
-  e.preventDefault();
-  mazeMove(...d);
- }
-});
-
-/* LUNARI: DETECTIVE INVESTIGATION — NO MULTIPLE-CHOICE QUESTIONS */
-
-const evidenceSteps=[
- {
-  title:"Scene 1 — The first witness",
-  text:"The AirPods case was last seen in a pocket before the walk. At the bus stop, Milo the dog noticed a small white object on the pavement. Pippa the cat remembers hearing a plastic click near the blue bench.",
-  task:"Type the two-word location where the search should begin.",
-  answers:["blue bench","the blue bench"],
-  hint:"Pippa mentioned a colour and something you can sit on."
- },
- {
-  title:"Scene 2 — The physical evidence",
-  text:"At the blue bench you find muddy paw prints leading towards a crack beside the pavement. A leaf is caught in the crack. The ground slopes slightly down from the bench.",
-  task:"Complete the deduction: the case most likely ______ from the bench and slipped under the pavement edge.",
-  answers:["slid","slid down","slid off","slid off the bench"],
-  hint:"It didn't fly, teleport or get stolen by a pigeon. Gravity did its thing."
- },
- {
-  title:"Scene 3 — Rebuild the timeline",
-  text:"You have three events: (A) a plastic click was heard; (B) the case was found under the pavement edge; (C) the case was last seen near the blue bench. Put the event letters in chronological order, with no spaces.",
-  task:"Enter the correct three-letter timeline.",
-  answers:["cab"],
-  hint:"First it was seen, then it fell with a click, then it was found."
- }
-];
-
-let detStage=0;
-
-function detectiveGame(){
- detStage=0;
- $("gamebox").innerHTML=`
- <p><b>Case file: The Missing AirPods Case.</b> Examine the evidence, make deductions and reconstruct the timeline. No multiple-choice shortcuts: type your conclusions.</p>
- <div id="case"></div>`;
- renderCase();
-}
-
-function renderCase(){
- let s=evidenceSteps[detStage];
-
- $("case").innerHTML=`
- <div class="card">
-  <span class="tag">EVIDENCE ${detStage+1}/3</span>
-  <h3>${s.title}</h3>
-  <p>${s.text}</p>
-  <b>${s.task}</b>
-  <p><input id="caseInput" placeholder="Type your deduction" autocomplete="off"></p>
-  <button class="btn" onclick="caseAnswer()">SUBMIT EVIDENCE</button>
-  <button class="btn alt" onclick="$('caseHint').textContent='Hint: '+evidenceSteps[detStage].hint">REQUEST HINT</button>
-  <p id="caseHint" class="muted tiny"></p>
- </div>`;
-}
-
-function caseAnswer(){
- let s=evidenceSteps[detStage];
- let v=$("caseInput").value.toLowerCase().trim().replace(/[^a-z]/g,"");
- let ok=s.answers.some(a=>a.replace(/[^a-z]/g,"")===v);
-
- if(!ok){
-  wrong();
+  setMessage(
+   inPitBox()
+    ?(p.speed>35?'BOX 07 — BRAKE BELOW 35, then press P.':'BOX 07 — choose tyres with 1/2/3 and press P.')
+    :(t>=PIT_BOX_START_T-.08?'BOX 07 AHEAD — slow down and follow the blue line.':'Follow the blue pit road to BOX 07.'),
+   1.5
+  );
   return;
  }
 
- detStage++;
-
- if(detStage===3){
-  win(170);
+ if(nearPitEntry()&&!p.pitted){
+  setMessage('PIT ENTRY IS HERE — press Q to take the blue lane.',1.8);
+ }else if(p.wear>70){
+  setMessage('TYRE WARNING: grip is fading. Think about your pit stop.',1.8);
  }else{
-  $("feedback").textContent="Evidence accepted. Your timeline is starting to make sense.";
-  renderCase();
+  setMessage('Blazbit: “Good pace. But I have seen a tortoise take that corner faster.”',1.8);
  }
 }
 
-/* CHOCOBLOOM ISLAND: OPEN-WORLD EXPLORATION */
-
-const cv=$("world"),cx=cv.getContext("2d");
-
-const sites=[
- ["falls",185,110,"🍫","Choco Falls","Chocolate Seal","Behind the waterfall, a cocoa-stamped golden seal glints in the cave."],
- ["scoop",690,120,"🍦","Scoop District","Recipe Fragment","The dramatic ice-cream vendor gives you a recipe fragment. 'Do not eat the evidence!'"],
- ["meadow",700,420,"🐱","Catto-Doggo Meadows","Pawprint Clue","A cat and dog reveal a pawprint clue. The dog looks extremely proud."],
- ["forest",220,420,"🌳","Mystery Forest","Ancient Map Piece","Inside a hollow tree, you discover an old map fragment."],
- ["sunrise",450,260,"🌅","Sunrise Point","Sunrise Token","The sky turns gold. A small token waits at the lookout."]
-];
-
-let player={x:90,y:90};
-
-function drawWorld(){
- cx.clearRect(0,0,900,550);
-
- cx.fillStyle="#9ddfba";
- cx.fillRect(0,0,900,550);
-
- cx.fillStyle="#8dd9ed";
- cx.fillRect(0,0,900,18);
- cx.fillRect(0,532,900,18);
- cx.fillRect(0,0,18,550);
- cx.fillRect(882,0,18,550);
-
- cx.strokeStyle="#f5e5bd";
- cx.lineWidth=45;
- cx.lineCap="round";
- cx.beginPath();
- cx.moveTo(90,90);
- cx.lineTo(450,260);
- cx.lineTo(690,120);
- cx.moveTo(450,260);
- cx.lineTo(220,420);
- cx.moveTo(450,260);
- cx.lineTo(700,420);
- cx.moveTo(450,260);
- cx.lineTo(185,110);
- cx.stroke();
-
- for(let i=0;i<40;i++){
-  cx.font="20px Arial";
-  cx.fillText(["🌸","🌼","🍄","🌿"][i%4],(i*137)%850+25,(i*83)%500+30);
- }
-
- sites.forEach(s=>{
-  cx.beginPath();
-  cx.fillStyle=data.found.includes(s[0])?"#fff2b9":"#ffffffd9";
-  cx.arc(s[1],s[2],34,0,7);
-  cx.fill();
-
-  cx.strokeStyle="white";
-  cx.lineWidth=4;
-  cx.stroke();
-
-  cx.font="30px Arial";
-  cx.textAlign="center";
-  cx.fillText(s[3],s[1],s[2]+10);
-
-  cx.font="12px Nunito";
-  cx.fillStyle="#49395f";
-  cx.fillText(data.found.includes(s[0])?"FOUND":s[4],s[1],s[2]+52);
- });
-
- cx.font="34px Arial";
- cx.fillText("🧚",player.x,player.y+12);
-
- $("islandCount").textContent=data.found.length+"/5 clues";
- $("gate").classList.toggle("hidden",data.found.length!==5);
+// One shared cumulative distance drives map movement, lap count and ranking.
+function playerRaceDistance(){
+ return game.player.distance;
 }
 
-function walk(dx,dy){
- player.x=Math.max(38,Math.min(862,player.x+dx*18));
- player.y=Math.max(38,Math.min(512,player.y+dy*18));
- drawWorld();
+function raceOrder(){
+ const racers=[
+  {id:'player',name:'YOU · BLAZBIT 01',distance:playerRaceDistance(),player:true},
+  ...game.rivals.map(r=>({id:r.id,name:r.name,distance:r.distance,player:false}))
+ ];
+
+ return racers.sort((a,b)=>b.distance-a.distance);
 }
 
-function interact(){
- let s=sites.map(a=>[a,Math.hypot(a[1]-player.x,a[2]-player.y)]).sort((a,b)=>a[1]-b[1])[0];
-
- if(s[1]>85){
-  $("dialogue").textContent="Walk closer to a glowing location first.";
-  return;
- }
-
- let a=s[0];
-
- if(data.found.includes(a[0])){
-  $("dialogue").textContent="You've already explored "+a[4]+". Keep wandering!";
-  return;
- }
-
- data.found.push(a[0]);
- data.items.push(a[5]);
- save();
-
- $("dialogue").textContent=a[6];
- $("inventory").innerHTML=data.items.map(x=>`<span class="item">✨ ${x}</span>`).join("");
-
- drawWorld();
+function position(){
+ return raceOrder().findIndex(r=>r.player)+1;
 }
 
-window.addEventListener("keydown",e=>{
- if(!$("island").classList.contains("active"))return;
+function updateStandings(){
+ const rows=raceOrder();
+ const p=game.player;
 
- let d={
-  ArrowUp:[0,-1],w:[0,-1],
-  ArrowDown:[0,1],s:[0,1],
-  ArrowLeft:[-1,0],a:[-1,0],
-  ArrowRight:[1,0],d:[1,0]
- }[e.key];
+ $('standings').innerHTML=rows.map((r,i)=>{
+  const pct=Math.max(0,Math.min(100,r.distance/(LENGTH*3)*100));
+  let gap='LEADER';
 
- if(d){
-  e.preventDefault();
-  walk(...d);
- }
+  if(i>0){
+   const ahead=rows[i-1];
+   const relative=ahead.distance-r.distance;
+   gap='+'+(relative/Math.max(
+    80,
+    r.player?p.speed:(game.rivals.find(v=>v.id===r.id)?.speed||150)
+   )).toFixed(1)+'s';
+  }
 
- if(e.key.toLowerCase()==="e")interact();
-});
+  return `<div class="standing ${r.player?'me':''}">
+   <div class="row" style="justify-content:space-between;gap:5px">
+    <span class="rank">P${i+1}</span>
+    <small>${gap}</small>
+   </div>
+   <b>${r.name}</b>
+   <div class="miniBar"><span style="width:${pct}%"></span></div>
+   <small>${Math.min(3,Math.floor(r.distance/LENGTH)+1)} / 3 laps · ${Math.round(r.distance)} m</small>
+  </div>`;
+ }).join('');
 
-function openChest(){
- if(data.found.length<5)return;
+ const now=position();
+ $('position').textContent='P'+now;
 
- let v=$("password").value.toLowerCase().trim().replace(/\s+/g," ");
+ $('positionNote').textContent=
+  now===1?'Leading the race':
+  now===2?'One place off the lead':
+  'Two rivals ahead';
 
- if(v==="choco bite"){
-  data.secret="yes";
-  save();
-  go("finale");
+ $('pitStatus').textContent=
+  p.pitted
+   ?'✅ Pit stop complete · '+compounds[p.compound].label+' tyres fitted'
+   :p.inPitLane
+    ?(p.pitTime>0
+      ?'🔧 BOX 07 · service in progress'
+      :inPitBox()
+       ?(p.speed>35?'🅿️ BOX 07 · BRAKE below 35 and press P':'🅿️ BOX 07 · choose tyres and press P')
+       :'🅿️ PIT LANE · follow blue route to BOX 07')
+    :(nearPitEntry()?'🅿️ PIT ENTRY READY · press Q':'🅿️ Watch for the blue PIT ENTRY marker');
+
+ $('pitTyres').classList.toggle('hidden',!p.inPitLane||p.pitted||p.pitTime>0);
+
+ document.querySelectorAll('[data-pitcompound]').forEach(x=>
+  x.classList.toggle('selected',x.dataset.pitcompound===p.nextCompound)
+ );
+}
+
+function updateHUD(){
+ const p=game.player;
+ const s=Math.max(0,Math.ceil(game.time));
+
+ $('time').textContent=
+  game.mode==='brief'||game.mode==='countdown'
+   ?'--:--'
+   :`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+
+ $('lap').textContent=`${Math.min(3,Math.floor(playerRaceDistance()/LENGTH)+1)} / 3`;
+ $('speed').textContent=Math.round(p.speed*1.15);
+ $('wear').textContent=Math.round(p.wear)+'%';
+ $('wearBar').style.width=(100-p.wear)+'%';
+ $('boost').textContent=Math.round(p.boost)+'%';
+ $('boostBar').style.width=p.boost+'%';
+ $('raceMessage').textContent=game.message;
+
+ updateStandings();
+}
+
+function drawCar(c,distance,offset,color,player=false){
+ const q=pointAt(distance);
+ const x=q.x+q.nx*offset;
+ const y=q.y+q.ny*offset;
+ const ang=Math.atan2(q.ty,q.tx);
+
+ c.save();
+ c.translate(x,y);
+ c.rotate(ang);
+
+ c.fillStyle='#222';
+ roundedRect(c,-14,-10,10,5,2);
+ roundedRect(c,5,-10,10,5,2);
+ roundedRect(c,-14,5,10,5,2);
+ roundedRect(c,5,5,10,5,2);
+
+ c.fillStyle=color;
+ roundedRect(c,-17,-7,34,14,5);
+
+ c.fillStyle='#252b38';
+ roundedRect(c,-6,-5,13,10,3);
+
+ c.fillStyle=player?'#fff':'#e9e4ed';
+ c.fillRect(-18,-9,5,18);
+
+ c.fillStyle='#222';
+ c.fillRect(12,-9,5,18);
+
+ c.fillStyle='#fff';
+ c.fillRect(14,-4,3,8);
+
+ c.restore();
+}
+
+function drawCarAt(c,q,color,player=false){
+ const x=q.x,y=q.y,ang=Math.atan2(q.ty,q.tx);
+
+ c.save();
+ c.translate(x,y);
+ c.rotate(ang);
+
+ c.fillStyle='#222';
+ roundedRect(c,-14,-10,10,5,2);
+ roundedRect(c,5,-10,10,5,2);
+ roundedRect(c,-14,5,10,5,2);
+ roundedRect(c,5,5,10,5,2);
+
+ c.fillStyle=color;
+ roundedRect(c,-17,-7,34,14,5);
+
+ c.fillStyle='#252b38';
+ roundedRect(c,-6,-5,13,10,3);
+
+ c.fillStyle=player?'#fff':'#e9e4ed';
+ c.fillRect(-18,-9,5,18);
+
+ c.fillStyle='#222';
+ c.fillRect(12,-9,5,18);
+
+ c.fillStyle='#fff';
+ c.fillRect(14,-4,3,8);
+
+ c.restore();
+}
+
+function draw(){
+ ctx.clearRect(0,0,W,H);
+ ctx.drawImage(back,0,0);
+
+ game.rivals.forEach(r=>drawCar(ctx,r.distance,r.offset,r.color));
+
+ const p=game.player;
+
+ if(p.inPitLane){
+  const q=pitAt(pitT());
+  drawCarAt(ctx,q,'#f07867',true);
  }else{
-  $("dialogue").textContent="The lock refuses. Hint: Naturals' legendary flavour has two words.";
+  drawCar(ctx,p.distance,p.offset,'#f07867',true);
+ }
+
+ if(p.pitTime>0){
+  ctx.fillStyle='#fff';
+  ctx.font='bold 18px Fredoka';
+  ctx.textAlign='center';
+  ctx.fillText('PIT CREW AT WORK… '+p.pitTime.toFixed(1)+'s',W/2,35);
+ }
+
+ updateHUD();
+}
+
+function finishRace(completed,reason){
+ game.mode='finished';
+ keys={};
+ cancelAnimationFrame(rafId);
+
+ $('countOverlay').classList.add('hidden');
+
+ const pos=position();
+ const p=game.player;
+ const success=completed&&pos<=2&&p.pitted&&p.pitTime<=0;
+ const title=success?'BLAZBIT UNLOCKED!':'RACE OVER';
+ const emoji=success?'🏆':'🏁';
+
+ if(success){
+  localStorage.setItem('cwBlazbitUnlocked','yes');
+
+  let got=[];
+  try{
+   got=JSON.parse(localStorage.getItem('cwGot')||'[]');
+  }catch(e){}
+
+  if(!got.includes('Blazbit'))got.push('Blazbit');
+
+  localStorage.setItem('cwGot',JSON.stringify(got));
+ }
+
+ const text=success
+  ?`You completed three laps in P${pos}, made a pit stop and brought the car home. Blazbit has officially joined your Creature World collection! Tyres: ${compounds[p.compound].label}. Track-limit penalties: ${p.penalties}.`
+  :(reason||`You finished in P${pos}. To earn Blazbit, complete three laps, finish in the top two and complete a pit stop. ${!completed?'Three laps were not completed. ':''}${!p.pitted?'You missed the pit stop. ':''}${pos>2?'You need to overtake at least one rival.':''}`);
+
+ $('resultEmoji').textContent=emoji;
+ $('resultTitle').textContent=title;
+ $('resultText').textContent=text;
+ $('result').classList.add('show');
+
+ setMessage(
+  success
+   ?'Blazbit: “Okay. That was actually pretty good. Do not let it go to your head.”'
+   :'Blazbit: “Back to the garage. We are discussing your life choices.”',
+  20
+ );
+}
+
+function loop(now){
+ if(!['racing','countdown'].includes(game.mode))return;
+
+ const dt=Math.min(.04,Math.max(0,(now-game.last)/1000));
+ game.last=now;
+
+ update(dt);
+ draw();
+
+ if(['racing','countdown'].includes(game.mode)){
+  rafId=requestAnimationFrame(loop);
  }
 }
 
-function saveLetter(){
- data.letter=$("letterText").value;
- localStorage.cwLetter=data.letter;
- alert("Your letter is saved on this device. 💗");
-}
+chooseCompound('medium');
+resetState();
+$('preRace').classList.remove('hidden');
+$('result').classList.remove('show');
+$('pauseOverlay').classList.add('hidden');
+$('countOverlay').classList.add('hidden');
+draw();
 
-$("inventory").innerHTML=data.items.map(x=>`<span class="item">✨ ${x}</span>`).join("");
-render();
 </script>
 </body>
 </html>
