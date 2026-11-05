@@ -1350,18 +1350,6 @@ function pitStop(){
  draw();
 }
 
- // Advance cumulative race distance to the service bay before the timer freezes.
- const serviceProgress=PIT_TRACK_SPAN*PIT_BOX_T;
- p.distance+=serviceProgress-p.pitProgress;
- p.pitProgress=serviceProgress;
-
- p.pitTime=3.4;
- p.speed=0;
- p.stagedCompound=p.nextCompound;
-
- setMessage('BOX 07 — CAR SECURED. Crew fitting '+compounds[p.stagedCompound].label+' tyres…',3.6);
- draw();
-}
 
 function update(dt){
 
@@ -1451,8 +1439,8 @@ function update(dt){
   const grip=compound.grip*(1-Math.max(0,p.wear-45)/190);
   const maxSpeed=(boosting?238:218)*Math.max(.67,grip);
 
- if(accel)p.speed+=175*dt;
-else p.speed=Math.max(0,p.speed-175*dt);
+  if(accel)p.speed+=175*dt;
+  else p.speed=Math.max(0,p.speed-175*dt);
 
   if(brake)p.speed-=245*dt;
 
