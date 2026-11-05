@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Creature World · Four Trials & Chocobloom Island</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<title>Creature World · Four Puzzles & Secret Island</title>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{--ink:#49395f;--purple:#9472dd;--pink:#f49ac4;--mint:#83d9bb;--yellow:#ffdf83;--muted:#857794;--line:#eee5f5}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:var(--ink);font-family:Nunito,sans-serif;background:radial-gradient(ellipse at 10% 5%,#d9f5ff,transparent 32%),radial-gradient(ellipse at 90% 8%,#ffe0ef,transparent 33%),linear-gradient(145deg,#f0e9ff,#fff3e9 55%,#e2faef)}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:'Times New Roman',Times,serif;;background:radial-gradient(ellipse at 10% 5%,#d9f5ff,transparent 32%),radial-gradient(ellipse at 90% 8%,#ffe0ef,transparent 33%),linear-gradient(145deg,#f0e9ff,#fff3e9 55%,#e2faef)}
 button{font:inherit;cursor:pointer}
 button:focus-visible{outline:3px solid #8b6ddd;outline-offset:3px}
 .wrap{max-width:1120px;margin:auto;padding:18px 18px 60px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.brand{font:700 24px Fredoka;color:#7655bc}
+.brand{font:700 24px DynaPuff;color:#7655bc}
 .tag{border:1px solid #fff;background:#ffffffc9;border-radius:30px;padding:9px 14px;font-size:13px;font-weight:900}
 .panel{background:#ffffffdf;border:1px solid white;border-radius:28px;padding:clamp(17px,3vw,30px);box-shadow:0 16px 42px #715a9b20}
 .hero{display:flex;align-items:center;gap:15px}
 .blaz{width:88px;height:88px;flex:0 0 88px;filter:drop-shadow(0 7px 8px #604b7022)}
 .kicker{font-size:11px;letter-spacing:2px;font-weight:900;color:#a17ecb;text-transform:uppercase}
-h1,h2,h3{font-family:Fredoka;margin:6px 0;color:#7354b3}
+h1,h2,h3{font-family:DynaPuff;margin:6px 0;color:#7354b3}
 h1{font-size:clamp(34px,5vw,54px);line-height:1.04}
 h2{font-size:30px}
 p{line-height:1.55;color:var(--muted)}
@@ -43,7 +43,7 @@ p{line-height:1.55;color:var(--muted)}
 .hud{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:12px 0}
 .metric{background:#fff;border:1px solid #eee5f5;border-radius:14px;padding:9px 10px;min-width:0}
 .metric label{display:block;font-size:10px;letter-spacing:1px;font-weight:900;color:#9889a7}
-.metric strong{display:block;font:700 22px Fredoka;color:#7254b5;white-space:nowrap}
+.metric strong{display:block;font:700 22px DynaPuff;color:#7254b5;white-space:nowrap}
 .metric em{font-style:normal;font-size:11px;color:var(--muted)}
 .bar{height:7px;background:#eee8f5;border-radius:20px;overflow:hidden;margin-top:5px}
 .bar span{display:block;height:100%;background:linear-gradient(90deg,#8f74df,#f49ac4);width:100%}
@@ -59,7 +59,7 @@ p{line-height:1.55;color:var(--muted)}
 .standings{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
 .standing{background:#fff;border:1px solid #eee5f5;border-radius:13px;padding:9px 10px;min-width:0}
 .standing.me{background:#f4efff;border-color:#a88ce8;box-shadow:0 0 0 2px #a88ce822}
-.standing .rank{font:700 18px Fredoka;color:#7655bc}
+.standing .rank{font:700 18px DynaPuff;color:#7655bc}
 .standing b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .standing small{color:#8b7d9a;font-size:10px}
 .standing .miniBar{height:5px;border-radius:8px;background:#eee8f5;overflow:hidden;margin-top:6px}
@@ -75,7 +75,7 @@ p{line-height:1.55;color:var(--muted)}
 .modal p{font-size:14px}
 .modal h2{margin-top:5px}
 .modal .btn{margin-top:8px}
-.countnum{font:700 clamp(64px,13vw,110px) Fredoka;color:white;text-shadow:0 6px 0 #7355b3}
+.countnum{font:700 clamp(64px,13vw,110px) DynaPuff;color:white;text-shadow:0 6px 0 #7355b3}
 .result{display:none;margin-top:14px}
 .result.show{display:block}
 .resultinner{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:18px;text-align:center}
@@ -136,7 +136,7 @@ p{line-height:1.55;color:var(--muted)}
 .floofi-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0}
 .floofi-stat{background:#fff;border:1px solid #eee5f5;border-radius:14px;padding:10px 12px}
 .floofi-stat label{display:block;color:#9889a7;font-size:10px;font-weight:900;letter-spacing:1px}
- .floofi-stat strong{display:block;color:#7254b5;font:700 22px Fredoka;margin-top:3px}
+ .floofi-stat strong{display:block;color:#7254b5;font:700 22px DynaPuff;margin-top:3px}
 .floofi-progress{height:8px;background:#eee8f5;border-radius:20px;overflow:hidden;margin-top:6px}
 .floofi-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#8f74df,#f49ac4);transition:width .2s}
 .floofi-board-layout{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(280px,.87fr);gap:15px;align-items:start;margin-top:14px}
@@ -145,9 +145,9 @@ p{line-height:1.55;color:var(--muted)}
 .floofi-grid{display:grid;grid-template-columns:repeat(21,minmax(0,1fr));gap:2px;width:100%;min-width:525px;aspect-ratio:1/1;background:#d9d0e8;padding:2px;border-radius:8px}
 .cw-block{background:#645a70;border-radius:2px}
 .cw-cell{position:relative;min-width:0;min-height:0;background:#fff;border-radius:2px}
-.cw-cell input{display:block;width:100%;height:100%;min-width:0;min-height:0;border:0;border-radius:2px;background:transparent;text-align:center;text-transform:uppercase;color:#49395f;font:800 clamp(9px,1.55vw,17px) Nunito;padding:7px 0 0;outline:0}
+.cw-cell input{display:block;width:100%;height:100%;min-width:0;min-height:0;border:0;border-radius:2px;background:transparent;text-align:center;text-transform:uppercase;color:#49395f;font:800 clamp(9px,1.55vw,17px) Times New Roman;padding:7px 0 0;outline:0}
 .cw-cell input:focus{background:#fff5c9;box-shadow:inset 0 0 0 2px #c59a43}
-.cw-num{position:absolute;left:2px;top:0px;font:800 clamp(5px,.66vw,8px) Nunito;color:#897b9b;line-height:1;pointer-events:none;z-index:1}
+.cw-num{position:absolute;left:2px;top:0px;font:800 clamp(5px,.66vw,8px) Times New Roman;color:#897b9b;line-height:1;pointer-events:none;z-index:1}
 .cw-cell.cw-active{background:#eee7ff}
 .cw-cell.cw-current{box-shadow:inset 0 0 0 2px #946fdd;background:#fff1bd;z-index:2}
 .cw-cell.cw-correct input{color:#248568}
@@ -157,7 +157,7 @@ p{line-height:1.55;color:var(--muted)}
 .cw-clue{display:flex;align-items:flex-start;gap:8px;width:100%;border:1px solid transparent;background:#fff;border-radius:10px;padding:7px 8px;text-align:left;color:#766884;font-size:12px;line-height:1.4}
 .cw-clue:hover{background:#faf7ff;border-color:#eee5f5}
 .cw-clue.active{background:#f1eaff;border-color:#cbb8ef;color:#57417f}
-.cw-clue-num{font:700 14px Fredoka;color:#8969ce;min-width:19px}
+.cw-clue-num{font:700 14px DynaPuff;color:#8969ce;min-width:19px}
 .floofi-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
 .floofi-feedback{min-height:44px;padding:11px 13px;border-radius:13px;background:#fff4df;color:#80602d;font-size:13px;font-weight:900;margin:10px 0}
 .floofi-result{display:none;margin-top:14px}
@@ -183,7 +183,7 @@ p{line-height:1.55;color:var(--muted)}
 .build-cell{position:relative;aspect-ratio:1/1;min-width:0;border:1px solid #c9d9d9;border-radius:9px;background:linear-gradient(145deg,#e9f6d9,#d8edcf);display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:2px;padding:2px;box-shadow:0 2px 0 #b4c7b3;transition:transform .12s,border-color .12s}
 .build-cell:hover{transform:translateY(-2px);border-color:#8a74cf}
 .build-cell:focus-visible{outline:3px solid #8b6ddd;outline-offset:1px}
-.build-cell .piece{font:900 clamp(8px,1.5vw,15px) Nunito;line-height:1.1;border-radius:4px;padding:3px 4px;box-shadow:0 1px 2px #594c5c20}
+.build-cell .piece{font:900 clamp(8px,1.5vw,15px) Times New Roman;line-height:1.1;border-radius:4px;padding:3px 4px;box-shadow:0 1px 2px #594c5c20}
 .build-cell .piece.floor{background:#d2a16e;color:#654321}
 .build-cell .piece.wall{background:#aab6c8;color:#384b63}
 .build-cell .piece.door{background:#8b5a3d;color:#fff6e8}
@@ -199,7 +199,7 @@ p{line-height:1.55;color:var(--muted)}
 .build-resources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
 .build-resource{border:1px solid #eee5f5;background:#fff;border-radius:13px;padding:9px 10px}
 .build-resource label{display:block;font-size:10px;letter-spacing:1px;color:#9889a7;font-weight:900}
-.build-resource strong{font:700 22px Fredoka;color:#7254b5}
+.build-resource strong{font:700 22px DynaPuff;color:#7254b5}
 .build-hud{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
 .build-hud .metric strong{font-size:20px}
 .build-storm{height:8px;border-radius:20px;background:#eee8f5;overflow:hidden;margin-top:5px}
@@ -207,7 +207,7 @@ p{line-height:1.55;color:var(--muted)}
 .build-feedback{min-height:45px;border-radius:13px;background:#fff4df;color:#80602d;padding:11px 13px;font-size:13px;font-weight:900;margin:10px 0}
 .build-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .build-overlay{position:fixed;inset:0;z-index:30;background:#40304ebd;backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:16px}
-.build-count{font:700 clamp(70px,14vw,120px) Fredoka;color:#fff;text-shadow:0 7px 0 #7655bc}
+.build-count{font:700 clamp(70px,14vw,120px) DynaPuff;color:#fff;text-shadow:0 7px 0 #7655bc}
 .build-result{display:none;margin-top:14px}
 .build-result.show{display:block}
 .build-result-inner{border:1px solid #eee5f5;border-radius:20px;background:#fff;text-align:center;padding:20px}
@@ -226,7 +226,7 @@ p{line-height:1.55;color:var(--muted)}
 .arena-brief{padding:18px;border:1px solid #5a5278;border-radius:19px;background:#ffffff0a;margin:12px 0}
 .arena-rules-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
 .arena-rule{display:flex;flex-direction:column;gap:5px;padding:10px 11px;border:1px solid #665b86;border-radius:12px;background:#ffffff0b;color:#eee8fb;font-size:12px;line-height:1.45}
-.arena-rule b{font:700 14px Fredoka;color:#ffdfa0}
+.arena-rule b{font:700 14px DynaPuff;color:#ffdfa0}
 .arena-rule span{color:#d3cbe4}
 .arena-rules-list{padding-left:20px;color:#ddd5ee;line-height:1.6;font-size:12px}
 .arena-rules-list li{margin:5px 0}
@@ -235,7 +235,7 @@ p{line-height:1.55;color:var(--muted)}
 .arena-fighter{border:2px solid #51496f;background:#26243e;border-radius:17px;padding:14px 10px;color:#f5efff;text-align:center;min-width:0}
 .arena-fighter.selected{border-color:#d5a4ff;background:#383052;box-shadow:0 0 0 3px #d5a4ff22}
 .arena-fighter .fighter-emoji{font-size:42px;display:block;margin-bottom:5px}
-.arena-fighter b{display:block;font:700 18px Fredoka}
+.arena-fighter b{display:block;font:700 18px DynaPuff}
 .arena-fighter small{display:block;color:#c7bedf;font-size:11px;margin-top:4px}
 .arena-stage{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;margin:14px 0}
 .arena-combatant{position:relative;overflow:hidden;border:1px solid #5b547a;border-radius:18px;padding:17px;background:linear-gradient(145deg,#35304f,#20253d);min-height:205px}
@@ -248,7 +248,7 @@ p{line-height:1.55;color:var(--muted)}
 .arena-combatant.enemy .arena-hp span{background:linear-gradient(90deg,#ed769d,#a58af5)}
 .arena-energy{height:7px;background:#17172c;border-radius:20px;overflow:hidden;margin:5px 0}
 .arena-energy span{display:block;height:100%;width:0;background:linear-gradient(90deg,#6bbfe8,#b8a0ff)}
-.arena-vs{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#f4d58d;color:#5a3f36;display:grid;place-items:center;font:700 19px Fredoka;border:4px solid #32294c;box-shadow:0 5px 15px #0005}
+.arena-vs{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#f4d58d;color:#5a3f36;display:grid;place-items:center;font:700 19px DynaPuff;border:4px solid #32294c;box-shadow:0 5px 15px #0005}
 .arena-log{min-height:92px;max-height:160px;overflow:auto;border:1px solid #5b547a;border-radius:14px;padding:12px;background:#17182c;color:#e6def5;font-size:13px;line-height:1.55}
 .arena-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
 .arena-action{border:1px solid #76699c;border-radius:13px;padding:12px;background:linear-gradient(140deg,#514477,#343250);color:#fff;font-weight:900;text-align:left}
@@ -262,7 +262,7 @@ p{line-height:1.55;color:var(--muted)}
 .arena-map-reveal.show{display:block}
 .arena-map-art{height:155px;position:relative;overflow:hidden;border-radius:14px;margin:12px 0;background:radial-gradient(ellipse at 50% 65%,#73c9a0 0 20%,transparent 21%),radial-gradient(ellipse at 23% 38%,#9edcba 0 13%,transparent 14%),radial-gradient(ellipse at 76% 35%,#a6dfbb 0 16%,transparent 17%),linear-gradient(145deg,#7cd1db,#4999b7 52%,#27677d)}
 .arena-map-art:before{content:'✦';position:absolute;left:50%;top:19%;color:#fff6c4;font-size:25px;text-shadow:0 0 18px #fff}
-.arena-map-art:after{content:'CHOCOBLOOM ISLAND';position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#fff;font:700 15px Fredoka;letter-spacing:2px;text-shadow:0 2px 5px #245}
+.arena-map-art:after{content:'CHOCOBLOOM ISLAND';position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#fff;font:700 15px DynaPuff;letter-spacing:2px;text-shadow:0 2px 5px #245}
 @media(max-width:650px){.arena-fighter-picker{grid-template-columns:1fr}.arena-fighter{text-align:left;display:flex;align-items:center;gap:12px}.arena-fighter .fighter-emoji{margin:0;font-size:37px}.arena-stage{grid-template-columns:1fr}.arena-vs{top:50%}.arena-combatant{min-height:170px}.arena-actions{grid-template-columns:1fr 1fr}}
 
 
@@ -298,13 +298,13 @@ p{line-height:1.55;color:var(--muted)}
 .treasure-hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:13px 0}
 .treasure-stat{border:1px solid #eee5f5;background:#fff;border-radius:13px;padding:10px}
 .treasure-stat label{display:block;color:#9889a7;font-size:10px;letter-spacing:1px;font-weight:900}
-.treasure-stat strong{display:block;color:#7254b5;font:700 21px Fredoka;margin-top:3px}
+.treasure-stat strong{display:block;color:#7254b5;font:700 21px DynaPuff;margin-top:3px}
 .treasure-clue{border:1px solid #eee5f5;border-radius:20px;background:linear-gradient(145deg,#fff,#f9f6ff);padding:18px;margin:13px 0}
 .treasure-clue .kicker{margin-bottom:7px}
 .treasure-clue h2{font-size:26px}
 .treasure-question{font-size:16px;color:#665a78;line-height:1.7;white-space:pre-line}
 .treasure-answer-row{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
-.treasure-answer-row input{flex:1;min-width:180px;border:2px solid #e7def2;border-radius:13px;padding:12px 14px;font:800 16px Nunito;color:#49395f;background:#fff}
+.treasure-answer-row input{flex:1;min-width:180px;border:2px solid #e7def2;border-radius:13px;padding:12px 14px;font:800 16px Times New Roman;color:#49395f;background:#fff}
 .treasure-answer-row input:focus{outline:3px solid #cbb8ef;border-color:#9472dd}
 .treasure-feedback{min-height:45px;border-radius:13px;background:#fff4df;color:#80602d;padding:11px 13px;font-size:13px;font-weight:900;margin:10px 0}
 .treasure-hint{display:none;border:1px dashed #e2c77e;background:#fff9e7;border-radius:12px;padding:11px 13px;color:#765a2f;font-size:13px;line-height:1.5;margin-top:9px}
@@ -316,7 +316,7 @@ p{line-height:1.55;color:var(--muted)}
 .letter-title{text-align:center;font-size:clamp(32px,5vw,48px)}
 .letter-intro{max-width:650px;margin:8px auto 19px;text-align:center}
 .letter-paper{max-width:780px;margin:18px auto 12px;padding:clamp(15px,3vw,25px);border:1px solid #eadfca;border-radius:17px;background:repeating-linear-gradient(to bottom,#fffdf8 0px,#fffdf8 34px,#f0e5d4 35px);box-shadow:0 9px 24px #705b4620}
-.letter-paper textarea{display:block;width:100%;min-height:330px;resize:vertical;border:0;outline:0;background:transparent;color:#51445d;font:600 16px/35px Nunito;padding:0 4px}
+.letter-paper textarea{display:block;width:100%;min-height:330px;resize:vertical;border:0;outline:0;background:transparent;color:#51445d;font:600 16px/35px Times New Roman;padding:0 4px}
 .letter-paper textarea::placeholder{color:#b4a7a0;opacity:1}
 .letter-save-state{text-align:center;color:#8b7d9a;font-size:11px;margin:8px 0}
 .letter-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:13px}
@@ -327,12 +327,13 @@ p{line-height:1.55;color:var(--muted)}
 </head>
 
 <body>
+ <div class="welcome-wrap" id="welcomeScreen">
   <section class="panel welcome-hero">
   <div class="welcome-main">
    <div>
     <div class="kicker">YOUR ADVENTURE STARTS HERE</div>
     <h1 class="welcome-title">Welcome to<br><span style="color:#e58ab9">Creature World</span>!</h1>
-    <p class="welcome-copy">A tiny world full of ridiculously cute creatures, chaotic challenges and a few surprises hidden along the way. Four creature trials stand between you and a hidden island. Win the challenges, follow the treasure trail, and uncover one last surprise.</p>
+    <p class="welcome-copy">A tiny world full of ridiculously cute creatures, chaotic challenges and a few surprises hidden along the way. Four puzzles stand between you and a hidden island. Win the challenges, follow the treasure trail, and uncover one last surprise.</p>
 
     <div class="welcome-stats">
  <span class="welcome-stat">✨ FOUR LITTLE MENACES. ONE QUESTIONABLE PLAN.</span>
@@ -416,7 +417,7 @@ p{line-height:1.55;color:var(--muted)}
 
   <div class="card">
    <h3>🏆 Your objectives</h3>
-   <p style="margin:6px 0">• Complete <b>3 laps</b> before the <b>50-second timer</b> ends.<br>• Finish in <b>1st or 2nd place</b>.<br>• Complete a pit stop in <b>BOX 07</b>.<br>• Avoid track-limit penalties and preserve your tyres.</p>
+   <p style="margin:6px 0">• Complete <b>3 laps</b> before the <b>45-second timer</b> ends.<br>• Finish in <b>1st or 2nd place</b>.<br>• Complete a pit stop in <b>BOX 07</b>.<br>• Avoid track-limit penalties and preserve your tyres.</p>
 
    <hr style="border:0;border-top:1px solid #eee5f5;margin:12px 0">
 
@@ -431,7 +432,7 @@ p{line-height:1.55;color:var(--muted)}
 
    <div class="pitkey">
     <b>PIT PROCEDURE:</b>
-    ① Reach the blue PIT ENTRY marker → ② press Q → ③ follow the blue lane → ④ brake below 35 km/h at BOX 07 → ⑤ choose tyres (1/2/3) → ⑥ press P and wait 3.4 seconds → ⑦ drive through PIT EXIT. The lap counter must keep its place throughout.
+    Reach the blue PIT ENTRY marker → press Q → follow the blue lane → brake below 35 km/h at BOX 07 → choose tyres (1/2/3) - optional → press P and wait 3.4 seconds → drive through PIT EXIT. The lap counter must keep its place throughout.
    </div>
   </div>
  </div>
@@ -443,8 +444,8 @@ p{line-height:1.55;color:var(--muted)}
    <div class="modal">
     <div class="kicker">RACE CONTROL IS WAITING</div>
     <h2>Ready to race, Dummy?</h2>
-    <p>The circuit has a fast back straight, a tight chicane and a technical final sector. Your rivals will not politely move out of your way. Your mandatory pit stop is part of the 50-second race: enter at the blue PIT ENTRY marker, follow the blue lane to BOX 07, brake below 35 km/h, select tyres and press P. The crew needs 3.4 seconds.</p>
-    <p><b>The clock stays OFF until you press Start.</b> A three-second light sequence follows. The 50-second race timer starts on the green light.</p>
+    <p>The circuit has a fast back straight, a tight chicane and a technical final sector. Your rivals will not politely move out of your way. Your mandatory pit stop is part of the 45-second race: enter at the blue PIT ENTRY marker, follow the blue lane to BOX 07, brake below 35 km/h, select tyres and press P. The crew needs 3.4 seconds.</p>
+    <p><b>The clock stays OFF until you press Start.</b> A three-second light sequence follows. The 45-second race timer starts on the green light.</p>
     <button class="btn gold" style="width:100%" onclick="startRace()">LIGHTS OUT — START ENGINE 🏁</button>
     <p class="tiny">Use keyboard controls or the on-screen buttons below the track.</p>
    </div>
@@ -778,7 +779,7 @@ p{line-height:1.55;color:var(--muted)}
      <path d="M505 335C522 402 584 443 680 465" fill="none" stroke="#f7e8c3" stroke-width="12" stroke-linecap="round" stroke-dasharray="3 2"/>
      <g fill="#438c64" opacity=".85"><circle cx="367" cy="172" r="17"/><circle cx="397" cy="189" r="22"/><circle cx="428" cy="166" r="16"/><circle cx="459" cy="191" r="21"/><circle cx="614" cy="182" r="19"/><circle cx="648" cy="203" r="23"/><circle cx="682" cy="184" r="18"/><circle cx="344" cy="413" r="18"/><circle cx="376" cy="441" r="23"/><circle cx="420" cy="420" r="19"/><circle cx="725" cy="420" r="16"/></g>
      <g fill="#fff7d9" opacity=".88"><path d="M244 237l10-18 10 18-10 18z"/><path d="M753 293l10-18 10 18-10 18z"/><path d="M480 475l9-16 9 16-9 16z"/></g>
-     <g font-family="Nunito" font-size="19" font-weight="900" fill="#547a64" opacity=".8"><text x="178" y="558">CHOCOBLOOM BAY</text><text x="750" y="555">SOUTHERN SHORE</text></g>
+     <g font-family="Times New Roman" font-size="19" font-weight="900" fill="#547a64" opacity=".8"><text x="178" y="558">CHOCOBLOOM BAY</text><text x="750" y="555">SOUTHERN SHORE</text></g>
      <g fill="#f6e4b0" stroke="#fff8e2" stroke-width="4"><path d="M90 290l25-18 19 30-27 19z"/><path d="M870 128l22-14 19 23-25 19z"/><path d="M850 490l22-16 19 27-24 15z"/></g>
     </svg>
     <button class="island-pin active" id="islandPin0" style="left:29%;top:31%" onclick="openTreasureStation(0)"><span>🍦</span>SCOOP DISTRICT</button>
@@ -786,8 +787,8 @@ p{line-height:1.55;color:var(--muted)}
     <button class="island-pin locked" id="islandPin2" style="left:53%;top:57%" onclick="openTreasureStation(2)"><span>🍄</span>MYSTERY FOREST</button>
     <button class="island-pin locked" id="islandPin3" style="left:77%;top:31%" onclick="openTreasureStation(3)"><span>🌅</span>SUNRISE POINT</button>
     <button class="island-pin locked" id="islandPin4" style="left:77%;top:73%" onclick="openTreasureStation(4)"><span>🏆</span>WINNING GROUNDS</button>
-    <div style="position:absolute;left:10%;top:69%;z-index:2;color:#fff;font:900 11px Nunito;text-shadow:0 2px 4px #26717b">⚓ CHOCO HARBOR</div>
-    <div style="position:absolute;right:3%;top:5%;z-index:2;color:#fff;font:900 11px Nunito;text-shadow:0 2px 4px #26717b">N ↑</div>
+    <div style="position:absolute;left:10%;top:69%;z-index:2;color:#fff;font:900 11px Times New Roman;text-shadow:0 2px 4px #26717b">⚓ CHOCO HARBOR</div>
+    <div style="position:absolute;right:3%;top:5%;z-index:2;color:#fff;font:900 11px Times New Roman;text-shadow:0 2px 4px #26717b">N ↑</div>
    </div>
    <div class="island-map-caption"><span>Follow the dotted trail from Scoop District to Winning Grounds.</span><div class="island-legend"><span><i class="island-dot"></i>Current</span><span><i class="island-dot done"></i>Cleared</span><span><i class="island-dot locked"></i>Locked</span></div></div>
    <div class="island-map-lower">
@@ -1050,7 +1051,7 @@ function pitLabel(c,t,label){
  c.fillStyle='#277ea9';
  c.fillRect(-42,-11,84,22);
  c.fillStyle='#fff';
- c.font='bold 10px Nunito';
+ c.font='bold 10px Times New Roman';
  c.textAlign='center';
  c.textBaseline='middle';
  c.fillText(label,0,0);
@@ -1070,7 +1071,7 @@ b.lineWidth=3;
 b.fillRect(-36,-23,72,46);
 b.strokeRect(-36,-23,72,46);
 b.fillStyle='#328ab8';
-b.font='bold 13px Nunito';
+b.font='bold 13px Times New Roman';
 b.textAlign='center';
 b.textBaseline='middle';
 b.fillText('BOX 07',0,0);
@@ -1089,7 +1090,7 @@ const compounds={
 let selected='medium',keys={},rafId=0,lastRank=3;
 
 let game={
- mode:'brief',last:0,count:3,time:50,frame:0,
+ mode:'brief',last:0,count:3,time:45,frame:0,
  player:{
   distance:0,offset:0,speed:0,wear:0,boost:100,
   compound:'medium',nextCompound:'medium',pitted:false,
@@ -1143,7 +1144,7 @@ function resetState(){
  cancelAnimationFrame(rafId);
 
  game={
-  mode:'brief',last:0,count:3,time:50,frame:0,
+  mode:'brief',last:0,count:3,time:45,frame:0,
   player:{
    distance:0,offset:0,speed:0,wear:0,boost:100,
    compound:selected,nextCompound:selected,pitted:false,
@@ -1357,7 +1358,7 @@ function update(dt){
 
   if(game.count<=0){
    game.mode='racing';
-   game.time=50;
+   game.time=45;
    $('countOverlay').classList.add('hidden');
    $('racePhase').textContent='GREEN FLAG';
    setMessage('LIGHTS OUT! LIGHTS OUT! GO GO GO!',3);
@@ -1759,7 +1760,7 @@ function draw(){
 
  if(p.pitTime>0){
   ctx.fillStyle='#fff';
-  ctx.font='bold 18px Fredoka';
+  ctx.font='bold 18px DynaPuff';
   ctx.textAlign='center';
   ctx.fillText('PIT CREW AT WORK… '+p.pitTime.toFixed(1)+'s',W/2,35);
  }
