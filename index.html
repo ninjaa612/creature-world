@@ -410,7 +410,7 @@ p{line-height:1.55;color:var(--muted)}
    <div class="instruction"><span class="key">← →</span><span><b>Steer</b> — change lanes to pass rivals. A/D also work.</span></div>
    <div class="instruction"><span class="key">SPACE</span><span><b>Boost</b> — spend limited energy on straights and overtakes.</span></div>
    <div class="instruction"><span class="key">Q</span><span><b>Enter pit lane</b> — approach the blue PIT ENTRY marker, stay near the centre line and press Q.</span></div>
-   <div class="instruction"><span class="key">P</span><span><b>Pit stop</b> — follow the blue lane to BOX 07, brake below 35 km/h, choose tyres and press P. Service takes 3.4 seconds.</span></div>
+   <div class="instruction"><span class="key">P</span><span><b>Pit stop</b> — reach BOX 07 and press P. Your car automatically stops while the crew services it for 3.4 seconds.</span></div>
    <div class="instruction"><span class="key">1 / 2 / 3</span><span><b>Tyres</b> — select Soft, Medium or Hard with 1/2/3 before starting your service.</span></div>
    <div class="instruction"><span class="key">ESC</span><span><b>Pause</b> — pause the race and timer.</span></div>
   </div>
@@ -1240,7 +1240,10 @@ function keyDown(e){
 }
 
 window.addEventListener('keydown',keyDown);
-window.addEventListener('keyup',keyUp);
+window.addEventListener('keyup',e=>{
+ const k=e.key===' '?'Space':e.key;
+ keys[k]=false;
+});
 window.addEventListener('blur',()=>{
  if(game.mode==='racing')pauseRace();
 });
@@ -1309,7 +1312,6 @@ function enterPit(){
  setMessage('PIT ENTRY! Smooth line into the dedicated blue pit road. Brake for BOX 07.',3);
  updateHUD();
 }
-
 function pitStop(){
  const p=game.player;
 
@@ -1330,13 +1332,23 @@ function pitStop(){
   return;
  }
 
- if(p.speed>35){
-  p.speed*=.55;
-  p.penalties++;
-  game.time=Math.max(0,game.time-2);
-  setMessage('UNSAFE PIT STOP: 2-second penalty. Brake below 35 km/h inside BOX 07.',3);
-  return;
- }
+ // Secure the car and release all driving controls.
+ keys={};
+ p.speed=0;
+
+ // Bring the car to the exact service position.
+ const serviceProgress=PIT_TRACK_SPAN*PIT_BOX_T;
+ p.distance+=serviceProgress-p.pitProgress;
+ p.pitProgress=serviceProgress;
+
+ // Start the tyre service.
+ p.pitTime=3.4;
+ p.stagedCompound=p.nextCompound;
+
+ setMessage('BOX 07 — CAR SECURED. Crew fitting '+compounds[p.stagedCompound].label+' tyres…',3.6);
+
+ draw();
+}
 
  // Advance cumulative race distance to the service bay before the timer freezes.
  const serviceProgress=PIT_TRACK_SPAN*PIT_BOX_T;
@@ -1439,8 +1451,8 @@ function update(dt){
   const grip=compound.grip*(1-Math.max(0,p.wear-45)/190);
   const maxSpeed=(boosting?238:218)*Math.max(.67,grip);
 
-  if(accel)p.speed+=175*dt;
-  else p.speed-=18*dt;
+ if(accel)p.speed+=175*dt;
+else p.speed=Math.max(0,p.speed-175*dt);
 
   if(brake)p.speed-=245*dt;
 
