@@ -1,10 +1,9 @@
-
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Blazbit's Grand Prix · Creature World</title>
+<title>Creature World · Four Trials & Chocobloom Island</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
 
 <style>
@@ -126,32 +125,227 @@ p{line-height:1.55;color:var(--muted)}
  .orbit{width:185px;height:150px}
  .welcome-copy{font-size:15px}
 }
+
+
+/* FLOOFI'S F1 CROSSWORD — GAME 02 */
+.floofi-wrap{max-width:1120px;margin:auto;padding:18px 18px 60px}
+.floofi-hero{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.floofi-mascot{width:76px;height:76px;flex:0 0 76px;border-radius:22px;background:linear-gradient(135deg,#e5f8ff,#f6eaff);display:grid;place-items:center;font-size:42px}
+.floofi-instructions{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:18px;margin:14px 0}
+.floofi-instructions ul{padding-left:20px;margin:8px 0;color:#766884;line-height:1.65}
+.floofi-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0}
+.floofi-stat{background:#fff;border:1px solid #eee5f5;border-radius:14px;padding:10px 12px}
+.floofi-stat label{display:block;color:#9889a7;font-size:10px;font-weight:900;letter-spacing:1px}
+ .floofi-stat strong{display:block;color:#7254b5;font:700 22px Fredoka;margin-top:3px}
+.floofi-progress{height:8px;background:#eee8f5;border-radius:20px;overflow:hidden;margin-top:6px}
+.floofi-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#8f74df,#f49ac4);transition:width .2s}
+.floofi-board-layout{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(280px,.87fr);gap:15px;align-items:start;margin-top:14px}
+.floofi-grid-card,.floofi-clues-card{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:14px;min-width:0}
+.floofi-grid-scroll{width:100%;overflow-x:auto;padding:3px 2px 10px;overscroll-behavior-x:contain}
+.floofi-grid{display:grid;grid-template-columns:repeat(21,minmax(0,1fr));gap:2px;width:100%;min-width:525px;aspect-ratio:1/1;background:#d9d0e8;padding:2px;border-radius:8px}
+.cw-block{background:#645a70;border-radius:2px}
+.cw-cell{position:relative;min-width:0;min-height:0;background:#fff;border-radius:2px}
+.cw-cell input{display:block;width:100%;height:100%;min-width:0;min-height:0;border:0;border-radius:2px;background:transparent;text-align:center;text-transform:uppercase;color:#49395f;font:800 clamp(9px,1.55vw,17px) Nunito;padding:7px 0 0;outline:0}
+.cw-cell input:focus{background:#fff5c9;box-shadow:inset 0 0 0 2px #c59a43}
+.cw-num{position:absolute;left:2px;top:0px;font:800 clamp(5px,.66vw,8px) Nunito;color:#897b9b;line-height:1;pointer-events:none;z-index:1}
+.cw-cell.cw-active{background:#eee7ff}
+.cw-cell.cw-current{box-shadow:inset 0 0 0 2px #946fdd;background:#fff1bd;z-index:2}
+.cw-cell.cw-correct input{color:#248568}
+.floofi-clue-group+.floofi-clue-group{margin-top:15px;padding-top:12px;border-top:1px solid #eee5f5}
+.floofi-clue-group h3{font-size:18px;margin:0 0 8px}
+.floofi-clue-list{display:grid;gap:5px}
+.cw-clue{display:flex;align-items:flex-start;gap:8px;width:100%;border:1px solid transparent;background:#fff;border-radius:10px;padding:7px 8px;text-align:left;color:#766884;font-size:12px;line-height:1.4}
+.cw-clue:hover{background:#faf7ff;border-color:#eee5f5}
+.cw-clue.active{background:#f1eaff;border-color:#cbb8ef;color:#57417f}
+.cw-clue-num{font:700 14px Fredoka;color:#8969ce;min-width:19px}
+.floofi-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.floofi-feedback{min-height:44px;padding:11px 13px;border-radius:13px;background:#fff4df;color:#80602d;font-size:13px;font-weight:900;margin:10px 0}
+.floofi-result{display:none;margin-top:14px}
+.floofi-result.show{display:block}
+.floofi-result-inner{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:20px;text-align:center}
+.floofi-result-emoji{font-size:58px}
+.floofi-result-inner p{max-width:650px;margin:8px auto 14px}
+.floofi-tag{display:inline-block;border:1px solid #eee5f5;background:#fff;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:900;color:#8067a6}
+@media(max-width:850px){.floofi-board-layout{grid-template-columns:1fr}.floofi-grid{min-width:525px}}
+@media(max-width:520px){.floofi-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.floofi-hero{align-items:flex-start}.floofi-mascot{width:60px;height:60px;flex-basis:60px;font-size:34px}.floofi-grid{min-width:490px}}
+
+
+
+/* GAME 3 — PUFFWING'S BUILD BATTLE */
+.build-wrap{max-width:1120px;margin:auto;padding:18px 18px 60px}
+.build-hero{display:flex;align-items:center;gap:14px;margin-bottom:15px}
+.build-mascot{width:76px;height:76px;flex:0 0 76px;border-radius:22px;background:linear-gradient(135deg,#e2f7ff,#e9e4ff);display:grid;place-items:center;font-size:43px}
+.build-instructions{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:18px;margin:14px 0}
+.build-instructions ul,.build-instructions ol{padding-left:20px;color:#766884;line-height:1.65}
+.build-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(270px,.85fr);gap:15px;align-items:start}
+.build-board-card,.build-tools-card{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:14px;min-width:0}
+.build-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;width:100%;max-width:560px;margin:auto;padding:8px;border-radius:17px;background:linear-gradient(145deg,#bfe5ef,#d7f0e9);box-shadow:inset 0 0 0 1px #fff}
+.build-cell{position:relative;aspect-ratio:1/1;min-width:0;border:1px solid #c9d9d9;border-radius:9px;background:linear-gradient(145deg,#e9f6d9,#d8edcf);display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:2px;padding:2px;box-shadow:0 2px 0 #b4c7b3;transition:transform .12s,border-color .12s}
+.build-cell:hover{transform:translateY(-2px);border-color:#8a74cf}
+.build-cell:focus-visible{outline:3px solid #8b6ddd;outline-offset:1px}
+.build-cell .piece{font:900 clamp(8px,1.5vw,15px) Nunito;line-height:1.1;border-radius:4px;padding:3px 4px;box-shadow:0 1px 2px #594c5c20}
+.build-cell .piece.floor{background:#d2a16e;color:#654321}
+.build-cell .piece.wall{background:#aab6c8;color:#384b63}
+.build-cell .piece.door{background:#8b5a3d;color:#fff6e8}
+.build-cell .piece.roof{background:#9a7acb;color:white}
+.build-cell .piece.ramp{background:#f3c76d;color:#72501c}
+.build-cell .cell-coord{position:absolute;left:3px;top:2px;color:#6f8c76;font-size:7px;font-weight:900;opacity:.65}
+.build-cell.has-floor{background:#d7b48b}
+.build-cell.has-ramp{background:#f7e2a9}
+.build-toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:10px 0}
+.build-tool{border:2px solid #eee5f5;background:#fff;border-radius:12px;padding:10px 8px;color:#6f5a8f;font-weight:900;text-align:left;font-size:12px}
+.build-tool small{display:block;color:#9688a4;font-size:10px;font-weight:800;margin-top:3px}
+.build-tool.active{border-color:#9272d9;background:#f4efff;box-shadow:0 0 0 2px #9272d922}
+.build-resources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.build-resource{border:1px solid #eee5f5;background:#fff;border-radius:13px;padding:9px 10px}
+.build-resource label{display:block;font-size:10px;letter-spacing:1px;color:#9889a7;font-weight:900}
+.build-resource strong{font:700 22px Fredoka;color:#7254b5}
+.build-hud{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.build-hud .metric strong{font-size:20px}
+.build-storm{height:8px;border-radius:20px;background:#eee8f5;overflow:hidden;margin-top:5px}
+.build-storm span{display:block;width:0;height:100%;background:linear-gradient(90deg,#7bc9e1,#f2a1bd);transition:width .2s}
+.build-feedback{min-height:45px;border-radius:13px;background:#fff4df;color:#80602d;padding:11px 13px;font-size:13px;font-weight:900;margin:10px 0}
+.build-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.build-overlay{position:fixed;inset:0;z-index:30;background:#40304ebd;backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:16px}
+.build-count{font:700 clamp(70px,14vw,120px) Fredoka;color:#fff;text-shadow:0 7px 0 #7655bc}
+.build-result{display:none;margin-top:14px}
+.build-result.show{display:block}
+.build-result-inner{border:1px solid #eee5f5;border-radius:20px;background:#fff;text-align:center;padding:20px}
+.build-result-emoji{font-size:58px}
+@media(max-width:850px){.build-layout{grid-template-columns:1fr}.build-grid{max-width:490px}}
+@media(max-width:520px){.build-hero{align-items:flex-start}.build-mascot{width:60px;height:60px;flex-basis:60px;font-size:34px}.build-grid{gap:3px;padding:5px}.build-cell{border-radius:6px}.build-cell .piece{padding:2px;font-size:8px}.build-hud{grid-template-columns:repeat(2,1fr)}}
+
+/* GAME 4 — STARFALL ARENA */
+.arena-wrap{max-width:1120px;margin:auto;padding:18px 18px 60px}
+.arena-panel{position:relative;overflow:hidden;background:radial-gradient(ellipse at 10% 0%,#554b8a 0%,transparent 38%),radial-gradient(ellipse at 90% 20%,#315b79 0%,transparent 36%),linear-gradient(145deg,#17182f,#282447 55%,#1d3547);border:1px solid #675d91;color:#f8f4ff}
+.arena-panel h1,.arena-panel h2,.arena-panel h3{color:#fff}
+.arena-panel p{color:#d2cce7}
+.arena-panel .kicker{color:#bda8ff}
+.arena-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}
+.arena-tag{border:1px solid #74689a;background:#373051;border-radius:30px;padding:8px 12px;color:#e7dcff;font-size:11px;font-weight:900}
+.arena-brief{padding:18px;border:1px solid #5a5278;border-radius:19px;background:#ffffff0a;margin:12px 0}
+.arena-rules-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.arena-rule{display:flex;flex-direction:column;gap:5px;padding:10px 11px;border:1px solid #665b86;border-radius:12px;background:#ffffff0b;color:#eee8fb;font-size:12px;line-height:1.45}
+.arena-rule b{font:700 14px Fredoka;color:#ffdfa0}
+.arena-rule span{color:#d3cbe4}
+.arena-rules-list{padding-left:20px;color:#ddd5ee;line-height:1.6;font-size:12px}
+.arena-rules-list li{margin:5px 0}
+@media(max-width:520px){.arena-rules-grid{grid-template-columns:1fr}}
+.arena-fighter-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.arena-fighter{border:2px solid #51496f;background:#26243e;border-radius:17px;padding:14px 10px;color:#f5efff;text-align:center;min-width:0}
+.arena-fighter.selected{border-color:#d5a4ff;background:#383052;box-shadow:0 0 0 3px #d5a4ff22}
+.arena-fighter .fighter-emoji{font-size:42px;display:block;margin-bottom:5px}
+.arena-fighter b{display:block;font:700 18px Fredoka}
+.arena-fighter small{display:block;color:#c7bedf;font-size:11px;margin-top:4px}
+.arena-stage{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;margin:14px 0}
+.arena-combatant{position:relative;overflow:hidden;border:1px solid #5b547a;border-radius:18px;padding:17px;background:linear-gradient(145deg,#35304f,#20253d);min-height:205px}
+.arena-combatant.enemy{background:linear-gradient(145deg,#402c51,#20233a)}
+.arena-combatant .combatant-emoji{font-size:66px;text-align:center;filter:drop-shadow(0 8px 15px #0005);margin:3px 0 8px}
+ .arena-combatant h3{text-align:center;margin:0 0 8px}
+.arena-hp-label{display:flex;justify-content:space-between;gap:8px;color:#ddd5f1;font-size:11px;font-weight:900}
+.arena-hp{height:10px;background:#17172c;border-radius:20px;overflow:hidden;margin:5px 0 9px}
+.arena-hp span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#66d5ae,#d9f18f);transition:width .25s}
+.arena-combatant.enemy .arena-hp span{background:linear-gradient(90deg,#ed769d,#a58af5)}
+.arena-energy{height:7px;background:#17172c;border-radius:20px;overflow:hidden;margin:5px 0}
+.arena-energy span{display:block;height:100%;width:0;background:linear-gradient(90deg,#6bbfe8,#b8a0ff)}
+.arena-vs{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#f4d58d;color:#5a3f36;display:grid;place-items:center;font:700 19px Fredoka;border:4px solid #32294c;box-shadow:0 5px 15px #0005}
+.arena-log{min-height:92px;max-height:160px;overflow:auto;border:1px solid #5b547a;border-radius:14px;padding:12px;background:#17182c;color:#e6def5;font-size:13px;line-height:1.55}
+.arena-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.arena-action{border:1px solid #76699c;border-radius:13px;padding:12px;background:linear-gradient(140deg,#514477,#343250);color:#fff;font-weight:900;text-align:left}
+.arena-action small{display:block;color:#d5cbea;font-size:10px;font-weight:700;margin-top:4px}
+.arena-action:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(.6)}
+.arena-status{border:1px solid #696087;border-radius:13px;background:#ffffff0c;color:#e9ddff;padding:10px 12px;font-size:12px;font-weight:900;margin:10px 0}
+.arena-result{display:none;margin-top:14px;border:1px solid #8a7ab0;border-radius:20px;padding:20px;background:linear-gradient(145deg,#42375e,#24243d);text-align:center}
+.arena-result.show{display:block}
+.arena-result-emoji{font-size:62px}
+.arena-map-reveal{display:none;margin-top:14px;border:1px solid #8dd8c6;border-radius:18px;padding:17px;background:linear-gradient(135deg,#153d49,#284c57);color:#e9fff7;text-align:left}
+.arena-map-reveal.show{display:block}
+.arena-map-art{height:155px;position:relative;overflow:hidden;border-radius:14px;margin:12px 0;background:radial-gradient(ellipse at 50% 65%,#73c9a0 0 20%,transparent 21%),radial-gradient(ellipse at 23% 38%,#9edcba 0 13%,transparent 14%),radial-gradient(ellipse at 76% 35%,#a6dfbb 0 16%,transparent 17%),linear-gradient(145deg,#7cd1db,#4999b7 52%,#27677d)}
+.arena-map-art:before{content:'✦';position:absolute;left:50%;top:19%;color:#fff6c4;font-size:25px;text-shadow:0 0 18px #fff}
+.arena-map-art:after{content:'CHOCOBLOOM ISLAND';position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#fff;font:700 15px Fredoka;letter-spacing:2px;text-shadow:0 2px 5px #245}
+@media(max-width:650px){.arena-fighter-picker{grid-template-columns:1fr}.arena-fighter{text-align:left;display:flex;align-items:center;gap:12px}.arena-fighter .fighter-emoji{margin:0;font-size:37px}.arena-stage{grid-template-columns:1fr}.arena-vs{top:50%}.arena-combatant{min-height:170px}.arena-actions{grid-template-columns:1fr 1fr}}
+
+
+/* CHOCOBLOOM ISLAND — WORLD MAP, LOGIC TREASURE HUNT, FINAL LETTER */
+.island-wrap,.treasure-wrap,.letter-wrap{max-width:1120px;margin:auto;padding:18px 18px 60px}
+.island-panel{background:linear-gradient(145deg,#fffdf7,#f0fff7 58%,#f1f4ff);border:1px solid white;border-radius:28px;padding:clamp(17px,3vw,30px);box-shadow:0 16px 42px #715a9b20}
+.island-hero{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.island-emblem{width:76px;height:76px;flex:0 0 76px;border-radius:23px;display:grid;place-items:center;font-size:40px;background:linear-gradient(135deg,#d4f8e8,#fff0c7)}
+.island-map-frame{position:relative;overflow:hidden;border:2px solid #d1e8dc;border-radius:22px;background:#8ad0da;aspect-ratio:16/10;min-height:390px;box-shadow:inset 0 0 35px #287f7b26}
+.island-map-svg{position:absolute;inset:0;width:100%;height:100%}
+.island-pin{position:absolute;z-index:3;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:15px;padding:7px 9px;min-width:92px;background:#fffdf0;color:#554c6b;box-shadow:0 5px 13px #234b5140;font-size:11px;font-weight:1000;line-height:1.18;text-align:center;transition:transform .15s,filter .15s}
+.island-pin span{display:block;font-size:20px;margin-bottom:3px}
+.island-pin.active{border-color:#f2c45e;background:#fff5cb;box-shadow:0 0 0 4px #ffdf834d,0 7px 16px #234b5155;animation:islandPulse 1.7s infinite}
+.island-pin.done{border-color:#80cfae;background:#eafff3;color:#367b63}
+.island-pin.locked{opacity:.58;filter:saturate(.55);cursor:not-allowed;background:#e9e7ee}
+.island-pin:hover:not(.locked){transform:translate(-50%,-50%) scale(1.05)}
+@keyframes islandPulse{50%{box-shadow:0 0 0 7px #ffdf8324,0 7px 16px #234b5155}}
+.island-map-caption{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;color:#718a88;font-size:11px;font-weight:900}
+.island-legend{display:flex;gap:12px;flex-wrap:wrap}
+.island-legend span{display:flex;align-items:center;gap:5px}
+.island-dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:#f2c45e}.island-dot.done{background:#80cfae}.island-dot.locked{background:#aaa5b4}
+.island-map-lower{display:grid;grid-template-columns:1fr .85fr;gap:13px;margin-top:14px}
+.island-card{background:#fff;border:1px solid #e7eee8;border-radius:18px;padding:15px}
+.island-card h3{font-size:20px;margin:0 0 7px}
+.island-card p{font-size:13px;margin:6px 0}
+.island-progress{height:8px;background:#e9f0eb;border-radius:20px;overflow:hidden;margin:9px 0}
+.island-progress span{display:block;height:100%;background:linear-gradient(90deg,#65c9a5,#eebf69);width:0;transition:width .2s}
+.island-status{min-height:40px;border-radius:12px;background:#fff5de;color:#80602d;padding:10px 12px;margin-top:10px;font-size:12px;font-weight:900}
+.island-treasure-callout{border:1px solid #efd99b;border-radius:17px;background:linear-gradient(135deg,#fff8df,#fff1e5);padding:14px;margin-top:12px}
+.treasure-panel{background:#fffdf9;border:1px solid white;border-radius:28px;padding:clamp(17px,3vw,30px);box-shadow:0 16px 42px #715a9b20}
+.treasure-heading{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.treasure-icon{width:67px;height:67px;flex:0 0 67px;border-radius:20px;background:linear-gradient(135deg,#fff0c6,#ffe0e7);display:grid;place-items:center;font-size:36px}
+.treasure-hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:13px 0}
+.treasure-stat{border:1px solid #eee5f5;background:#fff;border-radius:13px;padding:10px}
+.treasure-stat label{display:block;color:#9889a7;font-size:10px;letter-spacing:1px;font-weight:900}
+.treasure-stat strong{display:block;color:#7254b5;font:700 21px Fredoka;margin-top:3px}
+.treasure-clue{border:1px solid #eee5f5;border-radius:20px;background:linear-gradient(145deg,#fff,#f9f6ff);padding:18px;margin:13px 0}
+.treasure-clue .kicker{margin-bottom:7px}
+.treasure-clue h2{font-size:26px}
+.treasure-question{font-size:16px;color:#665a78;line-height:1.7;white-space:pre-line}
+.treasure-answer-row{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.treasure-answer-row input{flex:1;min-width:180px;border:2px solid #e7def2;border-radius:13px;padding:12px 14px;font:800 16px Nunito;color:#49395f;background:#fff}
+.treasure-answer-row input:focus{outline:3px solid #cbb8ef;border-color:#9472dd}
+.treasure-feedback{min-height:45px;border-radius:13px;background:#fff4df;color:#80602d;padding:11px 13px;font-size:13px;font-weight:900;margin:10px 0}
+.treasure-hint{display:none;border:1px dashed #e2c77e;background:#fff9e7;border-radius:12px;padding:11px 13px;color:#765a2f;font-size:13px;line-height:1.5;margin-top:9px}
+.treasure-hint.show{display:block}
+.treasure-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.treasure-route-note{border-left:4px solid #8f78d2;padding:9px 12px;background:#f5f0ff;border-radius:0 12px 12px 0;color:#6f5d8d;font-size:12px;line-height:1.5;margin:10px 0}
+.letter-panel{background:linear-gradient(145deg,#fffdfb,#fff8f2 58%,#f4fff9);border:1px solid white;border-radius:28px;padding:clamp(18px,4vw,38px);box-shadow:0 16px 42px #715a9b20}
+.letter-envelope{width:90px;height:72px;margin:0 auto 14px;display:grid;place-items:center;font-size:54px;filter:drop-shadow(0 7px 8px #a47d8525)}
+.letter-title{text-align:center;font-size:clamp(32px,5vw,48px)}
+.letter-intro{max-width:650px;margin:8px auto 19px;text-align:center}
+.letter-paper{max-width:780px;margin:18px auto 12px;padding:clamp(15px,3vw,25px);border:1px solid #eadfca;border-radius:17px;background:repeating-linear-gradient(to bottom,#fffdf8 0px,#fffdf8 34px,#f0e5d4 35px);box-shadow:0 9px 24px #705b4620}
+.letter-paper textarea{display:block;width:100%;min-height:330px;resize:vertical;border:0;outline:0;background:transparent;color:#51445d;font:600 16px/35px Nunito;padding:0 4px}
+.letter-paper textarea::placeholder{color:#b4a7a0;opacity:1}
+.letter-save-state{text-align:center;color:#8b7d9a;font-size:11px;margin:8px 0}
+.letter-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+@media(max-width:760px){.island-map-lower{grid-template-columns:1fr}.island-map-frame{min-height:345px;aspect-ratio:1/1}.island-pin{min-width:74px;padding:6px 5px;font-size:9px;border-radius:12px}.island-pin span{font-size:17px}.treasure-hud{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:480px){.island-map-frame{min-height:310px}.island-pin{min-width:65px;font-size:8px}.treasure-heading{align-items:flex-start}.treasure-hud{grid-template-columns:1fr 1fr}.letter-paper textarea{min-height:270px;font-size:14px;line-height:32px}}
+
 </style>
 </head>
 
 <body>
-
-<div class="welcome-wrap" id="welcomeScreen">
- <header class="welcome-top">
-  <div class="brand">✦ CREATURE WORLD</div>
-  <span class="tag">A LITTLE UNIVERSE MADE WITH LOVE</span>
- </header>
-
- <section class="panel welcome-hero">
+  <section class="panel welcome-hero">
   <div class="welcome-main">
    <div>
     <div class="kicker">YOUR ADVENTURE STARTS HERE</div>
     <h1 class="welcome-title">Welcome to<br><span style="color:#e58ab9">Creature World</span>!</h1>
-    <p class="welcome-copy">A tiny world full of ridiculously cute creatures, chaotic challenges and a few surprises hidden along the way. Six creatures are waiting to be found — and your first challenge is already warming up its tyres.</p>
+    <p class="welcome-copy">A tiny world full of ridiculously cute creatures, chaotic challenges and a few surprises hidden along the way. Four creature trials stand between you and a hidden island. Win the challenges, follow the treasure trail, and uncover one last surprise.</p>
 
     <div class="welcome-stats">
-     <span class="welcome-stat">✨ 6 CREATURE TRIALS</span>
-     <span class="welcome-stat">🏁 FIRST UP: F1 GRAND PRIX</span>
-     <span class="welcome-stat">🍫 SECRET WORLD AHEAD</span>
-    </div>
+ <span class="welcome-stat">✨ FOUR LITTLE MENACES. ONE QUESTIONABLE PLAN.</span>
+ <span class="welcome-stat">🏁 RED LIGHTS. BAD DECISIONS. FAST CONSEQUENCES.</span>
+ <span class="welcome-stat">☁️  SOME THINGS ARE HARDER TO FIGURE OUT THAN THEY LOOK.</span>
+ <span class="welcome-stat">🧱 TRUST THE PLAN. QUESTION GRAVITY.</span>
+ <span class="welcome-stat">⚔️ NOT EVERYONE YOU MEET IS HERE TO BE FRIENDLY.</span>
+ <span class="welcome-stat">🍫 SOMEONE'S BEEN HOARDING THE GOOD STUFF. RUDE.</span>
+</div>
 
     <button class="btn gold" style="font-size:16px;padding:15px 23px" onclick="enterGrandPrix()">LET'S START THE ADVENTURE ✨</button>
     <p class="tiny" style="margin-top:11px">Player profile: DUMMY · Current mission: earn Blazbit</p>
+    <div id="savedWorldLinks" class="welcome-stats" style="margin-top:10px;display:none" aria-live="polite"></div>
    </div>
 
    <div class="welcome-mascot">
@@ -172,7 +366,7 @@ p{line-height:1.55;color:var(--muted)}
   </div>
  </section>
 
- <div class="welcome-foot">Made with a little magic, a lot of chaos and an unreasonable amount of affection. 💗</div>
+ <div class="welcome-foot">Made with a little magic, chaos, and a whole lot of mischief. ✨</div>
 </div>
 
 <div id="raceApp" class="hidden">
@@ -222,7 +416,7 @@ p{line-height:1.55;color:var(--muted)}
 
   <div class="card">
    <h3>🏆 Your objectives</h3>
-   <p style="margin:6px 0">• Complete <b>3 laps</b> before the 55-second timer ends.<br>• Finish in <b>1st or 2nd place</b>.<br>• Complete a pit stop in <b>BOX 07</b>.<br>• Avoid track-limit penalties and preserve your tyres.</p>
+   <p style="margin:6px 0">• Complete <b>3 laps</b> before the <b>50-second timer</b> ends.<br>• Finish in <b>1st or 2nd place</b>.<br>• Complete a pit stop in <b>BOX 07</b>.<br>• Avoid track-limit penalties and preserve your tyres.</p>
 
    <hr style="border:0;border-top:1px solid #eee5f5;margin:12px 0">
 
@@ -249,8 +443,8 @@ p{line-height:1.55;color:var(--muted)}
    <div class="modal">
     <div class="kicker">RACE CONTROL IS WAITING</div>
     <h2>Ready to race, Dummy?</h2>
-    <p>The circuit has a fast back straight, a tight chicane and a technical final sector. Your rivals will not politely move out of your way. Your mandatory pit stop is part of the 55-second race: enter at the blue PIT ENTRY marker, follow the blue lane to BOX 07, brake below 35 km/h, select tyres and press P. The crew needs 3.4 seconds.</p>
-    <p><b>The clock stays OFF until you press Start.</b> A three-second light sequence follows. The 55-second race timer starts on the green light.</p>
+    <p>The circuit has a fast back straight, a tight chicane and a technical final sector. Your rivals will not politely move out of your way. Your mandatory pit stop is part of the 50-second race: enter at the blue PIT ENTRY marker, follow the blue lane to BOX 07, brake below 35 km/h, select tyres and press P. The crew needs 3.4 seconds.</p>
+    <p><b>The clock stays OFF until you press Start.</b> A three-second light sequence follows. The 50-second race timer starts on the green light.</p>
     <button class="btn gold" style="width:100%" onclick="startRace()">LIGHTS OUT — START ENGINE 🏁</button>
     <p class="tiny">Use keyboard controls or the on-screen buttons below the track.</p>
    </div>
@@ -309,14 +503,14 @@ p{line-height:1.55;color:var(--muted)}
  </div>
 
  <div class="status" id="raceMessage">Blazbit: “I've warmed up the tyres. Try not to embarrass us.”</div>
-
- <div id="result" class="result">
+  <div id="result" class="result">
   <div class="resultinner">
    <div class="emoji" id="resultEmoji">🏆</div>
    <h2 id="resultTitle">Race complete!</h2>
    <p id="resultText"></p>
    <button class="btn" onclick="restartRace()">RACE AGAIN</button>
    <button class="btn alt" onclick="backToBriefing()">CHANGE TYRES</button>
+   <button class="btn gold hidden" id="floofiNextBtn" onclick="openFloofi()">NEXT CHALLENGE: FLOOFI'S CROSSWORD ✨</button>
    <button class="btn alt" onclick="returnToWelcome()">WORLD INTRO</button>
   </div>
  </div>
@@ -324,6 +518,317 @@ p{line-height:1.55;color:var(--muted)}
 
 <p class="tiny" style="text-align:center;margin-top:14px">Creature World · Original fantasy artwork · Not affiliated with any real racing team</p>
 </div>
+</div>
+
+
+<!-- GAME 2: FLOOFI'S F1 CROSSWORD -->
+<div id="floofiApp" class="hidden">
+ <div class="floofi-wrap">
+  <header class="top">
+   <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> Floofi's CROSSWORD</div>
+   <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span class="tag">🧩 EXPERT TRIAL · 02</span>
+    <button class="btn alt" onclick="backToGrandPrix()">← Back to Grand Prix</button>
+   </div>
+  </header>
+
+  <section class="panel">
+   <div class="floofi-hero">
+    <div class="floofi-mascot" aria-hidden="true">☁️</div>
+    <div>
+     <div class="kicker">FLOOFI'S PADDOCK PUZZLE</div>
+     <h1>THE F1 CROSSWORD</h1>
+     <p style="margin:4px 0 0">Twenty-four answers. One very smug cloud. Absolutely no multiple-choice rescue.</p>
+    </div>
+   </div>
+
+   <div class="floofi-instructions" id="floofiBrief">
+    <h2 style="font-size:24px">Before you begin, Dummy…</h2>
+    <p>This is a full-sized F1 crossword built around drivers, teams, circuits and racing strategy. Read the clues carefully — some are direct, and some make you work for the answer.</p>
+    <ul>
+     <li><b>There is no timer.</b> Take the time you need to solve the grid.</li>
+     <li>You have <b>3 lives</b>. Each time you submit a complete but incorrect crossword, you lose <b>one life</b>.</li>
+     <li>An incomplete grid does <b>not</b> cost a life. Fill every square before pressing Check Crossword.</li>
+     <li>When all 24 answers are correct, Floofi is unlocked. If all 3 lives are used, you can restart the puzzle.</li>
+     <li>Choose a clue to highlight its answer. Click a crossing square again to switch between Across and Down. Type one letter per square; the cursor moves along the selected answer.</li>
+     <li>Use Backspace to erase, and the arrow keys to move through the selected answer. The grid scrolls sideways on smaller screens.</li>
+    </ul>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px">
+     <button class="btn gold" onclick="startFloofi()">START THE CROSSWORD ☁️</button>
+     <span class="floofi-tag">24 INTERLOCKING ANSWERS · 3 LIVES · NO TIMER</span>
+    </div>
+   </div>
+
+   <div id="floofiPlay" class="hidden">
+    <div class="floofi-stats">
+     <div class="floofi-stat"><label>LIVES LEFT</label><strong id="floofiLives">♥ ♥ ♥</strong></div>
+     <div class="floofi-stat"><label>LETTERS FILLED</label><strong id="floofiFilled">0 / 131</strong></div>
+     <div class="floofi-stat"><label>GRID PROGRESS</label><strong id="floofiPercent">0%</strong><div class="floofi-progress"><span id="floofiProgressBar"></span></div></div>
+    </div>
+
+    <div class="floofi-board-layout">
+     <div class="floofi-grid-card">
+      <div class="row" style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
+       <h3 style="margin:0">🧩 Crossword grid</h3>
+       <span class="tiny">Select a clue to begin</span>
+      </div>
+      <div class="floofi-grid-scroll"><div id="floofiGrid" class="floofi-grid" aria-label="F1 crossword grid"></div></div>
+      <div class="tiny">Tip: on a phone, swipe sideways to see the full grid.</div>
+     </div>
+
+     <div class="floofi-clues-card">
+      <div class="floofi-clue-group">
+       <h3>Across →</h3>
+       <div class="floofi-clue-list" id="floofiAcrossClues"></div>
+      </div>
+      <div class="floofi-clue-group">
+       <h3>Down ↓</h3>
+       <div class="floofi-clue-list" id="floofiDownClues"></div>
+      </div>
+     </div>
+    </div>
+
+    <div class="floofi-feedback" id="floofiFeedback" aria-live="polite">Floofi: “I hope you brought your brain. I brought fluff.”</div>
+    <div class="floofi-actions">
+     <button class="btn gold" id="floofiCheckBtn" onclick="checkFloofiCrossword()">CHECK CROSSWORD ✓</button>
+     <button class="btn alt" onclick="restartFloofi()">RESTART PUZZLE</button>
+     <button class="btn alt" onclick="backToGrandPrix()">BACK TO GRAND PRIX</button>
+    </div>
+
+    <div id="floofiResult" class="floofi-result">
+     <div class="floofi-result-inner">
+      <div class="floofi-result-emoji" id="floofiResultEmoji">☁️</div>
+      <h2 id="floofiResultTitle">Floofi unlocked!</h2>
+      <p id="floofiResultText"></p>
+      <button class="btn gold" id="floofiRetryBtn" onclick="restartFloofi()">TRY AGAIN</button>
+      <button class="btn gold hidden" id="floofiNextBtnGame3" onclick="openPuffwing()">NEXT CHALLENGE: PUFFWING'S BUILD BATTLE 🪽</button>
+      <button class="btn alt" onclick="backToGrandPrix()">RETURN TO GRAND PRIX</button>
+     </div>
+    </div>
+   </div>
+  </section>
+  <p class="tiny" style="text-align:center;margin-top:14px">Creature World · Floofi's F1 Crossword · No timer, just brainpower</p>
+ </div>
+</div>
+
+
+<!-- GAME 3: PUFFWING'S BUILD BATTLE -->
+<div id="puffwingApp" class="hidden">
+ <div class="build-wrap">
+  <header class="top">
+   <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> Puffwing's BUILD BATTLE</div>
+   <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span class="tag">🏗️ EXPERT TRIAL · 03</span>
+    <button class="btn alt" onclick="backToFloofi()">← Back to Floofi</button>
+   </div>
+  </header>
+  <section class="panel">
+   <div class="build-hero">
+    <div class="build-mascot">🪽</div>
+    <div><div class="kicker">PUFFWING'S STORMPROOF CHALLENGE</div><h1>THE BUILD BATTLE</h1><p style="margin:4px 0 0">A fort is only as good as the way it holds together. Build smart, not just big.</p></div>
+   </div>
+   <div class="build-instructions" id="puffBrief">
+    <h2 style="font-size:25px">Build a stormproof skybase, Dummy.</h2>
+    <p>Your skybase must survive a storm inspection. This is a spatial construction challenge: the inspector checks the actual positions and connections of your pieces, not just how many you placed. The 7×7 plot is labelled by row and column (for example, 3.4 means row 3, column 4).</p>
+    <ol>
+     <li><b>Foundation:</b> make exactly nine floor tiles in one complete, connected 3×3 square. You may place it anywhere on the plot; a central position leaves room for the ramp.</li>
+     <li><b>Walls and entrance:</b> the eight outer squares of that 3×3 foundation must contain exactly seven walls and one door. The centre square must remain an open floor. The door must replace one outer wall; it cannot be placed outside the foundation.</li>
+     <li><b>Roof:</b> add a roof piece to every one of the nine foundation squares, including the centre. A roof floating outside the foundation will fail inspection.</li>
+     <li><b>Access ramp:</b> place exactly one ramp on a grass square directly beside the door (up, down, left or right — diagonal contact does not count). The ramp must be outside the foundation and point towards the doorway.</li>
+     <li><b>Material budget:</b> you start with 32 wood and 18 stone. The required build costs 29 wood and 17 stone: floors 9W; seven walls 7W/7S; door 2W/1S; roof 9W/9S; ramp 2W. You have only a small spare supply, so plan your placements.</li>
+     <li><b>Tools:</b> choose a tool, then tap a plot square. Tap the same placed piece again to remove just that piece. The Eraser clears every piece on that square and refunds the materials. Walls, doors and roofs need a floor underneath.</li>
+     <li><b>Inspection:</b> press CHECK STRUCTURE whenever you like. A failed check costs no materials or lives, but the storm clock keeps running. The inspector tells you what is wrong. You must fix it before time reaches zero.</li>
+     <li><b>Storm:</b> you have <b>2 minutes 15 seconds</b>. The clock starts only after Start and a three-second countdown. There is no pause and no multiple-choice shortcut.</li>
+    </ol>
+    <div class="build-actions"><button class="btn gold" onclick="startPuffwingBuild()">START BUILDING 🏗️</button><span class="floofi-tag">7×7 GRID · 02:15 · 29 WOOD / 17 STONE REQUIRED</span></div>
+   </div>
+   <div id="puffPlay" class="hidden">
+    <div class="build-hud">
+     <div class="metric"><label>STORM TIMER</label><strong id="puffTime">02:15</strong><em id="puffPhase">Construction phase</em></div>
+     <div class="metric"><label>WOOD</label><strong id="puffWood">32</strong><em>Building supply</em></div>
+     <div class="metric"><label>STONE</label><strong id="puffStone">18</strong><em>Building supply</em></div>
+    </div>
+    <div class="metric" style="margin-bottom:12px"><label>STORM APPROACH</label><div class="build-storm"><span id="puffStormBar"></span></div></div>
+    <div class="build-layout">
+     <div class="build-board-card">
+      <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:9px"><h3 style="margin:0">🧱 Construction plot</h3><span class="tiny">Tap a square to place the selected piece</span></div>
+      <div id="puffGrid" class="build-grid" aria-label="7 by 7 building grid"></div>
+      <div class="tiny" style="margin-top:9px">Multiple layers can occupy a foundation tile: floor below, wall/door at the edge and roof above.</div>
+     </div>
+     <div class="build-tools-card">
+      <h3 style="margin:0">🛠️ Building tools</h3>
+      <p class="tiny" style="margin:5px 0">Select a tool, then tap the grid. Tap a placed piece again to remove it.</p>
+      <div class="build-toolbar" id="puffToolbar">
+       <button class="build-tool active" data-tool="floor" onclick="selectPuffTool('floor')">🟫 FLOOR<small>1 wood</small></button>
+       <button class="build-tool" data-tool="wall" onclick="selectPuffTool('wall')">🧱 WALL<small>1 wood + 1 stone</small></button>
+       <button class="build-tool" data-tool="door" onclick="selectPuffTool('door')">🚪 DOOR<small>2 wood + 1 stone</small></button>
+             <div class="build-toolbar" id="puffToolbar">
+       <button class="build-tool active" data-tool="floor" onclick="selectPuffTool('floor')">🟫 FLOOR<small>1 wood</small></button>
+       <button class="build-tool" data-tool="wall" onclick="selectPuffTool('wall')">🧱 WALL<small>1 wood + 1 stone</small></button>
+       <button class="build-tool" data-tool="door" onclick="selectPuffTool('door')">🚪 DOOR<small>2 wood + 1 stone</small></button>
+       <button class="build-tool" data-tool="roof" onclick="selectPuffTool('roof')">🏠 ROOF<small>1 wood + 1 stone</small></button>
+       <button class="build-tool" data-tool="ramp" onclick="selectPuffTool('ramp')">↗ RAMP<small>2 wood</small></button>
+       <button class="build-tool" data-tool="erase" onclick="selectPuffTool('erase')">🧹 ERASER<small>Recover materials</small></button>
+      </div>
+      <div class="build-resources"><div class="build-resource"><label>WOOD LEFT</label><strong id="puffWoodSide">32</strong></div><div class="build-resource"><label>STONE LEFT</label><strong id="puffStoneSide">18</strong></div></div>
+      <div class="tiny">Build the floor first. Walls, doors and roofs need a floor underneath. The ramp must be outside and touch the doorway.</div>
+      <div class="build-actions"><button class="btn mint" onclick="checkPuffBuild()">CHECK STRUCTURE ✓</button><button class="btn alt" onclick="resetPuffBuild()">RESET PLOT</button></div>
+     </div>
+    </div>
+    <div class="build-feedback" id="puffFeedback" aria-live="polite">Puffwing: “Please build something that doesn't fall over. I have wings; I don't need a roof collapsing on me.”</div>
+    <div id="puffBuildResult" class="build-result"><div class="build-result-inner"><div class="build-result-emoji" id="puffBuildEmoji">🪽</div><h2 id="puffBuildTitle">Puffwing unlocked!</h2><p id="puffBuildText"></p><button class="btn gold hidden" id="puffNextArenaBtn" onclick="openArena()">NEXT CHALLENGE: STARFALL ARENA ⚔️</button><button class="btn alt" onclick="backToFloofi()">BACK TO CROSSWORD</button><button class="btn alt" onclick="resetPuffBuild()">BUILD AGAIN</button></div></div>
+   </div>
+  </section>
+  <p class="tiny" style="text-align:center;margin-top:14px">Creature World · Puffwing's Build Battle · Design, connect, reinforce</p>
+ </div>
+ <div id="puffCountdownOverlay" class="build-overlay hidden"><div class="build-count" id="puffCount">3</div></div>
+</div>
+
+<!-- GAME 4: CREATURE CLASH — STARFALL ARENA -->
+<div id="arenaApp" class="hidden">
+ <div class="arena-wrap">
+  <header class="top">
+   <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> STARFALL ARENA</div>
+   <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="tag">⚔️ EXPERT TRIAL · 04</span><button class="btn alt" onclick="backToPuffwing()">← Back to Build Battle</button></div>
+  </header>
+  <section class="panel arena-panel">
+   <div class="arena-topline"><div><div class="kicker">THE LAST GATEKEEPER</div><h1>CREATURE CLASH</h1><p style="margin:4px 0 0">One final duel stands between you and the hidden island.</p></div><span class="arena-tag">ANIME-INSPIRED CREATURE DUEL · TURN-BASED</span></div>
+   <div id="arenaSelect">
+    <div class="arena-brief"><h2 style="font-size:25px">Before you enter the arena…</h2><p>This is a turn-based duel, not a reflex test. There is <b>no timer</b>. You choose one action, Vexori responds, and then your next turn begins. You must defeat both of Vexori's forms in the same battle.</p>
+     <div class="arena-rules-grid">
+      <div class="arena-rule"><b>⚡ QUICK STRIKE</b><span>Deals 15–23 damage depending on your fighter and restores 20 energy. Use it to build energy.</span></div>
+      <div class="arena-rule"><b>✨ SIGNATURE MOVE</b><span>Costs 40 energy and deals heavy damage. Each creature's signature has its own special effect.</span></div>
+      <div class="arena-rule"><b>🛡️ GUARD</b><span>Restores 24 energy and reduces the next incoming attack by 65%. A guard stays ready if Vexori only charges and does not attack yet.</span></div>
+      <div class="arena-rule"><b>💗 RECOVER</b><span>One use per battle. Restores up to 30 HP. Save it for a dangerous moment, not the first scratch.</span></div>
+     </div>
+     <h3 style="font-size:18px;margin-top:14px">Read Vexori's tells</h3>
+     <ul class="arena-rules-list">
+      <li><b>WATCHING:</b> Vexori may use Shadow Claw. Expect a regular hit.</li>
+      <li><b>CHARGING:</b> the next strike is a heavy Eclipse Break. Use GUARD on your next turn before it lands. Attacking instead leaves you exposed.</li>
+      <li><b>Phase 1:</b> defeat the Void Warden form (112 HP). Vexori then awakens in a second form (96 HP). Your bond restores 22 HP and 25 energy at the transition, but the new form immediately begins charging.</li>
+      <li><b>Phase 2:</b> Vexori becomes more dangerous and may set up one extra charged strike below half health. Watch the state label every turn.</li>
+     </ul>
+    </div>
+    <div class="arena-brief"><h2 style="font-size:25px">Choose your fighter.</h2><p>Pick one of your earned creatures. Each has a different health total and signature effect. Choose based on the way you want to fight.</p></div>
+    <div class="arena-fighter-picker">
+     <button class="arena-fighter selected" data-fighter="Blazbit" onclick="selectArenaFighter('Blazbit')"><span class="fighter-emoji">🔥</span><span><b>Blazbit</b><small>Fire gremlin · high damage + scorch</small></span></button>
+     <button class="arena-fighter" data-fighter="Floofi" onclick="selectArenaFighter('Floofi')"><span class="fighter-emoji">☁️</span><span><b>Floofi</b><small>Dream cloud · damage + recovery</small></span></button>
+     <button class="arena-fighter" data-fighter="Puffwing" onclick="selectArenaFighter('Puffwing')"><span class="fighter-emoji">🪽</span><span><b>Puffwing</b><small>Sky spirit · damage + evasive guard</small></span></button>
+    </div>
+    <div class="arena-status" id="arenaFighterNote">Blazbit is ready to bring the heat. Literally.</div>
+    <button class="btn gold" onclick="startArenaBattle()">ENTER THE STARFALL ARENA ⚔️</button>
+   </div>
+   <div id="arenaBattle" class="hidden">
+    <div class="arena-status" id="arenaPhaseLabel">PHASE 1 · THE VOID WARDEN</div>
+    <div class="arena-stage">
+     <div class="arena-combatant" id="arenaPlayerCard"><div class="combatant-emoji" id="arenaPlayerEmoji">🔥</div><h3 id="arenaPlayerName">Blazbit</h3><div class="arena-hp-label"><span>HP</span><span id="arenaPlayerHpText">125 / 125</span></div><div class="arena-hp"><span id="arenaPlayerHpBar"></span></div><div class="arena-hp-label"><span>ENERGY</span><span id="arenaPlayerEnergyText">25 / 100</span></div><div class="arena-energy"><span id="arenaPlayerEnergyBar"></span></div></div>
+     <div class="arena-vs">VS</div>
+     <div class="arena-combatant enemy"><div class="combatant-emoji" id="arenaEnemyEmoji">🌑🐉</div><h3 id="arenaEnemyName">VEXORI</h3><div class="arena-hp-label"><span>HP</span><span id="arenaEnemyHpText">110 / 110</span></div><div class="arena-hp"><span id="arenaEnemyHpBar"></span></div><div class="arena-hp-label"><span>STATE</span><span id="arenaEnemyState">WATCHING</span></div><div class="arena-energy"><span id="arenaEnemyEnergyBar" style="width:30%"></span></div></div>
+    </div>
+    <div class="arena-log" id="arenaLog" aria-live="polite">Vexori descends from the starfall gate. The arena goes quiet.</div>
+    <div class="arena-actions">
+     <button class="arena-action" id="arenaQuickBtn" onclick="useArenaMove('quick')">⚡ QUICK STRIKE<small>Reliable damage · builds energy</small></button>
+     <button class="arena-action" id="arenaSpecialBtn" onclick="useArenaMove('special')">✨ SIGNATURE MOVE<small id="arenaSpecialText">Costs 40 energy · heavy damage</small></button>
+     <button class="arena-action" id="arenaGuardBtn" onclick="useArenaMove('guard')">🛡️ GUARD<small>Reduce the next hit · restore energy</small></button>
+     <button class="arena-action" id="arenaHealBtn" onclick="useArenaMove('heal')">💗 RECOVER<small>Once per battle · restore up to 30 HP</small></button>
+    </div>
+    <div class="arena-status" id="arenaBattleHint">Watch for Vexori's charge warning. Guard before the impact.</div>
+   </div>
+   <div id="arenaResult" class="arena-result">
+    <div class="arena-result-emoji" id="arenaResultEmoji">🏆</div><h2 id="arenaResultTitle">Victory!</h2><p id="arenaResultText"></p>
+    <button class="btn gold" id="arenaRetryBtn" onclick="retryArena()">FIGHT AGAIN</button>
+    <button class="btn alt" onclick="backToPuffwing()">BACK TO BUILD BATTLE</button>
+   </div>
+   <div id="arenaMapReveal" class="arena-map-reveal">
+    <div class="kicker">THE SEAL HAS BROKEN</div><h2>CHOCOBLOOM ISLAND IS UNLOCKED!</h2><p>The starfall gate opens and the island map appears. Somewhere on the island, the final guardian is waiting. The map is yours — but finding the guardian will take more than a straight line. The next expedition will unlock the island routes and clue trail.</p>
+    <div class="arena-map-art" aria-label="A stylised island map revealed beyond the arena"></div>
+    <div style="text-align:center;margin-top:12px"><button class="btn gold" onclick="openChocobloomMap()">OPEN CHOCOBLOOM ISLAND MAP 🗺️</button></div>
+    <b>Next expedition: the treasure hunt.</b><p style="margin:5px 0 0">Expect compass directions, route logic, number patterns, arithmetic and clues that connect across the island. The final creature will only appear when the trail is solved.</p>
+   </div>
+  </section>
+  <p class="tiny" style="text-align:center;margin-top:14px">Creature World · Starfall Arena · Original creature designs and battle system</p>
+ </div>
+</div>
+
+
+<!-- CHOCOBLOOM ISLAND — THE OPEN MAP -->
+<div id="islandApp" class="hidden">
+ <div class="island-wrap">
+    <header class="top"><div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> CHOCOBLOOM ISLAND</div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag">🗺️ EXPEDITION MAP</span><button class="btn alt" onclick="backToArena()">← Starfall Arena</button></div></header>
+  <section class="island-panel">
+   <div class="island-hero"><div class="island-emblem">🍫</div><div><div class="kicker">THE GATE IS OPEN</div><h1>Welcome to Chocobloom Island</h1><p style="margin:4px 0 0">A little island with a suspicious amount of chocolate, a few very nosy animals, and a treasure trail that does not solve itself.</p></div></div>
+   <div class="island-map-frame" role="group" aria-label="Interactive map of Chocobloom Island">
+    <svg class="island-map-svg" viewBox="0 0 1000 625" preserveAspectRatio="none" aria-hidden="true">
+     <defs>
+      <linearGradient id="seaGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a8e4e5"/><stop offset="1" stop-color="#58afc1"/></linearGradient>
+      <linearGradient id="landGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8f0bd"/><stop offset=".52" stop-color="#9ed9a7"/><stop offset="1" stop-color="#71bd9c"/></linearGradient>
+      <linearGradient id="chocoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b98568"/><stop offset="1" stop-color="#815342"/></linearGradient>
+      <filter id="islandShadow"><feGaussianBlur stdDeviation="17"/></filter>
+     </defs>
+     <rect width="1000" height="625" fill="url(#seaGrad)"/>
+     <g fill="none" stroke="#e7ffff" stroke-width="3" opacity=".34"><path d="M0 120Q120 90 245 125T500 115T760 120T1000 110"/><path d="M0 480Q120 450 245 485T500 475T760 480T1000 470"/><path d="M40 300Q160 270 280 305T520 295T760 300T980 290"/></g>
+     <path d="M166 331C166 230 250 104 412 76C567 49 752 128 828 246C914 380 814 528 660 555C488 591 270 531 190 436C163 405 151 367 166 331Z" fill="#3e8c83" opacity=".26" filter="url(#islandShadow)"/>
+     <path d="M145 319C155 208 262 101 411 81C556 61 730 121 817 239C906 360 827 500 680 543C523 589 304 546 199 446C160 409 137 365 145 319Z" fill="url(#landGrad)" stroke="#f2f5cc" stroke-width="12"/>
+     <path d="M215 286C226 205 312 130 405 126C483 122 546 161 547 225C549 280 480 317 412 323C321 331 249 329 215 286Z" fill="#f2c9a1" opacity=".75" stroke="#fff2d8" stroke-width="5"/>
+     <path d="M440 112C548 91 682 137 737 218C781 285 734 342 667 348C599 355 534 323 509 270C488 226 464 178 440 112Z" fill="#b4dca0" stroke="#f0f2d1" stroke-width="5"/>
+     <path d="M288 352C359 301 477 327 529 397C571 454 537 511 458 518C372 527 277 468 263 411C257 389 267 367 288 352Z" fill="#83c995" stroke="#f0f2d1" stroke-width="5"/>
+     <path d="M558 365C624 310 746 336 781 407C808 463 745 509 681 501C617 492 550 427 558 365Z" fill="#efcb91" stroke="#fff0d5" stroke-width="5"/>
+     <path d="M170 366C242 380 278 431 315 486" fill="none" stroke="#f7e8c3" stroke-width="17" stroke-linecap="round"/>
+     <path d="M315 486C372 425 428 373 505 335S653 253 720 265" fill="none" stroke="#f7e8c3" stroke-width="14" stroke-linecap="round" stroke-dasharray="3 2"/>
+     <path d="M505 335C522 402 584 443 680 465" fill="none" stroke="#f7e8c3" stroke-width="12" stroke-linecap="round" stroke-dasharray="3 2"/>
+     <g fill="#438c64" opacity=".85"><circle cx="367" cy="172" r="17"/><circle cx="397" cy="189" r="22"/><circle cx="428" cy="166" r="16"/><circle cx="459" cy="191" r="21"/><circle cx="614" cy="182" r="19"/><circle cx="648" cy="203" r="23"/><circle cx="682" cy="184" r="18"/><circle cx="344" cy="413" r="18"/><circle cx="376" cy="441" r="23"/><circle cx="420" cy="420" r="19"/><circle cx="725" cy="420" r="16"/></g>
+     <g fill="#fff7d9" opacity=".88"><path d="M244 237l10-18 10 18-10 18z"/><path d="M753 293l10-18 10 18-10 18z"/><path d="M480 475l9-16 9 16-9 16z"/></g>
+     <g font-family="Nunito" font-size="19" font-weight="900" fill="#547a64" opacity=".8"><text x="178" y="558">CHOCOBLOOM BAY</text><text x="750" y="555">SOUTHERN SHORE</text></g>
+     <g fill="#f6e4b0" stroke="#fff8e2" stroke-width="4"><path d="M90 290l25-18 19 30-27 19z"/><path d="M870 128l22-14 19 23-25 19z"/><path d="M850 490l22-16 19 27-24 15z"/></g>
+    </svg>
+    <button class="island-pin active" id="islandPin0" style="left:29%;top:31%" onclick="openTreasureStation(0)"><span>🍦</span>SCOOP DISTRICT</button>
+    <button class="island-pin locked" id="islandPin1" style="left:51%;top:19%" onclick="openTreasureStation(1)"><span>🐾</span>CATTO-DOGGO</button>
+    <button class="island-pin locked" id="islandPin2" style="left:53%;top:57%" onclick="openTreasureStation(2)"><span>🍄</span>MYSTERY FOREST</button>
+    <button class="island-pin locked" id="islandPin3" style="left:77%;top:31%" onclick="openTreasureStation(3)"><span>🌅</span>SUNRISE POINT</button>
+    <button class="island-pin locked" id="islandPin4" style="left:77%;top:73%" onclick="openTreasureStation(4)"><span>🏆</span>WINNING GROUNDS</button>
+    <div style="position:absolute;left:10%;top:69%;z-index:2;color:#fff;font:900 11px Nunito;text-shadow:0 2px 4px #26717b">⚓ CHOCO HARBOR</div>
+    <div style="position:absolute;right:3%;top:5%;z-index:2;color:#fff;font:900 11px Nunito;text-shadow:0 2px 4px #26717b">N ↑</div>
+   </div>
+   <div class="island-map-caption"><span>Follow the dotted trail from Scoop District to Winning Grounds.</span><div class="island-legend"><span><i class="island-dot"></i>Current</span><span><i class="island-dot done"></i>Cleared</span><span><i class="island-dot locked"></i>Locked</span></div></div>
+   <div class="island-map-lower">
+    <div class="island-card"><h3>🧭 Expedition status</h3><p id="islandMapStatus">Your first clue is waiting in Scoop District. Tap the glowing pin to begin.</p><div class="island-progress"><span id="islandProgressBar"></span></div><div class="tiny" id="islandProgressText">0 / 5 trail seals recovered</div><div class="island-status" id="islandMapFeedback" aria-live="polite">The map is open. The treasure trail is still sealed.</div></div>
+    <div class="island-card"><h3>📜 Before you set off</h3><p>There are five linked stops. Each correct solution reveals the next location. The final lock combines information gathered along the route.</p><p><b>No timer.</b> You have five trail lives and three hints for the entire hunt. A wrong completed answer costs one life. An empty answer costs nothing.</p><button class="btn gold" onclick="openTreasureStation(islandProgress)" id="islandStartBtn">START THE TREASURE HUNT 🗺️</button><div class="island-treasure-callout" id="islandChestCallout" hidden><b>✨ The final chest is open!</b><p style="margin:5px 0">Cocoheart, the secret guardian, has been found. Your letter is waiting.</p><button class="btn gold" onclick="openFinalLetter()">OPEN THE FINAL LETTER 💌</button></div></div>
+   </div>
+   <div class="treasure-actions"><button class="btn alt" onclick="backToArena()">← Return to Starfall Arena</button><button class="btn alt" onclick="openFinalLetter()" id="islandLetterBtn" hidden>OPEN YOUR LETTER 💌</button></div>
+  </section>
+ </div>
+</div>
+
+<!-- TREASURE HUNT — FIVE LOGIC STOPS -->
+<div id="treasureApp" class="hidden">
+ <div class="treasure-wrap">
+  <header class="top"><div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> THE TREASURE TRAIL</div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag">🧩 LOGIC EXPEDITION</span><button class="btn alt" onclick="openChocobloomMap()">← Island map</button></div></header>
+  <section class="treasure-panel">
+   <div class="treasure-heading"><div class="treasure-icon" id="treasureStageEmoji">🍦</div><div><div class="kicker" id="treasureStageKicker">STOP 1 OF 5 · SCOOP DISTRICT</div><h1 id="treasureStageTitle">The Choco Bite Split</h1><p style="margin:4px 0 0">Read the whole clue. Work it out. Type your answer — no multiple choice.</p></div></div>
+   <div class="treasure-hud"><div class="treasure-stat"><label>TRAIL LIVES</label><strong id="treasureLives">♥ ♥ ♥ ♥ ♥</strong></div><div class="treasure-stat"><label>HINTS LEFT</label><strong id="treasureHints">3</strong></div><div class="treasure-stat"><label>SEALS FOUND</label><strong id="treasureSeals">0 / 5</strong></div></div>
+   <div class="treasure-clue"><div class="kicker" id="treasureLocation">SCOOP DISTRICT</div><h2 id="treasureQuestionTitle">A little chocolate arithmetic</h2><div class="treasure-question" id="treasureQuestion"></div><div class="treasure-route-note" id="treasureMethodNote">Write only the final answer in the box. You can show your working on paper.</div><div class="treasure-hint" id="treasureHint"></div></div>
+   <div class="treasure-answer-row"><input id="treasureAnswer" type="text" maxlength="30" autocomplete="off" spellcheck="false" placeholder="Type your answer here…" aria-label="Treasure hunt answer"><button class="btn gold" onclick="submitTreasureAnswer()">SUBMIT ANSWER ✨</button></div>
+   <div class="treasure-feedback" id="treasureFeedback" aria-live="polite">Cookie is watching. Cookie is judging. Cookie is not helping. 🐈</div>
+   <div class="treasure-actions"><button class="btn alt" id="treasureHintBtn" onclick="useTreasureHint()">USE A HINT</button><button class="btn alt" onclick="openChocobloomMap()">BACK TO MAP</button><button class="btn alt" id="treasureResetBtn" onclick="resetTreasureHunt()" hidden>RESET THE HUNT</button></div>
+  </section>
+ </div>
+</div>
+
+<!-- FINAL LETTER — USER WRITES THIS ENTIRELY -->
+<div id="letterApp" class="hidden">
+ <div class="letter-wrap">
+  <header class="top"><div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> THE LAST LITTLE SURPRISE</div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag">💌 UNSEALED</span><button class="btn alt" onclick="openChocobloomMap()">← Island map</button></div></header>
+  <section class="letter-panel">
+   <div class="letter-envelope">✉️</div>
+   <div class="kicker" style="text-align:center">A TREASURE FOUND · A LITTLE SPACE JUST FOR YOU</div>
+      <h1 class="letter-title">One last thing, Dummy…</h1>
+   <p class="letter-intro">Cocoheart has guarded this envelope all along. You made it through every challenge, followed every clue and found the secret. The final words are yours to write. Nothing has been filled in for you.</p>
+   <div class="letter-paper"><textarea id="finalLetterText" placeholder="Write your letter here…" aria-label="Your personal letter"></textarea></div>
+   <div class="letter-save-state" id="letterSaveState">Your writing is saved in this browser as you type.</div>
+   <div class="letter-actions"><button class="btn gold" onclick="downloadFinalLetter()">SAVE MY LETTER AS A FILE</button><button class="btn alt" onclick="copyFinalLetter()">COPY LETTER</button><button class="btn alt" onclick="openChocobloomMap()">RETURN TO ISLAND</button></div>
+   <div class="welcome-foot">Made with a little magic, chaos, and a whole lot of mischief. ✨</div>
+  </section>
+ </div>
 </div>
 
 <script>
@@ -343,6 +848,7 @@ function returnToWelcome(){
  restartRace();
  document.getElementById('raceApp').classList.add('hidden');
  document.getElementById('welcomeScreen').classList.remove('hidden');
+ if(typeof refreshWorldLinks==='function')refreshWorldLinks();
  window.scrollTo(0,0);
 }
 
@@ -513,10 +1019,12 @@ function pitAt(t){
 
 function drawPitPath(c){
  c.beginPath();
+
  for(let i=0;i<=160;i++){
   const q=pitAt(i/160);
   i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y);
  }
+
  c.lineCap='round';
  c.lineJoin='round';
 
@@ -551,7 +1059,6 @@ function pitLabel(c,t,label){
 
 drawPitPath(b);
 
-// BOX 07 stays fixed to the independent pit-lane curve.
 const pitBoxPoint=pitAt(PIT_BOX_T);
 
 b.save();
@@ -570,8 +1077,7 @@ b.fillText('BOX 07',0,0);
 b.fillStyle='#f2c85f';
 b.fillRect(-5,-20,10,40);
 b.restore();
-
-pitLabel(b,.045,'PIT ENTRY · Q');
+ pitLabel(b,.045,'PIT ENTRY · Q');
 pitLabel(b,.94,'PIT EXIT');
 
 const compounds={
@@ -583,7 +1089,7 @@ const compounds={
 let selected='medium',keys={},rafId=0,lastRank=3;
 
 let game={
- mode:'brief',last:0,count:3,time:55,frame:0,
+ mode:'brief',last:0,count:3,time:50,frame:0,
  player:{
   distance:0,offset:0,speed:0,wear:0,boost:100,
   compound:'medium',nextCompound:'medium',pitted:false,
@@ -637,7 +1143,7 @@ function resetState(){
  cancelAnimationFrame(rafId);
 
  game={
-  mode:'brief',last:0,count:3,time:55,frame:0,
+  mode:'brief',last:0,count:3,time:50,frame:0,
   player:{
    distance:0,offset:0,speed:0,wear:0,boost:100,
    compound:selected,nextCompound:selected,pitted:false,
@@ -702,9 +1208,24 @@ function pauseRace(){
 }
 
 function keyDown(e){
+
+ // Do not intercept keyboard input inside text fields.
+ // This allows crossword answers and the final letter to work.
+ if(
+  e.target instanceof HTMLElement &&
+  e.target.closest('input, textarea, select, [contenteditable="true"]')
+ ){
+  return;
+ }
+
  const k=e.key===' '?'Space':e.key;
 
- if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(k)||['w','a','s','d','W','A','S','D'].includes(k))e.preventDefault();
+ if(
+  ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(k)||
+  ['w','a','s','d','W','A','S','D'].includes(k)
+ ){
+  e.preventDefault();
+ }
 
  keys[k]=true;
 
@@ -715,11 +1236,6 @@ function keyDown(e){
  if(['1','2','3'].includes(k)&&game.mode==='racing'&&game.player.inPitLane){
   setPitCompound({'1':'soft','2':'medium','3':'hard'}[k]);
  }
-}
-
-function keyUp(e){
- const k=e.key===' '?'Space':e.key;
- keys[k]=false;
 }
 
 window.addEventListener('keydown',keyDown);
@@ -841,7 +1357,7 @@ function update(dt){
 
   if(game.count<=0){
    game.mode='racing';
-   game.time=55;
+   game.time=50;
    $('countOverlay').classList.add('hidden');
    $('racePhase').textContent='GREEN FLAG';
    setMessage('LIGHTS OUT! LIGHTS OUT! GO GO GO!',3);
@@ -1111,7 +1627,7 @@ function updateStandings(){
    </div>
    <b>${r.name}</b>
    <div class="miniBar"><span style="width:${pct}%"></span></div>
-   <small>${Math.min(3,Math.floor(r.distance/LENGTH)+1)} / 3 laps · ${Math.round(r.distance)} m</small>
+      <small>${Math.min(3,Math.floor(r.distance/LENGTH)+1)} / 3 laps · ${Math.round(r.distance)} m</small>
   </div>`;
  }).join('');
 
@@ -1266,6 +1782,7 @@ function finishRace(completed,reason){
 
  if(success){
   localStorage.setItem('cwBlazbitUnlocked','yes');
+  if(typeof refreshWorldLinks==='function')refreshWorldLinks();
 
   let got=[];
   try{
@@ -1285,6 +1802,7 @@ function finishRace(completed,reason){
  $('resultTitle').textContent=title;
  $('resultText').textContent=text;
  $('result').classList.add('show');
+ $('floofiNextBtn').classList.toggle('hidden',!success);
 
  setMessage(
   success
@@ -1315,6 +1833,645 @@ $('result').classList.remove('show');
 $('pauseOverlay').classList.add('hidden');
 $('countOverlay').classList.add('hidden');
 draw();
+
+
+
+/* GAME 2 — FLOOFI'S EXPERT F1 CROSSWORD (NO TIMER; THREE LIVES) */
+const floofiRawEntries=[
+ {answer:'FERRARI',dir:'across',row:0,col:6,clue:"Maranello's scarlet constructor; its prancing horse has appeared on the F1 grid since the championship's inaugural season."},
+ {answer:'ANTONELLI',dir:'down',row:0,col:10,clue:"The surname of the Bologna-born Italian promoted to a Mercedes race seat for 2025, paired with Russell in 2026."},
+ {answer:'PIASTRI',dir:'down',row:2,col:19,clue:"The Australian whose junior résumé includes both Formula 3 and Formula 2 titles before his McLaren seat."},
+ {answer:'POLE',dir:'across',row:3,col:9,clue:"The grid slot earned by the fastest qualifier — not a trophy awarded after the race."},
+ {answer:'HAMILTON',dir:'down',row:3,col:14,clue:"The seven-time World Champion whose move from Mercedes to Ferrari began in 2025."},
+ {answer:'BAKU',dir:'across',row:4,col:13,clue:"The Azerbaijan street venue with a famously long straight and a castle-side squeeze."},
+ {answer:'RUSSELL',dir:'across',row:5,col:6,clue:"The 2026 Mercedes driver carrying number 63; his teammate is the Italian surname running down clue 2."},
+ {answer:'MCLAREN',dir:'down',row:5,col:17,clue:"The Woking-based constructor associated with Norris, Piastri and its papaya identity."},
+ {answer:'CADILLAC',dir:'across',row:7,col:5,clue:"The American automotive marque joining the Formula 1 grid as its eleventh team in 2026."},
+ {answer:'AUDI',dir:'down',row:7,col:6,clue:"The four-ring manufacturer taking over the former Sauber entry for the 2026 season."},
+ {answer:'LECLERC',dir:'across',row:7,col:14,clue:"The Monégasque Ferrari driver whose home Grand Prix takes place in his own Principality."},
+ {answer:'MERCEDES',dir:'down',row:9,col:9,clue:"The Brackley-based constructor whose 2026 driver pairing carries numbers 63 and 12."},
+ {answer:'UNDERCUT',dir:'down',row:10,col:3,clue:"A pit-wall tactic: stop earlier for fresh tyres and use the pace advantage to jump a rival."},
+ {answer:'SILVERSTONE',dir:'across',row:10,col:5,clue:"The Northamptonshire circuit that staged the first Formula 1 World Championship race in 1950."},
+ {answer:'SENNA',dir:'across',row:11,col:0,clue:"Brazilian three-time World Champion closely associated with McLaren's late-1980s and early-1990s dominance."},
+ {answer:'SPA',dir:'down',row:11,col:0,clue:"The Belgian circuit whose Eau Rouge–Raidillon climb is one of motorsport's best-known sequences."},
+ {answer:'VERSTAPPEN',dir:'down',row:11,col:19,clue:"The Dutch driver who won four consecutive Drivers' Championships from 2021 through 2024."},
+ {answer:'MONACO',dir:'across',row:12,col:5,clue:"The Principality street track featuring a harbour, a tunnel and the Fairmont hairpin."},
+ {answer:'MONZA',dir:'down',row:12,col:14,clue:"The Italian Grand Prix venue nicknamed the Temple of Speed."},
+ {answer:'KIMI',dir:'down',row:14,col:5,clue:"Brackley's 2026 number 12 shares a garage with number 63. Enter the younger driver's four-letter given name — not his surname."},
+ {answer:'DRS',dir:'across',row:14,col:9,clue:"The three-letter rear-wing overtaking aid used under the regulations before the 2026 rules reset."},
+ {answer:'NORRIS',dir:'across',row:14,col:14,clue:"The British McLaren driver who became World Champion in 2025 and carried number 1 in 2026."},
+ {answer:'CHICANE',dir:'across',row:15,col:3,clue:"A tight sequence of alternating left- and right-hand turns designed to slow cars."},
+ {answer:'SUZUKA',dir:'across',row:16,col:9,clue:"The Japanese figure-eight circuit famous for its Esses and the high-speed 130R."}
+];
+
+const floofiStarts=[...new Map(floofiRawEntries.map(e=>[e.row+','+e.col,{row:e.row,col:e.col}])).values()]
+ .sort((a,b)=>a.row-b.row||a.col-b.col);
+const floofiNumberMap=new Map(floofiStarts.map((p,i)=>[p.row+','+p.col,i+1]));
+const floofiEntries=floofiRawEntries.map((e,i)=>({...e,id:'floofi-entry-'+i,number:floofiNumberMap.get(e.row+','+e.col),cells:[]}));
+const floofiCellMap=new Map();
+const floofiLetters={};
+let floofiActiveEntry=null;
+let floofiCurrentKey=null;
+let floofiMode='brief';
+let floofiLives=3;
+let floofiInputNodes={};
+let floofiGridBuilt=false;
+
+function floofiKey(row,col){return row+','+col;}
+function floofiBuildModel(){
+ floofiEntries.forEach(entry=>{
+  for(let i=0;i<entry.answer.length;i++){
+   const row=entry.row+(entry.dir==='down'?i:0);
+   const col=entry.col+(entry.dir==='across'?i:0);
+   const key=floofiKey(row,col);
+   entry.cells.push(key);
+   if(!floofiCellMap.has(key))floofiCellMap.set(key,{row,col,entries:[]});
+   floofiCellMap.get(key).entries.push(entry);
+  }
+ });
+}
+ function buildFloofiGrid(){
+ if(floofiGridBuilt)return;
+ const grid=document.getElementById('floofiGrid');
+ const numberAt=new Map(floofiEntries.map(e=>[floofiKey(e.row,e.col),e.number]));
+ let html='';
+ for(let row=0;row<21;row++){
+  for(let col=0;col<21;col++){
+   const key=floofiKey(row,col);
+   if(!floofiCellMap.has(key)){html+='<div class="cw-block" aria-hidden="true"></div>';continue;}
+   const number=numberAt.get(key);
+   html+=`<div class="cw-cell" data-cell="${key}">${number?`<span class="cw-num">${number}</span>`:''}<input id="floofi-cell-${key.replace(',','-')}" data-cell="${key}" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Row ${row+1}, column ${col+1}" disabled></div>`;
+  }
+ }
+ grid.innerHTML=html;
+ floofiInputNodes={};
+ grid.querySelectorAll('input[data-cell]').forEach(input=>{
+  const key=input.dataset.cell;
+  floofiInputNodes[key]=input;
+  input.addEventListener('focus',()=>floofiSelectCell(key,false));
+  input.addEventListener('click',()=>floofiSelectCell(key,true));
+  input.addEventListener('input',()=>floofiHandleInput(input));
+  input.addEventListener('keydown',e=>floofiHandleKeydown(e,input));
+ });
+ floofiGridBuilt=true;
+ renderFloofiClues();
+}
+
+function renderFloofiClues(){
+ const across=document.getElementById('floofiAcrossClues');
+ const down=document.getElementById('floofiDownClues');
+ across.innerHTML='';down.innerHTML='';
+ ['across','down'].forEach(dir=>{
+  const target=dir==='across'?across:down;
+  floofiEntries.filter(e=>e.dir===dir).sort((a,b)=>a.number-b.number).forEach(entry=>{
+   const button=document.createElement('button');
+   button.type='button';button.className='cw-clue';button.dataset.entry=entry.id;
+   const n=document.createElement('span');n.className='cw-clue-num';n.textContent=entry.number;
+   const t=document.createElement('span');t.textContent=entry.clue;
+   button.append(n,t);
+   button.addEventListener('click',()=>floofiSelectEntry(entry,true));
+   target.appendChild(button);
+  });
+ });
+}
+
+function floofiSelectEntry(entry,focus=true){
+ if(!entry||!['playing','brief'].includes(floofiMode))return;
+ floofiActiveEntry=entry;
+ floofiCurrentKey=entry.cells.find(k=>!floofiLetters[k])||entry.cells[0];
+ floofiApplyHighlight();
+ if(focus&&floofiMode==='playing')floofiFocusCurrent();
+}
+
+function floofiSelectCell(key,toggle=true){
+ if(floofiMode!=='playing')return;
+ const cell=floofiCellMap.get(key);if(!cell)return;
+ const candidates=cell.entries;
+ let chosen=candidates.find(e=>e===floofiActiveEntry);
+ if(toggle&&floofiCurrentKey===key&&candidates.length>1&&chosen){
+  chosen=candidates.find(e=>e!==chosen)||chosen;
+ }else if(!chosen){
+  chosen=candidates.find(e=>e.dir==='across')||candidates[0];
+ }
+ floofiActiveEntry=chosen;floofiCurrentKey=key;
+ floofiApplyHighlight();
+}
+
+function floofiApplyHighlight(){
+ document.querySelectorAll('#floofiGrid .cw-cell').forEach(el=>{
+  const key=el.dataset.cell;
+  el.classList.toggle('cw-active',!!floofiActiveEntry&&floofiActiveEntry.cells.includes(key));
+  el.classList.toggle('cw-current',key===floofiCurrentKey);
+ });
+ document.querySelectorAll('.cw-clue').forEach(el=>el.classList.toggle('active',!!floofiActiveEntry&&el.dataset.entry===floofiActiveEntry.id));
+}
+
+function floofiFocusCurrent(){
+ if(!floofiCurrentKey)return;
+ const input=floofiInputNodes[floofiCurrentKey];if(input&&!input.disabled)input.focus({preventScroll:true});
+}
+
+function floofiHandleInput(input){
+ if(floofiMode!=='playing')return;
+ const key=input.dataset.cell;
+ const letter=(input.value||'').toUpperCase().replace(/[^A-Z]/g,'').slice(-1);
+ input.value=letter;
+ if(letter)floofiLetters[key]=letter;else delete floofiLetters[key];
+ floofiUpdateHUD();
+ if(letter&&floofiActiveEntry){
+  const index=floofiActiveEntry.cells.indexOf(key);
+  if(index>=0&&index<floofiActiveEntry.cells.length-1){floofiCurrentKey=floofiActiveEntry.cells[index+1];floofiApplyHighlight();floofiFocusCurrent();}
+ }
+}
+
+function floofiHandleKeydown(e,input){
+ if(floofiMode!=='playing')return;
+ const key=input.dataset.cell;
+ const index=floofiActiveEntry?floofiActiveEntry.cells.indexOf(key):-1;
+ if(e.key==='Backspace'){
+  e.preventDefault();
+  if(input.value){input.value='';delete floofiLetters[key];floofiCurrentKey=key;}
+  else if(index>0){const prev=floofiActiveEntry.cells[index-1];delete floofiLetters[prev];if(floofiInputNodes[prev])floofiInputNodes[prev].value='';floofiCurrentKey=prev;}
+  floofiUpdateHUD();floofiApplyHighlight();floofiFocusCurrent();return;
+ }
+ if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+  if(floofiActiveEntry){e.preventDefault();const next=Math.max(0,Math.min(floofiActiveEntry.cells.length-1,index+(e.key==='ArrowRight'?1:-1)));floofiCurrentKey=floofiActiveEntry.cells[next];floofiApplyHighlight();floofiFocusCurrent();}return;
+ }
+ if(e.key==='ArrowUp'||e.key==='ArrowDown'){
+  e.preventDefault();const cell=floofiCellMap.get(key);const row=cell.row+(e.key==='ArrowDown'?1:-1);const col=cell.col;const candidates=[...floofiCellMap.keys()].map(k=>k.split(',').map(Number)).filter(([r,c])=>c===col&&((e.key==='ArrowDown'&&r>cell.row)||(e.key==='ArrowUp'&&r<cell.row))).sort((a,b)=>Math.abs(a[0]-row)-Math.abs(b[0]-row));
+  if(candidates.length){const target=floofiKey(...candidates[0]);floofiSelectCell(target,false);floofiFocusCurrent();}return;
+ }
+ if(e.key===' '&&floofiCellMap.get(key).entries.length>1){e.preventDefault();floofiSelectCell(key,true);floofiFocusCurrent();}
+}
+
+function floofiUpdateHUD(){
+ const filled=Object.keys(floofiLetters).length;
+ const total=floofiCellMap.size;
+ const percent=Math.round(filled/total*100);
+ document.getElementById('floofiLives').textContent='♥ '.repeat(floofiLives).trim()||'0';
+ document.getElementById('floofiFilled').textContent=filled+' / '+total;
+ document.getElementById('floofiPercent').textContent=percent+'%';
+ document.getElementById('floofiProgressBar').style.width=percent+'%';
+}
+
+function floofiSetFeedback(message){document.getElementById('floofiFeedback').textContent=message;}
+function floofiEnableGrid(enabled){Object.values(floofiInputNodes).forEach(input=>input.disabled=!enabled);}
+function openFloofi(){
+ document.getElementById('welcomeScreen').classList.add('hidden');
+ document.getElementById('raceApp').classList.add('hidden');
+ document.getElementById('floofiApp').classList.remove('hidden');
+ floofiResetState(false);
+ window.scrollTo(0,0);
+}
+function backToGrandPrix(){
+ document.getElementById('floofiApp').classList.add('hidden');
+ document.getElementById('welcomeScreen').classList.add('hidden');
+ document.getElementById('raceApp').classList.remove('hidden');
+ window.scrollTo(0,0);
+}
+function startFloofi(){
+ floofiResetState(true);
+ document.getElementById('floofiBrief').classList.add('hidden');
+ document.getElementById('floofiPlay').classList.remove('hidden');
+ floofiMode='playing';floofiEnableGrid(true);
+ floofiSetFeedback('Floofi: “Twenty-four answers. Three lives. No pressure. Actually, plenty of pressure.”');
+ const first=floofiEntries.find(e=>e.dir==='across');floofiSelectEntry(first,true);
+}
+function floofiResetState(playing){
+ floofiMode=playing?'playing':'brief';floofiLives=3;floofiActiveEntry=null;floofiCurrentKey=null;
+ Object.keys(floofiLetters).forEach(k=>delete floofiLetters[k]);
+ document.querySelectorAll('#floofiGrid input').forEach(input=>input.value='');
+ document.getElementById('floofiBrief').classList.toggle('hidden',playing);
+ document.getElementById('floofiPlay').classList.toggle('hidden',!playing);
+ document.getElementById('floofiResult').classList.remove('show');
+ document.getElementById('floofiCheckBtn').disabled=false;
+ document.getElementById('floofiCheckBtn').classList.remove('hidden');
+ floofiEnableGrid(playing);floofiUpdateHUD();floofiApplyHighlight();
+}
+function restartFloofi(){
+ floofiResetState(true);
+ document.getElementById('floofiBrief').classList.add('hidden');
+ document.getElementById('floofiPlay').classList.remove('hidden');
+ floofiSetFeedback('Fresh grid. Same 24 answers. Cookie has been appointed as your invigilator.');
+ floofiSelectEntry(floofiEntries[0],true);
+}
+function checkFloofiCrossword(){
+ if(floofiMode!=='playing')return;
+ const missing=[...floofiCellMap.keys()].filter(k=>!floofiLetters[k]);
+ if(missing.length){floofiSetFeedback(`Grid incomplete: ${missing.length} square${missing.length===1?' is':'s are'} still empty. Fill every square first — an incomplete submission does not cost a life.`);const first=missing[0];floofiCurrentKey=first;const cell=floofiCellMap.get(first);floofiActiveEntry=cell.entries.find(e=>e.dir==='across')||cell.entries[0];floofiApplyHighlight();floofiFocusCurrent();return;}
+ const wrong=floofiEntries.filter(entry=>entry.cells.some((key,i)=>floofiLetters[key]!==entry.answer[i]));
+ if(wrong.length===0){finishFloofi(true);return;}
+ floofiLives--;
+ const roasts=[
+  'The grid has more plot twists than a safety-car restart. One life gone. Read those clues again.',
+  'Floofi has reviewed the evidence and would like to remind you that vibes are not a spelling system.',
+  'Cookie has filed a formal report. That was your final life — the crossword wins this round.'
+ ];
+ floofiSetFeedback(roasts[2-floofiLives]||roasts[0]);
+ floofiUpdateHUD();
+ if(floofiLives<=0)finishFloofi(false);
+}
+function finishFloofi(won){
+ floofiMode=won?'won':'lost';floofiEnableGrid(false);
+ document.getElementById('floofiCheckBtn').disabled=true;
+ const result=document.getElementById('floofiResult');
+ document.getElementById('floofiResultEmoji').textContent=won?'☁️🏆':'🫠';
+ document.getElementById('floofiResultTitle').textContent=won?'FLOOFI UNLOCKED!':'FLOOFI HAS YOU BEAT';
+ document.getElementById('floofiResultText').textContent=won
+  ?`Every crossing letter is correct. Floofi has joined your Creature World collection — and is already acting like the smartest creature here. Lives remaining: ${floofiLives}.`
+  :'All three lives are gone. The answers are still out there, and Floofi is being unbearably smug. Restart the puzzle and take another run at it.';
+  document.getElementById('floofiRetryBtn').textContent=won?'PLAY AGAIN':'TRY AGAIN';
+ document.getElementById('floofiNextBtnGame3').classList.toggle('hidden',!won);
+ result.classList.add('show');
+ if(won){
+  try{localStorage.setItem('cwFloofiUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();const got=JSON.parse(localStorage.getItem('cwGot')||'[]');if(!got.includes('Floofi'))got.push('Floofi');localStorage.setItem('cwGot',JSON.stringify(got));}catch(e){console.warn('Could not save Floofi progress:',e);}
+  floofiSetFeedback('Floofi: “Well. That was annoyingly impressive. Welcome to the collection.”');
+ }else floofiSetFeedback('Floofi: “I shall be here, floating smugly, when you are ready to try again.”');
+}
+
+floofiBuildModel();
+buildFloofiGrid();
+floofiUpdateHUD();
+
+
+/* GAME 3 — PUFFWING'S STRUCTURAL BUILD BATTLE */
+const puffCosts={floor:{wood:1,stone:0},wall:{wood:1,stone:1},door:{wood:2,stone:1},roof:{wood:1,stone:1},ramp:{wood:2,stone:0}};
+let puffGrid=[],puffWood=32,puffStone=18,puffTool='floor',puffMode='brief',puffTime=135,puffLast=0,puffRaf=0,puffCount=3,puffBuildStarted=false;
+const puffEl=id=>document.getElementById(id);
+function emptyPuffCell(){return{floor:false,wall:false,door:false,roof:false,ramp:false};}
+function initPuffGrid(){puffGrid=Array.from({length:7},()=>Array.from({length:7},emptyPuffCell));}
+function puffCollectUnlocked(name){try{const got=JSON.parse(localStorage.getItem('cwGot')||'[]');if(!got.includes(name))got.push(name);localStorage.setItem('cwGot',JSON.stringify(got));}catch(e){console.warn('Progress save unavailable',e);}}
+function openPuffwing(){
+ if(localStorage.getItem('cwFloofiUnlocked')!=='yes'){alert('Floofi must be unlocked before this challenge.');return;}
+ stopPuffLoop();document.getElementById('welcomeScreen').classList.add('hidden');document.getElementById('raceApp').classList.add('hidden');document.getElementById('floofiApp').classList.add('hidden');document.getElementById('arenaApp').classList.add('hidden');puffEl('puffwingApp').classList.remove('hidden');resetPuffBuild();window.scrollTo(0,0);
+}
+function backToFloofi(){stopPuffLoop();puffEl('puffwingApp').classList.add('hidden');document.getElementById('floofiApp').classList.remove('hidden');window.scrollTo(0,0);}
+function selectPuffTool(tool){puffTool=tool;document.querySelectorAll('.build-tool').forEach(b=>b.classList.toggle('active',b.dataset.tool===tool));puffSetFeedback(tool==='erase'?'Eraser selected. Clear misplaced pieces and recover their materials.':tool.toUpperCase()+' selected. Choose a square on the plot.');}
+function puffSetFeedback(text){puffEl('puffFeedback').textContent=text;}
+function updatePuffResources(){puffEl('puffWood').textContent=puffWood;puffEl('puffStone').textContent=puffStone;puffEl('puffWoodSide').textContent=puffWood;puffEl('puffStoneSide').textContent=puffStone;}
+function puffRenderGrid(){
+ const grid=puffEl('puffGrid');let html='';
+ for(let r=0;r<7;r++)for(let c=0;c<7;c++){
+  const cell=puffGrid[r][c],pieces=[];
+  if(cell.floor)pieces.push('<span class="piece floor">F</span>');
+  if(cell.wall)pieces.push('<span class="piece wall">W</span>');
+  if(cell.door)pieces.push('<span class="piece door">D</span>');
+  if(cell.roof)pieces.push('<span class="piece roof">R</span>');
+  if(cell.ramp){
+   let arrow='↗',door=null;
+   for(let rr=0;rr<7;rr++)for(let cc=0;cc<7;cc++)if(puffGrid[rr][cc].door)door=[rr,cc];
+   if(door){const [dr,dc]=door;if(dr<r)arrow='↑';else if(dr>r)arrow='↓';else if(dc<c)arrow='←';else if(dc>c)arrow='→';}
+   pieces.push(`<span class="piece ramp">${arrow}</span>`);
+  }
+  const cls=(cell.floor?' has-floor':'')+(cell.ramp?' has-ramp':'');
+  html+=`<button type="button" class="build-cell${cls}" data-r="${r}" data-c="${c}" aria-label="Build square row ${r+1}, column ${c+1}"><span class="cell-coord">${r+1}.${c+1}</span>${pieces.join('')}</button>`;
+ }
+ grid.innerHTML=html;
+ grid.querySelectorAll('.build-cell').forEach(btn=>btn.addEventListener('click',()=>puffPlacePiece(Number(btn.dataset.r),Number(btn.dataset.c))));
+}
+function puffRefund(piece){const cost=puffCosts[piece];if(!cost)return;puffWood+=cost.wood;puffStone+=cost.stone;}
+function puffPlacePiece(r,c){
+ if(puffMode!=='building')return;
+ const cell=puffGrid[r][c];
+ if(puffTool==='erase'){
+  let removed=false;Object.keys(puffCosts).forEach(piece=>{if(cell[piece]){cell[piece]=false;puffRefund(piece);removed=true;}});
+  if(!removed){puffSetFeedback('There is nothing on that square to erase. A rare moment of structural perfection.');return;}
+  updatePuffResources();puffRenderGrid();puffSetFeedback('Piece removed. Materials returned to your supply.');return;
+ }
+ const piece=puffTool;
+ if(!puffCosts[piece])return;
+ if(cell[piece]){cell[piece]=false;puffRefund(piece);updatePuffResources();puffRenderGrid();puffSetFeedback(piece.toUpperCase()+' removed. Materials recovered.');return;}
+ if(['wall','door','roof'].includes(piece)&&!cell.floor){puffSetFeedback('That piece needs a foundation tile underneath. Build the floor first.');return;}
+ if(piece==='wall'&&cell.door){cell.door=false;puffRefund('door');}
+ if(piece==='door'&&cell.wall){cell.wall=false;puffRefund('wall');}
+ if(piece==='ramp'){
+  for(let rr=0;rr<7;rr++)for(let cc=0;cc<7;cc++)if(puffGrid[rr][cc].ramp){puffGrid[rr][cc].ramp=false;puffRefund('ramp');}
+ }
+ const cost=puffCosts[piece];
+ if(puffWood<cost.wood||puffStone<cost.stone){puffSetFeedback('Not enough materials. Erase a misplaced piece or rethink the build.');return;}
+ puffWood-=cost.wood;puffStone-=cost.stone;cell[piece]=true;
+ updatePuffResources();puffRenderGrid();puffSetFeedback(piece.toUpperCase()+' placed at '+(r+1)+'.'+(c+1)+'. Keep the structure connected.');
+}
+function resetPuffBuild(){
+ stopPuffLoop();initPuffGrid();puffWood=32;puffStone=18;puffTool='floor';puffMode='brief';puffTime=135;puffCount=3;puffBuildStarted=false;
+ puffEl('puffBrief').classList.remove('hidden');puffEl('puffPlay').classList.add('hidden');puffEl('puffBuildResult').classList.remove('show');puffEl('puffCountdownOverlay').classList.add('hidden');
+ selectPuffTool('floor');puffRenderGrid();updatePuffResources();puffUpdateTimer();puffEl('puffNextArenaBtn').classList.add('hidden');
+}
+function startPuffwingBuild(){
+ resetPuffBuild();puffEl('puffBrief').classList.add('hidden');puffEl('puffPlay').classList.remove('hidden');puffMode='countdown';puffCount=3;puffLast=performance.now();puffEl('puffCountdownOverlay').classList.remove('hidden');puffEl('puffCount').textContent='3';puffRaf=requestAnimationFrame(puffLoop);
+}
+function stopPuffLoop(){if(puffRaf)cancelAnimationFrame(puffRaf);puffRaf=0;if(puffMode==='building'||puffMode==='countdown')puffMode='paused';}
+function puffUpdateTimer(){const seconds=Math.max(0,Math.ceil(puffTime));puffEl('puffTime').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');puffEl('puffStormBar').style.width=((135-puffTime)/135*100)+'%';puffEl('puffPhase').textContent=puffTime>75?'Storm gathering':puffTime>30?'Storm closing in':'FINAL STORM WARNING';}
+function puffLoop(now){
+ if(!['countdown','building'].includes(puffMode))return;
+ const dt=Math.min(.05,Math.max(0,(now-puffLast)/1000));puffLast=now;
+ if(puffMode==='countdown'){
+  puffCount-=dt;
+  if(puffCount<=0){puffMode='building';puffBuildStarted=true;puffEl('puffCountdownOverlay').classList.add('hidden');puffSetFeedback('STORM CLOCK STARTED. Puffwing: “Nine floors. Eight edges. One roof. Please do not improvise gravity.”');}
+  else puffEl('puffCount').textContent=Math.ceil(puffCount);
+ }else{
+  puffTime=Math.max(0,puffTime-dt);puffUpdateTimer();
+  if(puffTime<=0){finishPuffBuild(false,'The storm reached the plot before the skybase was structurally complete.');return;}
+ }
+ puffRaf=requestAnimationFrame(puffLoop);
+}
+function puffFindFoundation(){
+ const floors=[];for(let r=0;r<7;r++)for(let c=0;c<7;c++)if(puffGrid[r][c].floor)floors.push([r,c]);
+ if(floors.length!==9)return{error:`Foundation check: you have ${floors.length} floor tiles. The base needs exactly nine.`};
+ const minR=Math.min(...floors.map(p=>p[0])),maxR=Math.max(...floors.map(p=>p[0])),minC=Math.min(...floors.map(p=>p[1])),maxC=Math.max(...floors.map(p=>p[1]));
+ if(maxR-minR!==2||maxC-minC!==2)return{error:'Foundation check: the nine floors must form one solid 3×3 square, not a scattered platform.'};
+ for(let r=minR;r<=maxR;r++)for(let c=minC;c<=maxC;c++)if(!puffGrid[r][c].floor)return{error:'Foundation check: there is a gap in the 3×3 floor. Connect every tile.'};
+ return{minR,maxR,minC,maxC,floors};
+}
+function puffValidateStructure(){
+ const base=puffFindFoundation();if(base.error)return{ok:false,message:base.error};
+ const {minR,maxR,minC,maxC}=base;let doors=[],walls=0,roofs=0,ramps=[],badExtras=[];
+ for(let r=0;r<7;r++)for(let c=0;c<7;c++){
+  const cell=puffGrid[r][c],inside=cell.floor;
+  if(cell.wall||cell.door||cell.roof){if(!inside)badExtras.push([r,c]);}
+  if(cell.ramp)ramps.push([r,c]);
+  if(inside){
+   const edge=r===minR||r===maxR||c===minC||c===maxC;
+   if(edge){if(cell.door)doors.push([r,c]);else if(cell.wall)walls++;else return{ok:false,message:'Your outer ring has an opening. Every edge tile needs a wall, except for the single doorway.'};}
+   else if(cell.wall||cell.door)return{ok:false,message:'The centre of the base must stay open. Keep walls and the door on the outer ring.'};
+   if(cell.roof)roofs++;
+   else return{ok:false,message:'Roof check: every one of the nine foundation tiles needs a roof piece above it.'};
+  }
+ }
+ if(badExtras.length)return{ok:false,message:'There are unsupported wall or roof pieces floating outside the foundation. Remove them.'};
+ if(doors.length!==1)return{ok:false,message:`Door check: there must be exactly one doorway. Your build currently has ${doors.length}.`};
+ if(walls!==7)return{ok:false,message:`Wall check: the other seven outer tiles need walls. You currently have ${walls}.`};
+ if(roofs!==9)return{ok:false,message:'The roof is incomplete. Cover the whole 3×3 foundation.'};
+  if(ramps.length!==1)return{ok:false,message:`Ramp check: place exactly one ramp outside the doorway. Found ${ramps.length}.`};
+ const [dr,dc]=doors[0],[rr,rc]=ramps[0];
+ if(Math.abs(dr-rr)+Math.abs(dc-rc)!==1)return{ok:false,message:'The ramp does not touch the doorway. Move it to an outside square directly beside the door.'};
+ if(puffGrid[rr][rc].floor)return{ok:false,message:'The ramp must sit outside the foundation, not on top of a floor tile.'};
+ return{ok:true,message:'Structural inspection passed: connected foundation, supported roof, enclosed walls, one doorway and a connected access ramp.'};
+}
+function checkPuffBuild(){
+ if(puffMode!=='building')return;
+ const result=puffValidateStructure();
+ puffSetFeedback(result.ok?'Puffwing: “Wait… you actually understand structural integrity?!”':result.message+' No materials or lives are lost by checking. Adjust the build and try again.');
+ if(result.ok)finishPuffBuild(true,result.message);
+}
+function finishPuffBuild(won,message){
+ stopPuffLoop();puffMode=won?'won':'lost';puffEl('puffBuildResult').classList.add('show');puffEl('puffBuildEmoji').textContent=won?'🪽🏆':'🌪️';puffEl('puffBuildTitle').textContent=won?'PUFFWING UNLOCKED!':'THE STORM WON THIS ROUND';
+ puffEl('puffBuildText').textContent=won?message+' Your skybase passed inspection. Puffwing has joined your Creature World collection.':message+' Reset the plot and try a new layout. The structure checker will tell you what needs fixing.';
+ puffEl('puffNextArenaBtn').classList.toggle('hidden',!won);
+ if(won){try{localStorage.setItem('cwPuffwingUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Puffwing');}catch(e){console.warn(e);}puffSetFeedback('Puffwing: “A flawless build. I am choosing to believe you had help from a very competent architect.”');}
+ else puffSetFeedback('Puffwing: “The storm has opinions about your engineering. Rebuild and prove it wrong.”');
+}
+
+/* GAME 4 — ANIME-INSPIRED TURN-BASED CREATURE DUEL */
+const arenaFighters={
+ Blazbit:{emoji:'🔥',hp:132,quick:'Flame Flick',quickMin:18,quickMax:23,special:'Ember Break',specialMin:39,specialMax:47,specialText:'39–47 damage and sets a two-hit scorch.'},
+ Floofi:{emoji:'☁️',hp:140,quick:'Cloud Tap',quickMin:15,quickMax:20,special:'Nebula Burst',specialMin:30,specialMax:37,specialText:'30–37 damage and restores up to 14 HP.'},
+ Puffwing:{emoji:'🪽',hp:128,quick:'Wing Slash',quickMin:17,quickMax:22,special:'Cyclone Dive',specialMin:34,specialMax:42,specialText:'34–42 damage and prepares an evasive shield.'}
+};
+let arenaFighter='Blazbit',arenaState=null;
+const arena$=id=>document.getElementById(id);
+function openArena(){
+ if(localStorage.getItem('cwPuffwingUnlocked')!=='yes'){alert('Complete Puffwing’s Build Battle to unlock the arena.');return;}
+ document.querySelectorAll('.arena-fighter').forEach(b=>{const k={Blazbit:'cwBlazbitUnlocked',Floofi:'cwFloofiUnlocked',Puffwing:'cwPuffwingUnlocked'}[b.dataset.fighter];b.disabled=localStorage.getItem(k)!=='yes';});
+ if(localStorage.getItem(({Blazbit:'cwBlazbitUnlocked',Floofi:'cwFloofiUnlocked',Puffwing:'cwPuffwingUnlocked'})[arenaFighter])!=='yes')arenaFighter='Blazbit';
+ document.getElementById('welcomeScreen').classList.add('hidden');document.getElementById('raceApp').classList.add('hidden');document.getElementById('floofiApp').classList.add('hidden');arena$('puffwingApp').classList.add('hidden');arena$('arenaApp').classList.remove('hidden');arena$('arenaSelect').classList.remove('hidden');arena$('arenaBattle').classList.add('hidden');arena$('arenaResult').classList.remove('show');arena$('arenaMapReveal').classList.remove('show');selectArenaFighter(arenaFighter);window.scrollTo(0,0);
+}
+function backToPuffwing(){arena$('arenaApp').classList.add('hidden');arena$('puffwingApp').classList.remove('hidden');window.scrollTo(0,0);}
+function selectArenaFighter(name){
+ const unlockKey={Blazbit:'cwBlazbitUnlocked',Floofi:'cwFloofiUnlocked',Puffwing:'cwPuffwingUnlocked'}[name];
+ if(!arenaFighters[name]||localStorage.getItem(unlockKey)!=='yes')return;arenaFighter=name;document.querySelectorAll('.arena-fighter').forEach(b=>b.classList.toggle('selected',b.dataset.fighter===name));const f=arenaFighters[name];arena$('arenaFighterNote').textContent=name+' is ready. Signature move: '+f.special+'. Vexori has been warned.';
+}
+function startArenaBattle(){
+ const f=arenaFighters[arenaFighter];arenaState={mode:'battle',phase:1,playerHp:f.hp,maxPlayerHp:f.hp,energy:25,enemyHp:112,maxEnemyHp:112,enemyCharge:false,guard:false,healed:false,enemyShieldUsed:false,turn:0,busy:false,burnHits:0,windGuard:false};
+ arena$('arenaSelect').classList.add('hidden');arena$('arenaResult').classList.remove('show');arena$('arenaMapReveal').classList.remove('show');arena$('arenaBattle').classList.remove('hidden');arena$('arenaPlayerEmoji').textContent=f.emoji;arena$('arenaPlayerName').textContent=arenaFighter;arena$('arenaSpecialText').textContent='Costs 40 energy · '+f.specialText;arena$('arenaEnemyEmoji').textContent='🌑🐉';arena$('arenaEnemyName').textContent='VEXORI';arena$('arenaLog').textContent='Vexori descends from the starfall gate. “You made it this far. Let us see if your bond is stronger than the void.”';arena$('arenaBattleHint').textContent='Build energy with Quick Strike. Guard when Vexori begins charging.';arenaUpdate();
+}
+function arenaLogLine(text){const log=arena$('arenaLog');log.textContent+='\n'+text;log.scrollTop=log.scrollHeight;}
+function arenaUpdate(){
+ if(!arenaState)return;const s=arenaState;const f=arenaFighters[arenaFighter];
+ arena$('arenaPlayerHpText').textContent=Math.max(0,s.playerHp)+' / '+s.maxPlayerHp;arena$('arenaPlayerHpBar').style.width=Math.max(0,s.playerHp/s.maxPlayerHp*100)+'%';arena$('arenaPlayerEnergyText').textContent=s.energy+' / 100';arena$('arenaPlayerEnergyBar').style.width=s.energy+'%';
+ arena$('arenaEnemyHpText').textContent=Math.max(0,s.enemyHp)+' / '+s.maxEnemyHp;arena$('arenaEnemyHpBar').style.width=Math.max(0,s.enemyHp/s.maxEnemyHp*100)+'%';arena$('arenaEnemyState').textContent=s.enemyCharge?'CHARGING!':s.phase===2?'AWAKENED':'WATCHING';arena$('arenaEnemyEnergyBar').style.width=(s.enemyCharge?85:30)+'%';arena$('arenaPhaseLabel').textContent=s.phase===1?'PHASE 1 · THE VOID WARDEN':'PHASE 2 · VEXORI AWAKENED';
+ arena$('arenaSpecialBtn').disabled=s.energy<40||s.busy;arena$('arenaHealBtn').disabled=s.healed||s.playerHp>=s.maxPlayerHp||s.busy;['arenaQuickBtn','arenaGuardBtn'].forEach(id=>arena$(id).disabled=s.busy);
+}
+function useArenaMove(move){
+ const s=arenaState;if(!s||s.mode!=='battle'||s.busy)return;
+ const f=arenaFighters[arenaFighter];
+ if(move==='special'&&s.energy<40){arenaLogLine('Not enough energy for '+f.special+'. Use a Quick Strike or Guard to build energy.');return;}
+ if(move==='heal'&&(s.healed||s.playerHp>=s.maxPlayerHp)){arenaLogLine('Your recovery charge is unavailable or your HP is already full.');return;}
+ s.turn++;
+ let line='';
+ if(move==='quick'){
+  const damage=f.quickMin+Math.floor(Math.random()*(f.quickMax-f.quickMin+1));
+  s.enemyHp-=damage;s.energy=Math.min(100,s.energy+20);
+  line=arenaFighter+' uses '+f.quick+' for '+damage+' damage. +20 energy.';
+ }
+ if(move==='special'){
+  const damage=f.specialMin+Math.floor(Math.random()*(f.specialMax-f.specialMin+1));
+  s.enemyHp-=damage;s.energy-=40;
+  line=arenaFighter+' unleashes '+f.special+' for '+damage+' damage!';
+  if(arenaFighter==='Blazbit'){
+   s.burnHits=2;line+=' Vexori is scorched: the next two enemy hits will each suffer 5 extra damage.';
+  }else if(arenaFighter==='Floofi'){
+   const recovered=Math.min(14,s.maxPlayerHp-s.playerHp);s.playerHp+=recovered;line+=' Nebula Burst restores '+recovered+' HP.';
+  }else if(arenaFighter==='Puffwing'){
+   s.windGuard=true;line+=' Cyclone Dive leaves an evasive shield that halves the next hit.';
+  }
+ }
+ if(move==='guard'){
+  s.guard=true;s.energy=Math.min(100,s.energy+24);
+  line=arenaFighter+' raises a protective guard. The next incoming hit is reduced by 65%. +24 energy.';
+ }
+ if(move==='heal'){
+  const amount=Math.min(30,s.maxPlayerHp-s.playerHp);s.playerHp+=amount;s.healed=true;s.energy=Math.min(100,s.energy+8);
+  line=arenaFighter+' uses a recovery charm and restores '+amount+' HP. This was your one recovery charge.';
+ }
+ arenaLogLine(line);s.enemyHp=Math.max(0,s.enemyHp);arenaUpdate();
+ if(s.enemyHp<=0){
+  if(s.phase===1){
+   s.phase=2;s.enemyHp=96;s.maxEnemyHp=96;s.playerHp=Math.min(s.maxPlayerHp,s.playerHp+22);s.energy=Math.min(100,s.energy+25);s.enemyCharge=true;
+   arena$('arenaEnemyName').textContent='VEXORI · ECLIPSE FORM';arena$('arenaEnemyEmoji').textContent='🌘🐉';
+   arenaLogLine('VEXORI AWAKENS — the arena darkens. A second form emerges with 96 HP. Your bond restores 22 HP and 25 energy. It is charging a heavy strike: GUARD on your next turn!');arenaUpdate();return;
+  }
+  finishArena(true);return;
+ }
+ arenaEnemyTurn();
+}
+function arenaEnemyTurn(){
+ const s=arenaState;if(!s||s.mode!=='battle')return;
+ let damage=0,kind='';
+ if(s.enemyCharge){
+  damage=31+(s.phase===2?4:0);kind='charged';
+  s.enemyCharge=false;
+ }else if(s.phase===2&&!s.enemyShieldUsed&&s.enemyHp<58){
+  s.enemyShieldUsed=true;s.enemyCharge=true;
+  arenaLogLine('Vexori forms an eclipse shield and begins charging an even heavier strike. GUARD NOW.');arenaUpdate();return;
+ }else if(s.turn%3===0||Math.random()<.23){
+  s.enemyCharge=true;
+  arenaLogLine('Vexori gathers void energy. Its next attack will hit hard — prepare to GUARD.');arenaUpdate();return;
+ }else{
+  damage=14+Math.floor(Math.random()*5)+(s.phase===2?3:0);kind='regular';
+ }
+ if(s.guard){damage=Math.ceil(damage*.35);arenaLogLine('Your guard absorbs 65% of Vexori’s '+(kind==='charged'?'charged Eclipse Break':'Shadow Claw')+'.');s.guard=false;}
+ else if(s.windGuard){damage=Math.ceil(damage*.5);arenaLogLine('Puffwing’s evasive shield halves the incoming hit.');s.windGuard=false;}
+ else if(kind==='charged')arenaLogLine('VEXORI RELEASES ECLIPSE BREAK! The charged attack lands for '+damage+' damage.');
+  else arenaLogLine('Vexori strikes with Shadow Claw for '+damage+' damage.');
+ s.playerHp=Math.max(0,s.playerHp-damage);
+ if(s.burnHits>0){s.enemyHp=Math.max(0,s.enemyHp-5);s.burnHits--;arenaLogLine('Blazbit’s scorch deals 5 extra damage. Scorch turns remaining: '+s.burnHits+'.');}
+ arenaUpdate();
+ if(s.playerHp<=0){finishArena(false);return;}
+ if(s.enemyHp<=0){
+  if(s.phase===1){
+   s.phase=2;s.enemyHp=96;s.maxEnemyHp=96;s.playerHp=Math.min(s.maxPlayerHp,s.playerHp+22);s.energy=Math.min(100,s.energy+25);s.enemyCharge=true;
+   arena$('arenaEnemyName').textContent='VEXORI · ECLIPSE FORM';arena$('arenaEnemyEmoji').textContent='🌘🐉';
+   arenaLogLine('VEXORI AWAKENS — the scorch finishes its first form, but an Eclipse Form rises with 96 HP. Your bond restores 22 HP and 25 energy. It is charging a heavy strike: GUARD next!');arenaUpdate();return;
+  }
+  finishArena(true);return;
+ }
+ arena$('arenaBattleHint').textContent=s.enemyCharge?'Vexori is charging. Guard on your next turn.':'Choose your next move. Build energy before spending your signature attack.';
+}
+function finishArena(won){
+ const s=arenaState;if(!s)return;s.mode=won?'won':'lost';arena$('arenaBattle').classList.add('hidden');arena$('arenaResult').classList.add('show');
+ arena$('arenaResultEmoji').textContent=won?'🌟🏆':'💫';arena$('arenaResultTitle').textContent=won?'VEXORI DEFEATED — LUNARI AWAKENS!':'THE STARFALL GATE HOLDS';
+ arena$('arenaResultText').textContent=won?'You defeated both of Vexori’s forms with '+arenaFighter+'. Lunari has joined your collection — and the seal protecting Chocobloom Island has broken.':'Vexori’s final strike was too much this time. Your creature can fight again. Watch for the charge warning and guard before the impact.';
+ arena$('arenaRetryBtn').textContent=won?'REMATCH VEXORI':'TRY THE DUEL AGAIN';
+ if(won){try{localStorage.setItem('cwLunariUnlocked','yes');localStorage.setItem('cwMapUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Lunari');}catch(e){console.warn(e);}arena$('arenaMapReveal').classList.add('show');arena$('arenaRetryBtn').classList.add('hidden');}
+ else arena$('arenaRetryBtn').classList.remove('hidden');
+}
+function retryArena(){arena$('arenaResult').classList.remove('show');arena$('arenaMapReveal').classList.remove('show');arena$('arenaSelect').classList.remove('hidden');arena$('arenaBattle').classList.add('hidden');selectArenaFighter(arenaFighter);}
+
+
+
+/* CHOCOBLOOM ISLAND — ROUTE PROGRESSION, LOGIC TREASURE HUNT & USER LETTER */
+const treasureStages=[
+ {name:'Scoop District',emoji:'🍦',title:'The Choco Bite Split',question:'A box contains 24 Choco Bite pieces. Dummy takes one-third of the pieces. Cookie then eats one-quarter of the pieces that remain. The rest are split equally between two picnic bags.\n\nHow many pieces go into EACH bag?\n\nBe careful: Cookie takes a quarter of what is left, not a quarter of the original 24.',hint:'First remove one-third of 24. Then calculate one-quarter of the remainder. Divide what is still left into two equal bags.',answer:['6','SIX'],note:'Do the operations in sequence. Do not calculate both fractions from the original 24.'},
+ {name:'Catto-Doggo Meadows',emoji:'🐾',title:'The Pawprint Coordinates',question:'The meadow uses a square grid. Columns run A to G from west to east. Rows run 1 to 7 from north to south.\n\nStart at D4 and follow the pawprints in this exact order:\n• Move 2 squares NORTH.\n• Move 1 square EAST.\n• Move 3 squares SOUTH.\n• Move 2 squares WEST.\n• Move 1 square NORTH.\n\nWhere do you finish? Enter the column letter followed by the row number (for example, B6).',hint:'Track the row and column separately. North decreases the row number; south increases it. East moves forward in the alphabet; west moves backward.',answer:['C4','C 4','C-4'],note:'The coordinate is column first, row second. Use the compass instructions in order.'},
+ {name:'Mystery Forest',emoji:'🍄',title:'The Mushroom Sequence',question:'Five glowing mushrooms display a number sequence:\n\n2  ·  6  ·  15  ·  31  ·  56  ·  ?\n\nThe forest keeper says the gaps between the numbers are not random: each gap follows a familiar mathematical pattern. What number belongs in the final space?',hint:'Calculate the differences between neighbouring terms. They are 4, 9, 16 and 25. Think of those numbers as square numbers.',answer:['92','NINETY TWO','NINETY-TWO'],note:'Find the rule in the gaps, then add the next gap to the last term.'},
+ {name:'Sunrise Point',emoji:'🌅',title:'The Four Watchers',question:'Four explorers stand in a line from WEST to EAST, in positions 1, 2, 3 and 4. Each occupies exactly one position. The explorers are Cookie, Dummy, Floofi and Puffwing.\n\nUse all four clues:\n1. Cookie stands immediately to the LEFT of Dummy.\n2. Cookie is NOT at either end of the line.\n3. Floofi stands at one of the two ends.\n4. Puffwing stands somewhere to the RIGHT of Dummy.\n\nWhich POSITION does Puffwing occupy? Enter the position number.',hint:'Cookie cannot be at position 1 or 4. Since Cookie is immediately left of Dummy, test the remaining consecutive pair. Then use the other two clues to place Floofi and Puffwing.',answer:['4','FOUR','FOURTH'],note:'There is exactly one arrangement that satisfies every clue. Do not assume the names are already in order.'},
+ {name:'Winning Grounds',emoji:'🏆',title:'The Final Chocolate Lock',question:'You have collected four pieces of information on the trail. Combine them in the exact order below to open the chest.\n\n1. The number of pieces in EACH picnic bag at Scoop District.\n2. The alphabet position of the COLUMN letter in your Catto-Doggo coordinate (A=1, B=2, C=3…).\n3. The missing number from the Mystery Forest sequence.\n4. Puffwing’s position in the Sunrise Point line.\n\nJoin those four values together, in that order, using DIGITS ONLY. Do not add spaces or hyphens. What is the five-digit chest code?',hint:'The four values are joined, not added. Convert the coordinate letter into its alphabet number, then place the sequence answer as two digits between the second and last values.',answer:['63924'],note:'This is a combination lock. Concatenate the four solved values in order; do not sum them.'}
+];
+let islandProgress=0,treasureLives=5,treasureHints=3,treasureStageIndex=0,treasureFailed=false;
+const island$=id=>document.getElementById(id);
+function safeLoadInt(key,fallback,min,max){const raw=localStorage.getItem(key);if(raw===null||raw==='')return fallback;const n=Number(raw);return Number.isInteger(n)&&n>=min&&n<=max?n:fallback;}
+function saveTreasureState(){try{localStorage.setItem('cwTreasureProgress',String(islandProgress));localStorage.setItem('cwTreasureLives',String(treasureLives));localStorage.setItem('cwTreasureHints',String(treasureHints));}catch(e){console.warn('Treasure progress could not be saved',e);}}
+function loadTreasureState(){islandProgress=safeLoadInt('cwTreasureProgress',0,0,5);treasureLives=safeLoadInt('cwTreasureLives',5,0,5);treasureHints=safeLoadInt('cwTreasureHints',3,0,3);}
+function hideAllScreens(){['welcomeScreen','raceApp','floofiApp','puffwingApp','arenaApp','islandApp','treasureApp','letterApp'].forEach(id=>island$(id)?.classList.add('hidden'));}
+function openChocobloomMap(){
+ if(localStorage.getItem('cwMapUnlocked')!=='yes'){alert('Defeat Vexori in Starfall Arena to reveal Chocobloom Island.');return;}
+ loadTreasureState();hideAllScreens();island$('islandApp').classList.remove('hidden');renderIslandMap();window.scrollTo(0,0);
+}
+function backToArena(){hideAllScreens();island$('arenaApp').classList.remove('hidden');window.scrollTo(0,0);}
+function renderIslandMap(){
+ loadTreasureState();
+function refreshWorldLinks(){
+ const box=document.getElementById('savedWorldLinks');if(!box)return;
+ const links=[];
+ if(localStorage.getItem('cwBlazbitUnlocked')==='yes')links.push('<button class="btn alt" onclick="openFloofi()">🧩 Floofi Crossword</button>');
+ if(localStorage.getItem('cwFloofiUnlocked')==='yes')links.push('<button class="btn alt" onclick="openPuffwing()">🪽 Puffwing Build Battle</button>');
+ if(localStorage.getItem('cwPuffwingUnlocked')==='yes')links.push('<button class="btn alt" onclick="openArena()">⚔️ Starfall Arena</button>');
+ if(localStorage.getItem('cwMapUnlocked')==='yes')links.push('<button class="btn alt" onclick="openChocobloomMap()">🗺️ Chocobloom Island</button>');
+ if(localStorage.getItem('cwLetterUnlocked')==='yes')links.push('<button class="btn gold" onclick="openFinalLetter()">💌 Your Final Letter</button>');
+ box.innerHTML=links.join('');box.style.display=links.length?'flex':'none';
+}
+refreshWorldLinks();
+ for(let i=0;i<5;i++){
+  const pin=island$('islandPin'+i);pin.classList.remove('active','done','locked');
+  if(i<islandProgress){pin.classList.add('done');pin.innerHTML='<span>✓</span>'+treasureStages[i].name.toUpperCase();}
+  else if(i===islandProgress&&islandProgress<5){pin.classList.add('active');pin.innerHTML='<span>'+treasureStages[i].emoji+'</span>'+treasureStages[i].name.toUpperCase();}
+  else{pin.classList.add('locked');pin.innerHTML='<span>🔒</span>'+treasureStages[i].name.toUpperCase();}
+ }
+ island$('islandProgressBar').style.width=(islandProgress/5*100)+'%';
+ island$('islandProgressText').textContent=islandProgress+' / 5 trail seals recovered';
+ if(islandProgress>=5){
+  island$('islandMapStatus').textContent='All five seals are solved. The chest at Winning Grounds is open, and Cocoheart has been found.';
+  island$('islandMapFeedback').textContent='Treasure hunt complete. Your final letter is ready.';
+  island$('islandStartBtn').hidden=true;island$('islandChestCallout').hidden=false;island$('islandLetterBtn').hidden=false;
+ }else{
+  island$('islandMapStatus').textContent=islandProgress===0?'Your first clue is waiting in Scoop District. Tap the glowing pin to begin.':`The trail has led you to ${treasureStages[islandProgress].name}. The next pin is glowing on your map.`;
+    island$('islandMapFeedback').textContent=treasureLives+' trail lives and '+treasureHints+' hints remain. The next stop is '+treasureStages[islandProgress].name+'.';
+  island$('islandStartBtn').hidden=false;
+  if(treasureLives<=0){island$('islandStartBtn').textContent='RESET THE TREASURE HUNT';island$('islandStartBtn').onclick=resetTreasureHunt;island$('islandMapStatus').textContent='The trail lives are gone. Reset the hunt to begin again.';}
+  else{island$('islandStartBtn').textContent=islandProgress===0?'START THE TREASURE HUNT 🗺️':'CONTINUE THE TRAIL ✨';island$('islandStartBtn').onclick=()=>openTreasureStation(islandProgress);}
+  island$('islandChestCallout').hidden=true;island$('islandLetterBtn').hidden=true;
+ }
+}
+function openTreasureStation(index){
+ loadTreasureState();
+ if(index>islandProgress){island$('islandMapFeedback').textContent='That part of the map is still sealed. Solve the glowing location first.';return;}
+ if(index<islandProgress){island$('islandMapFeedback').textContent='You already recovered the seal from '+treasureStages[index].name+'. Follow the glowing route to the next location.';return;}
+ if(islandProgress>=5){openFinalLetter();return;}
+ if(treasureLives<=0){island$('islandMapFeedback').textContent='The trail lives are exhausted. Reset the hunt to try again.';return;}
+ treasureStageIndex=index;treasureFailed=false;
+ const s=treasureStages[index];
+ island$('treasureStageEmoji').textContent=s.emoji;
+ island$('treasureStageKicker').textContent='STOP '+(index+1)+' OF 5 · '+s.name.toUpperCase();
+ island$('treasureStageTitle').textContent=s.title;
+ island$('treasureLocation').textContent=s.name.toUpperCase();
+ island$('treasureQuestionTitle').textContent=s.title;
+ island$('treasureQuestion').textContent=s.question;
+ island$('treasureMethodNote').textContent=s.note;
+ island$('treasureHint').textContent=s.hint;island$('treasureHint').classList.remove('show');
+ island$('treasureAnswer').value='';island$('treasureAnswer').disabled=false;
+ island$('treasureResetBtn').hidden=true;island$('treasureHintBtn').disabled=treasureHints<=0;
+ island$('treasureFeedback').textContent='Take your time. No timer is running. Work it out before submitting.';
+ updateTreasureHUD();hideAllScreens();island$('treasureApp').classList.remove('hidden');window.scrollTo(0,0);setTimeout(()=>island$('treasureAnswer').focus(),50);
+}
+function updateTreasureHUD(){
+ island$('treasureLives').textContent='♥ '.repeat(treasureLives).trim()||'0';
+ island$('treasureHints').textContent=treasureHints;
+ island$('treasureSeals').textContent=islandProgress+' / 5';
+ island$('treasureHintBtn').disabled=treasureHints<=0;
+}
+function normalizeTreasureAnswer(value){return(value||'').toUpperCase().trim().replace(/\s+/g,'').replace(/[–—]/g,'-');}
+function submitTreasureAnswer(){
+ if(treasureFailed)return;
+ const input=island$('treasureAnswer');const value=normalizeTreasureAnswer(input.value);
+ if(!value){island$('treasureFeedback').textContent='Nothing submitted. Fill in an answer first — an empty answer costs no life.';input.focus();return;}
+ const stage=treasureStages[treasureStageIndex];
+ const accepted=stage.answer.map(normalizeTreasureAnswer);
+ if(accepted.includes(value)){
+  islandProgress=Math.min(5,islandProgress+1);saveTreasureState();
+  if(islandProgress===5){
+   try{localStorage.setItem('cwTreasureComplete','yes');localStorage.setItem('cwSecretGuardianUnlocked','yes');localStorage.setItem('cwLetterUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Cocoheart');}catch(e){console.warn(e);}
+   hideAllScreens();island$('islandApp').classList.remove('hidden');renderIslandMap();island$('islandMapFeedback').textContent='CHEST OPEN! Cocoheart, the secret guardian, has joined your collection.';island$('islandChestCallout').hidden=false;window.scrollTo(0,0);return;
+  }
+  hideAllScreens();island$('islandApp').classList.remove('hidden');renderIslandMap();island$('islandMapFeedback').textContent='Correct! '+stage.name+' seal recovered. '+treasureStages[islandProgress].name+' is now open.';window.scrollTo(0,0);return;
+ }
+ treasureLives=Math.max(0,treasureLives-1);saveTreasureState();updateTreasureHUD();
+ const roasts=['Cookie has looked at your answer, looked at you, and quietly walked away. One trail life lost.','The island has rejected that calculation. Even the mushrooms are doing better. One life lost.','The compass is spinning. The map is disappointed. Another trail life lost.','Somewhere, a mushroom just face-palmed. One more life gone.','That is the last trail life. Cookie is now the expedition leader.'];
+ island$('treasureFeedback').textContent=roasts[Math.min(4,5-treasureLives-1)]||roasts[0];
+ if(treasureLives===0){treasureFailed=true;input.disabled=true;island$('treasureResetBtn').hidden=false;island$('treasureFeedback').textContent+=' Reset the hunt to start the five locations again.';}
+}
+function useTreasureHint(){
+ if(treasureHints<=0){island$('treasureFeedback').textContent='No hints remain. Use the clues already on the page.';return;}
+ treasureHints--;saveTreasureState();updateTreasureHUD();island$('treasureHint').classList.add('show');island$('treasureHintBtn').disabled=treasureHints<=0;island$('treasureFeedback').textContent='A little nudge from the island. Three hints are shared across the entire trail.';
+}
+function resetTreasureHunt(){
+ islandProgress=0;treasureLives=5;treasureHints=3;treasureFailed=false;
+ try{['cwTreasureProgress','cwTreasureLives','cwTreasureHints','cwTreasureComplete','cwSecretGuardianUnlocked','cwLetterUnlocked'].forEach(k=>localStorage.removeItem(k));}catch(e){}
+ saveTreasureState();hideAllScreens();island$('islandApp').classList.remove('hidden');renderIslandMap();island$('islandMapFeedback').textContent='The trail has been reset. Begin again at Scoop District.';window.scrollTo(0,0);
+}
+function openFinalLetter(){
+ if(localStorage.getItem('cwLetterUnlocked')!=='yes'){alert('The final letter is still sealed. Complete the treasure hunt first.');return;}
+ hideAllScreens();island$('letterApp').classList.remove('hidden');
+ const area=island$('finalLetterText');
+ if(area.value==='')area.value=localStorage.getItem('cwFinalLetterText')||'';
+ island$('letterSaveState').textContent=area.value?'Your letter is saved in this browser. Keep writing; it saves as you go.':'Your letter is blank and ready for your words. It saves automatically as you type.';
+ window.scrollTo(0,0);
+}
+island$('finalLetterText').addEventListener('input',()=>{
+ try{localStorage.setItem('cwFinalLetterText',island$('finalLetterText').value);island$('letterSaveState').textContent='Saved just now in this browser.';}catch(e){island$('letterSaveState').textContent='This browser could not save the text. Copy or download your letter before leaving.';}
+});
+island$('treasureAnswer').addEventListener('keydown',e=>{if(e.key==='Enter')submitTreasureAnswer();});
+function downloadFinalLetter(){
+ const text=island$('finalLetterText').value;
+ if(!text.trim()){alert('Your letter is still blank. Write your words first.');return;}
+ const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='creature-world-final-letter.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+async function copyFinalLetter(){
+ const text=island$('finalLetterText').value;
+ if(!text.trim()){alert('Your letter is still blank. Write your words first.');return;}
+ try{await navigator.clipboard.writeText(text);island$('letterSaveState').textContent='Letter copied to clipboard.';}catch(e){island$('finalLetterText').select();island$('letterSaveState').textContent='Select the highlighted text and copy it manually.';}
+}
+loadTreasureState();
 
 </script>
 </body>
