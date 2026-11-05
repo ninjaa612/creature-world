@@ -176,6 +176,34 @@ p{line-height:1.55;color:var(--muted)}
 .build-hero{display:flex;align-items:center;gap:14px;margin-bottom:15px}
 .build-mascot{width:76px;height:76px;flex:0 0 76px;border-radius:22px;background:linear-gradient(135deg,#e2f7ff,#e9e4ff);display:grid;place-items:center;font-size:43px}
 .build-instructions{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:18px;margin:14px 0}
+ .build-reference{
+ margin:10px 0 14px;
+ padding:10px 12px;
+ border:1px solid #eee5f5;
+ border-radius:13px;
+ background:#fbf9ff;
+}
+
+.build-reference summary{
+ cursor:pointer;
+ color:#7655bc;
+ font-size:12px;
+ font-weight:900;
+}
+
+.build-reference ol{
+ max-height:220px;
+ overflow-y:auto;
+ padding-left:18px;
+ margin:8px 0 0;
+ color:#766884;
+ font-size:11px;
+ line-height:1.5;
+}
+
+.build-reference li{
+ margin-bottom:6px;
+}
 .build-instructions ul,.build-instructions ol{padding-left:20px;color:#766884;line-height:1.65}
 .build-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(270px,.85fr);gap:15px;align-items:start}
 .build-board-card,.build-tools-card{background:#fff;border:1px solid #eee5f5;border-radius:20px;padding:14px;min-width:0}
@@ -323,6 +351,28 @@ p{line-height:1.55;color:var(--muted)}
 @media(max-width:760px){.island-map-lower{grid-template-columns:1fr}.island-map-frame{min-height:345px;aspect-ratio:1/1}.island-pin{min-width:74px;padding:6px 5px;font-size:9px;border-radius:12px}.island-pin span{font-size:17px}.treasure-hud{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:480px){.island-map-frame{min-height:310px}.island-pin{min-width:65px;font-size:8px}.treasure-heading{align-items:flex-start}.treasure-hud{grid-template-columns:1fr 1fr}.letter-paper textarea{min-height:270px;font-size:14px;line-height:32px}}
 
+
+/* ANIMO COLLECTION + UNLOCK REVEALS */
+.collection-panel{margin-top:18px;padding:20px;background:#ffffffdf;border:1px solid white;border-radius:24px;box-shadow:0 12px 32px #715a9b18}
+.collection-heading{display:flex;justify-content:space-between;align-items:end;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.collection-heading h2{font-size:25px;margin:0}
+.collection-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.collection-card{min-width:0;text-align:center;padding:11px 8px;border:1px solid #eee5f5;border-radius:17px;background:linear-gradient(145deg,#fff,#fbf8ff)}
+.collection-card.locked{filter:saturate(.35);opacity:.65;background:#f5f2f7}
+.creature-art{display:block;width:100%;max-width:120px;height:104px;margin:0 auto 5px}
+.collection-card b{display:block;font:700 14px DynaPuff;color:#7655bc}
+.collection-card small{display:block;margin-top:4px;color:#93869f;font-size:10px;font-weight:800}
+.creature-reveal{display:none;margin:14px auto 8px;padding:14px;max-width:520px;border:2px solid #f1d9a1;border-radius:19px;background:linear-gradient(135deg,#fff9e5,#fff0f6);text-align:center}
+.creature-reveal.show{display:block;animation:revealPop .45s ease-out}
+.creature-reveal .creature-art{width:145px;height:125px;max-width:100%;margin:0 auto 2px}
+.creature-reveal .reveal-kicker{font-size:10px;letter-spacing:1.5px;font-weight:900;color:#b27b39}
+.creature-reveal h3{margin:4px 0;font-size:23px}
+.creature-reveal p{margin:3px 0 0;font-size:12px}
+@keyframes revealPop{0%{transform:scale(.88);opacity:0}100%{transform:scale(1);opacity:1}}
+.letter-paper .letter-copy{display:block;white-space:pre-wrap;margin:0;color:#51445d;font:600 16px/35px 'Times New Roman',Times,serif;padding:0 4px}
+@media(max-width:760px){.collection-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.collection-panel{padding:15px}}
+@media(max-width:430px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.letter-paper .letter-copy{font-size:14px;line-height:32px}}
+
 </style>
 </head>
 
@@ -344,7 +394,12 @@ p{line-height:1.55;color:var(--muted)}
  <span class="welcome-stat">🍫 SOMEONE'S BEEN HOARDING THE GOOD STUFF. RUDE.</span>
 </div>
 
-    <button class="btn gold" style="font-size:16px;padding:15px 23px" onclick="enterGrandPrix()">LET'S START THE ADVENTURE ✨</button>
+     <section class="collection-panel" aria-label="Your Animo collection">
+      <div class="collection-heading"><div><div class="kicker">YOUR LITTLE CREATURE CREW</div><h2>ANIMO COLLECTION</h2></div><span class="tiny" id="collectionCount">0 / 5 collected</span></div>
+      <div class="collection-grid" id="collectionGrid"></div>
+     </section>
+
+     <button class="btn gold" style="font-size:16px;padding:15px 23px" onclick="enterGrandPrix()">LET'S START THE ADVENTURE ✨</button>
     <p class="tiny" style="margin-top:11px">Player profile: DUMMY · Current mission: earn Blazbit</p>
     <div id="savedWorldLinks" class="welcome-stats" style="margin-top:10px;display:none" aria-live="polite"></div>
    </div>
@@ -376,7 +431,7 @@ p{line-height:1.55;color:var(--muted)}
 <header class="top">
  <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> Blazbit's GRAND PRIX</div>
  <div class="row">
-  <span class="tag">🏁 EXPERT TRIAL · 01</span>
+  <span class="tag">🏁 PUZZLE · 01</span>
   <button class="btn alt" onclick="returnToWelcome()">← World intro</button>
  </div>
 </header>
@@ -509,6 +564,7 @@ p{line-height:1.55;color:var(--muted)}
    <div class="emoji" id="resultEmoji">🏆</div>
    <h2 id="resultTitle">Race complete!</h2>
    <p id="resultText"></p>
+   <div class="creature-reveal" id="blazbitReveal"></div>
    <button class="btn" onclick="restartRace()">RACE AGAIN</button>
    <button class="btn alt" onclick="backToBriefing()">CHANGE TYRES</button>
    <button class="btn gold hidden" id="floofiNextBtn" onclick="openFloofi()">NEXT CHALLENGE: FLOOFI'S CROSSWORD ✨</button>
@@ -528,7 +584,7 @@ p{line-height:1.55;color:var(--muted)}
   <header class="top">
    <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> Floofi's CROSSWORD</div>
    <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-    <span class="tag">🧩 EXPERT TRIAL · 02</span>
+    <span class="tag">🧩 PUZZLE · 02</span>
     <button class="btn alt" onclick="backToGrandPrix()">← Back to Grand Prix</button>
    </div>
   </header>
@@ -601,6 +657,7 @@ p{line-height:1.55;color:var(--muted)}
       <div class="floofi-result-emoji" id="floofiResultEmoji">☁️</div>
       <h2 id="floofiResultTitle">Floofi unlocked!</h2>
       <p id="floofiResultText"></p>
+      <div class="creature-reveal" id="floofiReveal"></div>
       <button class="btn gold" id="floofiRetryBtn" onclick="restartFloofi()">TRY AGAIN</button>
       <button class="btn gold hidden" id="floofiNextBtnGame3" onclick="openPuffwing()">NEXT CHALLENGE: PUFFWING'S BUILD BATTLE 🪽</button>
       <button class="btn alt" onclick="backToGrandPrix()">RETURN TO GRAND PRIX</button>
@@ -619,7 +676,7 @@ p{line-height:1.55;color:var(--muted)}
   <header class="top">
    <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> Puffwing's BUILD BATTLE</div>
    <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-    <span class="tag">🏗️ EXPERT TRIAL · 03</span>
+    <span class="tag">🏗️ PUZZLE · 03</span>
     <button class="btn alt" onclick="backToFloofi()">← Back to Floofi</button>
    </div>
   </header>
@@ -656,28 +713,94 @@ p{line-height:1.55;color:var(--muted)}
       <div id="puffGrid" class="build-grid" aria-label="7 by 7 building grid"></div>
       <div class="tiny" style="margin-top:9px">Multiple layers can occupy a foundation tile: floor below, wall/door at the edge and roof above.</div>
      </div>
-     <div class="build-tools-card">
-      <h3 style="margin:0">🛠️ Building tools</h3>
-      <p class="tiny" style="margin:5px 0">Select a tool, then tap the grid. Tap a placed piece again to remove it.</p>
-      <div class="build-toolbar" id="puffToolbar">
-       <button class="build-tool active" data-tool="floor" onclick="selectPuffTool('floor')">🟫 FLOOR<small>1 wood</small></button>
-       <button class="build-tool" data-tool="wall" onclick="selectPuffTool('wall')">🧱 WALL<small>1 wood + 1 stone</small></button>
-       <button class="build-tool" data-tool="door" onclick="selectPuffTool('door')">🚪 DOOR<small>2 wood + 1 stone</small></button>
-             <div class="build-toolbar" id="puffToolbar">
-       <button class="build-tool active" data-tool="floor" onclick="selectPuffTool('floor')">🟫 FLOOR<small>1 wood</small></button>
-       <button class="build-tool" data-tool="wall" onclick="selectPuffTool('wall')">🧱 WALL<small>1 wood + 1 stone</small></button>
-       <button class="build-tool" data-tool="door" onclick="selectPuffTool('door')">🚪 DOOR<small>2 wood + 1 stone</small></button>
-       <button class="build-tool" data-tool="roof" onclick="selectPuffTool('roof')">🏠 ROOF<small>1 wood + 1 stone</small></button>
-       <button class="build-tool" data-tool="ramp" onclick="selectPuffTool('ramp')">↗ RAMP<small>2 wood</small></button>
-       <button class="build-tool" data-tool="erase" onclick="selectPuffTool('erase')">🧹 ERASER<small>Recover materials</small></button>
-      </div>
-      <div class="build-resources"><div class="build-resource"><label>WOOD LEFT</label><strong id="puffWoodSide">32</strong></div><div class="build-resource"><label>STONE LEFT</label><strong id="puffStoneSide">18</strong></div></div>
-      <div class="tiny">Build the floor first. Walls, doors and roofs need a floor underneath. The ramp must be outside and touch the doorway.</div>
-      <div class="build-actions"><button class="btn mint" onclick="checkPuffBuild()">CHECK STRUCTURE ✓</button><button class="btn alt" onclick="resetPuffBuild()">RESET PLOT</button></div>
-     </div>
-    </div>
+    
+<div class="build-tools-card">
+ <h3 style="margin:0">🛠️ Building tools</h3>
+
+ <p class="tiny" style="margin:5px 0">
+  Select a tool, then tap the grid. Tap a placed piece again to remove it.
+ </p>
+
+ <details class="build-reference" open>
+  <summary>📋 BUILD INSTRUCTIONS — OPEN WHILE BUILDING</summary>
+
+  <ol>
+   <li><b>UNDERSTAND THE PLOT:</b> You have a 7 × 7 grid. Each square is labelled ROW.COLUMN. For example, 3.4 means row 3, column 4.</li>
+
+   <li><b>FOUNDATION:</b> Place exactly NINE FLOOR pieces in one complete, connected 3 × 3 square. Not an L-shape, not a rectangle, and not nine scattered tiles. The centre tile is included.</li>
+
+   <li><b>WALLS AND ENTRANCE:</b> The eight outer squares must contain exactly SEVEN WALLS and ONE DOOR. The centre square must remain free of walls and doors. The door replaces one outer wall.</li>
+
+   <li><b>ROOF:</b> Place exactly NINE ROOF pieces, one above every foundation tile, including the centre. No floating roofs outside the foundation.</li>
+
+   <li><b>ACCESS RAMP:</b> Place exactly ONE ramp on an empty grass square outside the foundation. It must touch the doorway directly: north, south, east or west. Diagonal contact does not count. It cannot overlap a floor.</li>
+
+   <li><b>MATERIAL BUDGET:</b> You start with 32 WOOD and 18 STONE. Your exact spending is:
+    <ul>
+     <li>9 floors = 9 wood</li>
+     <li>7 walls = 7 wood + 7 stone</li>
+     <li>1 door = 2 wood + 1 stone</li>
+     <li>9 roofs = 9 wood + 9 stone</li>
+     <li>1 ramp = 2 wood</li>
+    </ul>
+    You should finish with 3 wood and 1 stone. Do not waste them.
+   </li>
+
+   <li><b>TOOLS:</b> Select a tool before tapping a grid square. FLOOR creates the foundation. WALL and DOOR create the enclosure. ROOF covers the foundation. RAMP creates the entrance. ERASER removes all pieces on a square and refunds their materials. Walls, doors and roofs require a floor underneath.</li>
+
+   <li><b>INSPECTION:</b> Press CHECK STRUCTURE whenever you like. Failed inspections do not deduct materials or lives. Read the feedback and correct your mistakes. The storm clock does not stop.</li>
+
+   <li><b>STORM TIMER:</b> You have exactly 2 MINUTES AND 15 SECONDS. The timer starts after the three-second countdown. There is no pause button.</li>
+
+   <li><b>FINAL CHECKLIST:</b>
+    <ul>
+     <li>Exactly 9 connected floors in a 3 × 3 square.</li>
+     <li>Exactly 7 walls around the outer edge.</li>
+     <li>Exactly 1 door replacing an outer wall.</li>
+     <li>Exactly 9 roofs covering the foundation.</li>
+     <li>Exactly 1 external ramp touching the doorway.</li>
+     <li>No unsupported walls, doors or roofs.</li>
+    </ul>
+    Every requirement must be satisfied. Almost structurally sound is still structurally unsound.
+   </li>
+  </ol>
+
+  <p><b>Puffwing's final warning:</b> "I have wings. I understand gravity better than you do. Please do not make me explain what a 3 × 3 square is twice."</p>
+ </details>
+
+ <div class="build-toolbar" id="puffToolbar">
+  <button class="build-tool active" data-tool="floor" onclick="selectPuffTool('floor')">🟫 FLOOR<small>1 wood</small></button>
+  <button class="build-tool" data-tool="wall" onclick="selectPuffTool('wall')">🧱 WALL<small>1 wood + 1 stone</small></button>
+  <button class="build-tool" data-tool="door" onclick="selectPuffTool('door')">🚪 DOOR<small>2 wood + 1 stone</small></button>
+  <button class="build-tool" data-tool="roof" onclick="selectPuffTool('roof')">🏠 ROOF<small>1 wood + 1 stone</small></button>
+  <button class="build-tool" data-tool="ramp" onclick="selectPuffTool('ramp')">↗ RAMP<small>2 wood</small></button>
+  <button class="build-tool" data-tool="erase" onclick="selectPuffTool('erase')">🧹 ERASER<small>Recover materials</small></button>
+ </div>
+
+ <div class="build-resources">
+  <div class="build-resource">
+   <label>WOOD LEFT</label>
+   <strong id="puffWoodSide">32</strong>
+  </div>
+  <div class="build-resource">
+   <label>STONE LEFT</label>
+   <strong id="puffStoneSide">18</strong>
+  </div>
+ </div>
+
+ <div class="tiny">
+  Build the floor first. Walls, doors and roofs need a floor underneath.
+  The ramp must be outside and touch the doorway.
+ </div>
+
+ <div class="build-actions">
+  <button class="btn mint" onclick="checkPuffBuild()">CHECK STRUCTURE ✓</button>
+  <button class="btn alt" onclick="resetPuffBuild()">RESET PLOT</button>
+ </div>
+</div>
+</div>
     <div class="build-feedback" id="puffFeedback" aria-live="polite">Puffwing: “Please build something that doesn't fall over. I have wings; I don't need a roof collapsing on me.”</div>
-    <div id="puffBuildResult" class="build-result"><div class="build-result-inner"><div class="build-result-emoji" id="puffBuildEmoji">🪽</div><h2 id="puffBuildTitle">Puffwing unlocked!</h2><p id="puffBuildText"></p><button class="btn gold hidden" id="puffNextArenaBtn" onclick="openArena()">NEXT CHALLENGE: STARFALL ARENA ⚔️</button><button class="btn alt" onclick="backToFloofi()">BACK TO CROSSWORD</button><button class="btn alt" onclick="resetPuffBuild()">BUILD AGAIN</button></div></div>
+    <div id="puffBuildResult" class="build-result"><div class="build-result-inner"><div class="build-result-emoji" id="puffBuildEmoji">🪽</div><h2 id="puffBuildTitle">Puffwing unlocked!</h2><p id="puffBuildText"></p><div class="creature-reveal" id="puffwingReveal"></div><button class="btn gold hidden" id="puffNextArenaBtn" onclick="openArena()">NEXT CHALLENGE: STARFALL ARENA ⚔️</button><button class="btn alt" onclick="backToFloofi()">BACK TO CROSSWORD</button><button class="btn alt" onclick="resetPuffBuild()">BUILD AGAIN</button></div></div>
    </div>
   </section>
   <p class="tiny" style="text-align:center;margin-top:14px">Creature World · Puffwing's Build Battle · Design, connect, reinforce</p>
@@ -690,7 +813,7 @@ p{line-height:1.55;color:var(--muted)}
  <div class="arena-wrap">
   <header class="top">
    <div class="brand">✦ CREATURE WORLD <span style="color:#b69ce8">/</span> STARFALL ARENA</div>
-   <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="tag">⚔️ EXPERT TRIAL · 04</span><button class="btn alt" onclick="backToPuffwing()">← Back to Build Battle</button></div>
+   <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="tag">⚔️ PUZZLE · 04</span><button class="btn alt" onclick="backToPuffwing()">← Back to Build Battle</button></div>
   </header>
   <section class="panel arena-panel">
    <div class="arena-topline"><div><div class="kicker">THE LAST GATEKEEPER</div><h1>CREATURE CLASH</h1><p style="margin:4px 0 0">One final duel stands between you and the hidden island.</p></div><span class="arena-tag">ANIME-INSPIRED CREATURE DUEL · TURN-BASED</span></div>
@@ -737,6 +860,7 @@ p{line-height:1.55;color:var(--muted)}
    </div>
    <div id="arenaResult" class="arena-result">
     <div class="arena-result-emoji" id="arenaResultEmoji">🏆</div><h2 id="arenaResultTitle">Victory!</h2><p id="arenaResultText"></p>
+    <div class="creature-reveal" id="lunariReveal"></div>
     <button class="btn gold" id="arenaRetryBtn" onclick="retryArena()">FIGHT AGAIN</button>
     <button class="btn alt" onclick="backToPuffwing()">BACK TO BUILD BATTLE</button>
    </div>
@@ -793,7 +917,7 @@ p{line-height:1.55;color:var(--muted)}
    <div class="island-map-caption"><span>Follow the dotted trail from Scoop District to Winning Grounds.</span><div class="island-legend"><span><i class="island-dot"></i>Current</span><span><i class="island-dot done"></i>Cleared</span><span><i class="island-dot locked"></i>Locked</span></div></div>
    <div class="island-map-lower">
     <div class="island-card"><h3>🧭 Expedition status</h3><p id="islandMapStatus">Your first clue is waiting in Scoop District. Tap the glowing pin to begin.</p><div class="island-progress"><span id="islandProgressBar"></span></div><div class="tiny" id="islandProgressText">0 / 5 trail seals recovered</div><div class="island-status" id="islandMapFeedback" aria-live="polite">The map is open. The treasure trail is still sealed.</div></div>
-    <div class="island-card"><h3>📜 Before you set off</h3><p>There are five linked stops. Each correct solution reveals the next location. The final lock combines information gathered along the route.</p><p><b>No timer.</b> You have five trail lives and three hints for the entire hunt. A wrong completed answer costs one life. An empty answer costs nothing.</p><button class="btn gold" onclick="openTreasureStation(islandProgress)" id="islandStartBtn">START THE TREASURE HUNT 🗺️</button><div class="island-treasure-callout" id="islandChestCallout" hidden><b>✨ The final chest is open!</b><p style="margin:5px 0">Cocoheart, the secret guardian, has been found. Your letter is waiting.</p><button class="btn gold" onclick="openFinalLetter()">OPEN THE FINAL LETTER 💌</button></div></div>
+    <div class="island-card"><h3>📜 Before you set off</h3><p>There are five linked stops. Each correct solution reveals the next location. The final lock combines information gathered along the route.</p><p><b>No timer.</b> You have five trail lives and three hints for the entire hunt. A wrong completed answer costs one life. An empty answer costs nothing.</p><button class="btn gold" onclick="openTreasureStation(islandProgress)" id="islandStartBtn">START THE TREASURE HUNT 🗺️</button><div class="island-treasure-callout" id="islandChestCallout" hidden><b>✨ The final chest is open!</b><p style="margin:5px 0">Cocoheart, the secret guardian, has been found. Your letter is waiting.</p><div class="creature-reveal" id="cocoheartReveal"></div><button class="btn gold" onclick="openFinalLetter()">OPEN THE FINAL LETTER 💌</button></div></div>
    </div>
    <div class="treasure-actions"><button class="btn alt" onclick="backToArena()">← Return to Starfall Arena</button><button class="btn alt" onclick="openFinalLetter()" id="islandLetterBtn" hidden>OPEN YOUR LETTER 💌</button></div>
   </section>
@@ -824,8 +948,22 @@ p{line-height:1.55;color:var(--muted)}
    <div class="kicker" style="text-align:center">A TREASURE FOUND · A LITTLE SPACE JUST FOR YOU</div>
       <h1 class="letter-title">One last thing, Dummy…</h1>
    <p class="letter-intro">Cocoheart has guarded this envelope all along. You made it through every challenge, followed every clue and found the secret. The final words are yours to write. Nothing has been filled in for you.</p>
-   <div class="letter-paper"><textarea id="finalLetterText" placeholder="Write your letter here…" aria-label="Your personal letter"></textarea></div>
-   <div class="letter-save-state" id="letterSaveState">Your writing is saved in this browser as you type.</div>
+   <div class="letter-paper"><div class="letter-copy" id="finalLetterText" aria-label="Your personal letter">Helloooo🙋‍♀️
+Guesss you’ve finished all the puzzles and the tasks and have clawed your way to this beautiful lil digital letter🫠‼️
+
+Well thisss wass my very first website, I hope I did a gooood jobb🤟🕺hopee youu liked the puzzzless and the flow and the namesss and the aniimoooss🫠😋
+
+And WELL I HOPEE YOUU ARE SURPRISED THE HELL OUTT BTW‼️⁉️
+
+Anywaayyyy youu knoww the regular stuff so immmaa not put that here butt I do want youu to knoww thatt immmaa misss you very muchh when you leavee for the US🥹I hope youu have the besttt timee there and more than anythinggg I hopeee youuu gett your visa appointment SOOOON😋🥰
+
+Chaaal aataa baass no more emo stuff, you’re my best friend and all and la la la la la la🫠🥰
+
+Byeebyeee tell me what youu thought of this btw🕺🤟
+
+Love, 
+Timmmi🎀</div></div>
+   <div class="letter-save-state" id="letterSaveState">A little message, written just for you. 💌</div>
    <div class="letter-actions"><button class="btn gold" onclick="downloadFinalLetter()">SAVE MY LETTER AS A FILE</button><button class="btn alt" onclick="copyFinalLetter()">COPY LETTER</button><button class="btn alt" onclick="openChocobloomMap()">RETURN TO ISLAND</button></div>
    <div class="welcome-foot">Made with a little magic, chaos, and a whole lot of mischief. ✨</div>
   </section>
@@ -834,6 +972,33 @@ p{line-height:1.55;color:var(--muted)}
 
 <script>
 'use strict';
+
+const CREATURES={
+ Blazbit:{emoji:'🔥',tone:'#ffad72',deep:'#e66d71',name:'Blazbit',kind:'Fire gremlin',shape:'M50 8 C30 8 18 26 20 48 C9 61 20 86 43 89 C65 94 84 77 80 55 C91 34 72 9 50 8Z',ears:'<path d="M27 28L17 8L39 20M65 20L84 7L76 32" fill="#ffdf83" stroke="#e66d71" stroke-width="3" stroke-linejoin="round"/>'},
+ Floofi:{emoji:'☁️',tone:'#c9eaff',deep:'#8db8e8',name:'Floofi',kind:'Cloud puff',shape:'M18 61 C5 50 13 31 31 31 C34 12 59 8 68 28 C91 24 96 52 79 62 C83 81 63 91 48 82 C28 93 11 81 18 61Z',ears:'<path d="M28 34Q17 12 39 18L44 34M62 30Q69 9 84 21L74 39" fill="#e9f7ff" stroke="#8db8e8" stroke-width="3"/>'},
+ Puffwing:{emoji:'🪽',tone:'#d8d2ff',deep:'#9a83d7',name:'Puffwing',kind:'Skybase architect',shape:'M50 16 C27 11 13 31 19 52 C7 70 25 91 47 83 C64 94 88 78 79 58 C90 34 69 12 50 16Z',ears:'<path d="M23 48Q2 18 8 8Q31 15 39 39M63 38Q77 10 94 12Q91 37 76 52" fill="#f2efff" stroke="#9a83d7" stroke-width="3"/>'},
+ Lunari:{emoji:'🌙',tone:'#b9d9ff',deep:'#7189d6',name:'Lunari',kind:'Starfall guardian',shape:'M50 9 C26 10 12 31 19 55 C25 78 51 91 72 77 C47 78 35 52 44 31 C47 21 56 13 67 11 C61 9 55 8 50 9Z',ears:'<path d="M29 29L17 14L39 19M62 22L78 9L73 32" fill="#e4eaff" stroke="#7189d6" stroke-width="3"/>'},
+ Cocoheart:{emoji:'💗',tone:'#ffc2d9',deep:'#df82ac',name:'Cocoheart',kind:'Secret island guardian',shape:'M50 84 C40 73 13 57 15 35 C17 14 42 10 50 29 C59 10 84 14 86 35 C88 57 61 73 50 84Z',ears:'<path d="M25 29Q15 5 37 14L43 31M59 31Q67 6 84 17L75 37" fill="#ffe3ef" stroke="#df82ac" stroke-width="3"/>'}
+};
+function creatureArt(name,locked=false){
+ const c=CREATURES[name];if(!c)return '';
+ const fill=locked?'#d7d1df':c.tone,stroke=locked?'#aaa1b4':c.deep;
+ return `<svg class="creature-art" viewBox="0 0 100 100" role="img" aria-label="${locked?'Locked creature':c.name}"><defs><linearGradient id="g${name}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${fill}"/><stop offset="1" stop-color="${stroke}"/></linearGradient></defs><circle cx="50" cy="51" r="46" fill="#fff" opacity=".55"/><g>${c.ears}</g><path d="${c.shape}" fill="url(#g${name})" stroke="${stroke}" stroke-width="3"/><ellipse cx="39" cy="51" rx="3.5" ry="5" fill="#49395f"/><ellipse cx="61" cy="51" rx="3.5" ry="5" fill="#49395f"/><circle cx="40" cy="49" r="1.2" fill="#fff"/><circle cx="62" cy="49" r="1.2" fill="#fff"/><ellipse cx="27" cy="62" rx="6" ry="3.5" fill="#f28fac" opacity=".8"/><ellipse cx="73" cy="62" rx="6" ry="3.5" fill="#f28fac" opacity=".8"/><path d="M44 65Q50 71 56 65" fill="none" stroke="#49395f" stroke-width="2.7" stroke-linecap="round"/>${locked?'<path d="M38 42V36a12 12 0 0 1 24 0v6" fill="none" stroke="#756b80" stroke-width="5"/><rect x="34" y="40" width="32" height="25" rx="5" fill="#8f8798"/><circle cx="50" cy="51" r="3" fill="#fff"/>':''}<path d="M12 17l3-6 3 6 6 3-6 3-3 6-3-6-6-3zM79 77l2-5 3 5 5 2-5 3-3 5-2-5-5-3z" fill="#ffdf83"/></svg>`;
+}
+function unlockedCreatures(){
+ let got=[];try{got=JSON.parse(localStorage.getItem('cwGot')||'[]')}catch(e){}
+ return ['Blazbit','Floofi','Puffwing','Lunari','Cocoheart'].filter(n=>got.includes(n)||localStorage.getItem('cw'+n+'Unlocked')==='yes'||(n==='Cocoheart'&&localStorage.getItem('cwSecretGuardianUnlocked')==='yes'));
+}
+function renderCreatureCollection(){
+ const grid=document.getElementById('collectionGrid');if(!grid)return;
+ const got=unlockedCreatures();
+ grid.innerHTML=Object.keys(CREATURES).map(name=>{const c=CREATURES[name],yes=got.includes(name);return `<div class="collection-card ${yes?'':'locked'}">${creatureArt(name,!yes)}<b>${yes?c.name:'???'}</b><small>${yes?c.kind:'Not collected yet'}</small></div>`}).join('');
+ const count=document.getElementById('collectionCount');if(count)count.textContent=got.length+' / 5 collected';
+}
+function renderCreatureReveal(id,name){
+ const box=document.getElementById(id);if(!box)return;
+ const c=CREATURES[name];box.innerHTML=`<div class="reveal-kicker">✨ NEW ANIMO COLLECTED ✨</div>${creatureArt(name)}<h3>${c.name}</h3><p>${c.kind} has joined your Creature World collection!</p>`;box.classList.add('show');renderCreatureCollection();
+}
 
 function enterGrandPrix(){
  document.getElementById('welcomeScreen').classList.add('hidden');
@@ -1803,6 +1968,7 @@ function finishRace(completed,reason){
  $('resultTitle').textContent=title;
  $('resultText').textContent=text;
  $('result').classList.add('show');
+ if(success)renderCreatureReveal('blazbitReveal','Blazbit');else $('blazbitReveal').classList.remove('show');
  $('floofiNextBtn').classList.toggle('hidden',!success);
 
  setMessage(
@@ -2086,6 +2252,7 @@ function finishFloofi(won){
  result.classList.add('show');
  if(won){
   try{localStorage.setItem('cwFloofiUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();const got=JSON.parse(localStorage.getItem('cwGot')||'[]');if(!got.includes('Floofi'))got.push('Floofi');localStorage.setItem('cwGot',JSON.stringify(got));}catch(e){console.warn('Could not save Floofi progress:',e);}
+  renderCreatureReveal('floofiReveal','Floofi');
   floofiSetFeedback('Floofi: “Well. That was annoyingly impressive. Welcome to the collection.”');
  }else floofiSetFeedback('Floofi: “I shall be here, floating smugly, when you are ready to try again.”');
 }
@@ -2219,7 +2386,7 @@ function finishPuffBuild(won,message){
  stopPuffLoop();puffMode=won?'won':'lost';puffEl('puffBuildResult').classList.add('show');puffEl('puffBuildEmoji').textContent=won?'🪽🏆':'🌪️';puffEl('puffBuildTitle').textContent=won?'PUFFWING UNLOCKED!':'THE STORM WON THIS ROUND';
  puffEl('puffBuildText').textContent=won?message+' Your skybase passed inspection. Puffwing has joined your Creature World collection.':message+' Reset the plot and try a new layout. The structure checker will tell you what needs fixing.';
  puffEl('puffNextArenaBtn').classList.toggle('hidden',!won);
- if(won){try{localStorage.setItem('cwPuffwingUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Puffwing');}catch(e){console.warn(e);}puffSetFeedback('Puffwing: “A flawless build. I am choosing to believe you had help from a very competent architect.”');}
+ if(won){try{localStorage.setItem('cwPuffwingUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Puffwing');}catch(e){console.warn(e);}renderCreatureReveal('puffwingReveal','Puffwing');puffSetFeedback('Puffwing: “A flawless build. I am choosing to believe you had help from a very competent architect.”');}
  else puffSetFeedback('Puffwing: “The storm has opinions about your engineering. Rebuild and prove it wrong.”');
 }
 
@@ -2334,7 +2501,7 @@ function finishArena(won){
  arena$('arenaResultEmoji').textContent=won?'🌟🏆':'💫';arena$('arenaResultTitle').textContent=won?'VEXORI DEFEATED — LUNARI AWAKENS!':'THE STARFALL GATE HOLDS';
  arena$('arenaResultText').textContent=won?'You defeated both of Vexori’s forms with '+arenaFighter+'. Lunari has joined your collection — and the seal protecting Chocobloom Island has broken.':'Vexori’s final strike was too much this time. Your creature can fight again. Watch for the charge warning and guard before the impact.';
  arena$('arenaRetryBtn').textContent=won?'REMATCH VEXORI':'TRY THE DUEL AGAIN';
- if(won){try{localStorage.setItem('cwLunariUnlocked','yes');localStorage.setItem('cwMapUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Lunari');}catch(e){console.warn(e);}arena$('arenaMapReveal').classList.add('show');arena$('arenaRetryBtn').classList.add('hidden');}
+ if(won){try{localStorage.setItem('cwLunariUnlocked','yes');localStorage.setItem('cwMapUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Lunari');}catch(e){console.warn(e);}renderCreatureReveal('lunariReveal','Lunari');arena$('arenaMapReveal').classList.add('show');arena$('arenaRetryBtn').classList.add('hidden');}
  else arena$('arenaRetryBtn').classList.remove('hidden');
 }
 function retryArena(){arena$('arenaResult').classList.remove('show');arena$('arenaMapReveal').classList.remove('show');arena$('arenaSelect').classList.remove('hidden');arena$('arenaBattle').classList.add('hidden');selectArenaFighter(arenaFighter);}
@@ -2360,8 +2527,6 @@ function openChocobloomMap(){
  loadTreasureState();hideAllScreens();island$('islandApp').classList.remove('hidden');renderIslandMap();window.scrollTo(0,0);
 }
 function backToArena(){hideAllScreens();island$('arenaApp').classList.remove('hidden');window.scrollTo(0,0);}
-function renderIslandMap(){
- loadTreasureState();
 function refreshWorldLinks(){
  const box=document.getElementById('savedWorldLinks');if(!box)return;
  const links=[];
@@ -2371,8 +2536,12 @@ function refreshWorldLinks(){
  if(localStorage.getItem('cwMapUnlocked')==='yes')links.push('<button class="btn alt" onclick="openChocobloomMap()">🗺️ Chocobloom Island</button>');
  if(localStorage.getItem('cwLetterUnlocked')==='yes')links.push('<button class="btn gold" onclick="openFinalLetter()">💌 Your Final Letter</button>');
  box.innerHTML=links.join('');box.style.display=links.length?'flex':'none';
+ renderCreatureCollection();
 }
-refreshWorldLinks();
+function renderIslandMap(){
+ loadTreasureState();
+ refreshWorldLinks();
+ renderCreatureCollection();
  for(let i=0;i<5;i++){
   const pin=island$('islandPin'+i);pin.classList.remove('active','done','locked');
   if(i<islandProgress){pin.classList.add('done');pin.innerHTML='<span>✓</span>'+treasureStages[i].name.toUpperCase();}
@@ -2431,7 +2600,8 @@ function submitTreasureAnswer(){
  if(accepted.includes(value)){
   islandProgress=Math.min(5,islandProgress+1);saveTreasureState();
   if(islandProgress===5){
-   try{localStorage.setItem('cwTreasureComplete','yes');localStorage.setItem('cwSecretGuardianUnlocked','yes');localStorage.setItem('cwLetterUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Cocoheart');}catch(e){console.warn(e);}
+   renderCreatureReveal('cocoheartReveal','Cocoheart');
+   try{localStorage.setItem('cwTreasureComplete','yes');localStorage.setItem('cwSecretGuardianUnlocked','yes');localStorage.setItem('cwLetterUnlocked','yes');if(typeof refreshWorldLinks==='function')refreshWorldLinks();puffCollectUnlocked('Cocoheart');}catch(e){console.warn(e);}renderCreatureCollection();
    hideAllScreens();island$('islandApp').classList.remove('hidden');renderIslandMap();island$('islandMapFeedback').textContent='CHEST OPEN! Cocoheart, the secret guardian, has joined your collection.';island$('islandChestCallout').hidden=false;window.scrollTo(0,0);return;
   }
   hideAllScreens();island$('islandApp').classList.remove('hidden');renderIslandMap();island$('islandMapFeedback').textContent='Correct! '+stage.name+' seal recovered. '+treasureStages[islandProgress].name+' is now open.';window.scrollTo(0,0);return;
@@ -2453,26 +2623,22 @@ function resetTreasureHunt(){
 function openFinalLetter(){
  if(localStorage.getItem('cwLetterUnlocked')!=='yes'){alert('The final letter is still sealed. Complete the treasure hunt first.');return;}
  hideAllScreens();island$('letterApp').classList.remove('hidden');
- const area=island$('finalLetterText');
- if(area.value==='')area.value=localStorage.getItem('cwFinalLetterText')||'';
- island$('letterSaveState').textContent=area.value?'Your letter is saved in this browser. Keep writing; it saves as you go.':'Your letter is blank and ready for your words. It saves automatically as you type.';
+ island$('letterSaveState').textContent='A little message, written just for you. 💌';
  window.scrollTo(0,0);
 }
-island$('finalLetterText').addEventListener('input',()=>{
- try{localStorage.setItem('cwFinalLetterText',island$('finalLetterText').value);island$('letterSaveState').textContent='Saved just now in this browser.';}catch(e){island$('letterSaveState').textContent='This browser could not save the text. Copy or download your letter before leaving.';}
-});
 island$('treasureAnswer').addEventListener('keydown',e=>{if(e.key==='Enter')submitTreasureAnswer();});
 function downloadFinalLetter(){
- const text=island$('finalLetterText').value;
+ const text=island$('finalLetterText').textContent;
  if(!text.trim()){alert('Your letter is still blank. Write your words first.');return;}
  const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='creature-world-final-letter.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
 }
 async function copyFinalLetter(){
- const text=island$('finalLetterText').value;
+ const text=island$('finalLetterText').textContent;
  if(!text.trim()){alert('Your letter is still blank. Write your words first.');return;}
- try{await navigator.clipboard.writeText(text);island$('letterSaveState').textContent='Letter copied to clipboard.';}catch(e){island$('finalLetterText').select();island$('letterSaveState').textContent='Select the highlighted text and copy it manually.';}
+ try{await navigator.clipboard.writeText(text);island$('letterSaveState').textContent='Letter copied to clipboard.';}catch(e){const range=document.createRange();range.selectNodeContents(island$('finalLetterText'));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);island$('letterSaveState').textContent='Select the highlighted text and copy it manually.';}
 }
 loadTreasureState();
+renderCreatureCollection();
 
 </script>
 </body>
